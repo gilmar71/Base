@@ -1,0 +1,90 @@
+@font-face {
+  font-family: 'Migha-Regular';
+  src: url('/public/fonts/Migha-Regular.otf') format('opentype');
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'Europa-Regular, sans-serif';
+  src: url('/public/fonts/Europa-Regular.ttf') format('truetype');
+  font-weight: 400;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+span,
+strong,
+time,
+address,
+i,
+a,
+b,
+label,
+li,
+td {
+  text-rendering: optimizeLegibility !important;
+}
+[class*='-europa-regular'] {
+  font-family: 'Europa-Regular';
+}
+[class*='-migha-regular'] {
+  font-family: 'Migha-Regular';
+}
+.uppercase {
+  text-transform: uppercase;
+}
+.lowercase {
+  text-transform: lowercase;
+}
+[class*='-bold'] {
+  font-weight: 700;
+}
+[class*='-semibold'] {
+  font-weight: 600;
+}
+[class*='-medium'] {
+  font-weight: 500;
+}
+[class*='-regular'] {
+  font-weight: 400;
+}
+[class*='-light'] {
+  font-weight: 300;
+}
+[class*='-italic'] {
+  font-style: italic !important;
+}
+
+/* Font-Size */
+
+/* Titles */
+[class*='title-1'] {
+  font-size: 64px;
+}
+[class*='title-2'] {
+  font-size: 56px;
+}
+[class*='title-3'] {
+  font-size: 48px;
+}
+[class*='title-4'] {
+  font-size: 32px;
+}
+[class*='title-5'] {
+  font-size: 28px;
+}
+[class*='title-6'] {
+  font-size: 16px;
+}
+
+/* Paragraphs */
+[class*='paragraph-1'] {
+  font-size: 18px;
+}
+
+/* Links */
+[class*='link-1'] {
+  font-size: 20px;
+}
