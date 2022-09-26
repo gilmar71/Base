@@ -1,17 +1,16 @@
 import { HeaderComponent } from './header';
 import { FooterComponent } from './footer';
 import * as S from './styles';
+import { ItensMenu } from './header/data';
 
 interface LayoutProps {
   children?: React.ReactNode;
-  isBackgroundColor?: boolean;
-  logo: '/images/logo.png' | '/images/logo-footer.png';
 }
 
-export function Layout({ children, isBackgroundColor, logo }: LayoutProps) {
+export function Layout({ children }: LayoutProps) {
   return (
-    <S.Layout isBackgroundColor={isBackgroundColor}>
-      <HeaderComponent logo={logo} />
+    <S.Layout>
+      <HeaderComponent data={ItensMenu} />
 
       {children}
 

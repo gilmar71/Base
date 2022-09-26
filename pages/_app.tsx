@@ -20,24 +20,30 @@ import SwiperCore, {
   Pagination,
   Autoplay,
 } from 'swiper';
+import AOS from 'aos';
 
+import 'aos/dist/aos.css';
 import '../styles/reset.css';
 import '../styles/fonts.css';
 
 import { GlobalStyle } from '../styles/global';
+import { useEffect } from 'react';
 
 SwiperCore.use([Navigation, Pagination, Autoplay, Thumbs, FreeMode, Virtual]);
 
 const queryCliente = new QueryClient();
 
 const App = ({ Component, pageProps }: AppProps) => {
+  useEffect(() => {
+    AOS.init({});
+  }, []);
   return (
     <ProfileProvider>
       <AuthProvider>
         <QueryClientProvider client={queryCliente}>
           <CartProvider>
             <Head>
-              <title>byMotoUSA</title>
+              <title>Base</title>
               <link rel="canonical" href="https://mikrokosmos.vercel.app/" />
               <link rel="icon" href="/favicon.ico" />
 

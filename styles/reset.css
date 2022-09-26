@@ -55,11 +55,13 @@ h3,
 h4,
 h5,
 h6 {
+  line-height: 1;
   margin-top: 0;
   margin-bottom: 0;
 }
 
 p {
+  line-height: 1.4;
   margin-top: 0;
   margin-bottom: 0;
 }
