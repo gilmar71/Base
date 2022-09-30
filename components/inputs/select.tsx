@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
-import { useField } from "@unform/core";
+import React, { useEffect, useRef, useState } from 'react';
+import { useField } from '@unform/core';
 
-import * as S from "./styles";
+import * as S from './styles';
 
 interface Option {
   label: string;
@@ -9,12 +9,20 @@ interface Option {
 }
 
 interface Select extends React.SelectHTMLAttributes<HTMLSelectElement> {
+  id?: string;
   name: string;
+  label?: string;
   optionsSelect: Option[];
 }
 
-export function SelectComponent({ name, optionsSelect, ...rest }: Select) {
-  const [value, setValue] = useState("");
+export function SelectComponent({
+  id,
+  name,
+  label,
+  optionsSelect,
+  ...rest
+}: Select) {
+  const [value, setValue] = useState('');
   const inputRef = useRef<HTMLSelectElement>(null);
   const { fieldName, registerField, defaultValue, error } = useField(name);
 
@@ -22,14 +30,19 @@ export function SelectComponent({ name, optionsSelect, ...rest }: Select) {
     registerField({
       name: fieldName,
       ref: inputRef.current || value,
-      path: "value",
+      path: 'value',
     });
   }, [fieldName, value, registerField]);
 
   return (
     <S.Input>
       <div className="input-content">
-        <input className="selectValidator" value={value} readOnly/>
+        {label && (
+          <label className="label-text txt-sz-9-montserrat-bold" htmlFor={id}>
+            {label}
+          </label>
+        )}
+        {/* <input className="selectValidator" value={value} readOnly /> */}
         <select
           defaultValue={defaultValue}
           ref={inputRef}
@@ -40,10 +53,10 @@ export function SelectComponent({ name, optionsSelect, ...rest }: Select) {
           }}
           {...rest}
         >
-          <option value="">Gênero...</option>
+          <option value="">Selecione</option>
           {optionsSelect.map((option) => {
             return (
-              <option key={"select" + option.value} value={option.value}>
+              <option key={'select' + option.value} value={option.value}>
                 {option.label}
               </option>
             );

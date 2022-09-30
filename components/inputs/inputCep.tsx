@@ -1,54 +1,64 @@
-import { apiViaCep, ViaCep } from "src/services/api_cep";
+import { apiViaCep, ViaCep } from 'src/services/api_cep';
 
-import React, { RefObject, useEffect, useRef, useState } from "react";
-import dynamic from "next/dynamic";
+import React, { RefObject, useEffect, useRef, useState } from 'react';
+import dynamic from 'next/dynamic';
 
-import { FormHandles, useField } from "@unform/core";
+import { FormHandles, useField } from '@unform/core';
 
-const ReactInputMask = dynamic(() => import("react-input-mask"), {
+const ReactInputMask = dynamic(() => import('react-input-mask'), {
   ssr: false,
 });
 
-import * as S from "./styles";
+import * as S from './styles';
 
 interface Props {
+  id?: string;
   placeholder?: string;
   formRef: RefObject<FormHandles>;
   children: React.ReactNode;
+  noMargin?: boolean;
+  label?: string;
 }
 
-type InputProps = JSX.IntrinsicElements["input"] & Props;
+type InputProps = JSX.IntrinsicElements['input'] & Props;
 
-export function InputCep({ placeholder, formRef, children }: InputProps) {
-  const [cep, setCep] = useState("");
+export function InputCep({
+  placeholder,
+  formRef,
+  children,
+  noMargin,
+  label,
+  id,
+}: InputProps) {
+  const [cep, setCep] = useState('');
   const [validCep, setValidCep] = useState(false);
 
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const { fieldName, registerField, defaultValue, error } = useField("zipCode");
+  const { fieldName, registerField, defaultValue, error } = useField('zipCode');
 
   async function CallCep() {
     try {
       const { data } = await apiViaCep.get<ViaCep>(
-        `${inputRef.current?.value}/json`
+        `${inputRef.current?.value}/json`,
       );
 
       if (data.erro) {
         setValidCep(false);
-        formRef.current?.setFieldError("zipCode", "Cep inválido.");
+        formRef.current?.setFieldError('zipCode', 'Cep inválido.');
         return;
       }
 
       setValidCep(true);
 
-      formRef.current?.setFieldError("zipCode", "");
-      formRef.current?.setFieldValue("street", data.logradouro);
-      formRef.current?.setFieldValue("district", data.bairro);
-      formRef.current?.setFieldValue("city", data.localidade);
-      formRef.current?.setFieldValue("state", data.uf);
+      formRef.current?.setFieldError('zipCode', '');
+      formRef.current?.setFieldValue('street', data.logradouro);
+      formRef.current?.setFieldValue('district', data.bairro);
+      formRef.current?.setFieldValue('city', data.localidade);
+      formRef.current?.setFieldValue('state', data.uf);
     } catch (e) {
       setValidCep(false);
-      formRef.current?.setFieldError("zipCode", "");
+      formRef.current?.setFieldError('zipCode', '');
     }
   }
 
@@ -56,7 +66,7 @@ export function InputCep({ placeholder, formRef, children }: InputProps) {
     registerField({
       name: fieldName,
       ref: inputRef.current || cep,
-      path: "value",
+      path: 'value',
     });
   }, [fieldName, cep, registerField]);
 
@@ -75,17 +85,22 @@ export function InputCep({ placeholder, formRef, children }: InputProps) {
     }
 
     setValidCep(false);
-    formRef.current?.setFieldError("zipCode", "");
+    formRef.current?.setFieldError('zipCode', '');
   }, [inputRef.current?.value, cep, defaultValue]);
 
   return (
     <>
-      <S.Input>
+      <S.Input noMargin={noMargin}>
         <div className="input-content">
+          {label && (
+            <label className="label-text txt-sz-9-montserrat-bold" htmlFor={id}>
+              {label}
+            </label>
+          )}
           <ReactInputMask
             mask="99999-999"
             onChange={(e) => {
-              setCep(e.target.value.replace("-", "").replace("_", ""));
+              setCep(e.target.value.replace('-', '').replace('_', ''));
             }}
             value={cep}
           >
@@ -108,9 +123,9 @@ export function InputCep({ placeholder, formRef, children }: InputProps) {
           </span>
         )}
       </S.Input>
-      
+
       <div
-        style={{ display: !validCep ? "none" : "block" }}
+        style={{ display: !validCep ? 'none' : 'block' }}
         className="show-if-cep-is-valid"
       >
         {children}

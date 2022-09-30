@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 html {
-  line-height: 1.15;
+  line-height: 1;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
   -ms-overflow-style: scrollbar;
@@ -56,14 +56,11 @@ h4,
 h5,
 h6 {
   line-height: 1;
-  margin-top: 0;
-  margin-bottom: 0;
+  margin: 0;
 }
 
 p {
-  line-height: 1.4;
-  margin-top: 0;
-  margin-bottom: 0;
+  margin: 0;
 }
 
 abbr[title],
@@ -315,4 +312,21 @@ template {
 
 [hidden] {
   display: none !important;
+}
+
+@media only screen and (max-width: 1600px) {
+}
+@media only screen and (max-width: 1400px) {
+}
+@media only screen and (max-width: 1200px) {
+}
+@media only screen and (max-width: 1024px) {
+}
+@media only screen and (max-width: 900px) {
+}
+@media only screen and (max-width: 768px) {
+}
+@media only screen and (max-width: 650px) {
+}
+@media only screen and (max-width: 500px) {
 }

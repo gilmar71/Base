@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Image = styled.div`
   height: inherit;
@@ -8,6 +8,7 @@ export const Image = styled.div`
   min-width: inherit;
   max-width: inherit;
   aspect-ratio: inherit;
+  position: relative;
 
   span {
     width: 100%;

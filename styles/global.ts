@@ -70,6 +70,9 @@ ul {
     padding-left: 0 !important;
     margin-bottom: 0 !important;
 }
+p {
+      line-height: 1.4;
+    }
 
 .container {
     max-width: 1380px;
@@ -89,7 +92,7 @@ ul {
         font-size: 15.5px;
     }
     .container {
-      max-width: 1320px;
+      max-width: 1330px;
     }
   }
   @media only screen and (max-width: 1400px) {
@@ -97,7 +100,7 @@ ul {
         font-size: 15px;
     }
     .container {
-      max-width: 1140px;
+      max-width: 1150px;
     }
   }
   @media only screen and (max-width: 1200px) {
@@ -105,7 +108,10 @@ ul {
         font-size: 14.5px;
     }
     .container {
-      max-width: 970px;
+      max-width: 990px;
+    }
+    p {
+      line-height: 1.3;
     }
   }
   @media only screen and (max-width: 1024px) {
@@ -113,35 +119,35 @@ ul {
         font-size: 14px;
     }
     .container {
-      max-width: 735px;
+      max-width: 870px;
     }
   }
 @media only screen and (max-width: 900px) {
+    .container {
+      max-width: 735px;
+    }
     .error-message {
     font-size: 12px;
     margin-top: 4px;
     padding-left: 10px;
-}
+   }
+   p {
+      line-height: 1.2;
+    }
 }
 @media only screen and (max-width:768px) {
   html {
         font-size: 13.5px;
     }
   .container {
-      max-width: 630px;
+      max-width: 625px;
     }
-    .show-mobile {
-      display: flex !important;
-    }
-
-    .hide-mobile {
-      display: none !important;
-    }
-    
 }
 @media only screen and (max-width: 650px) {
-    
+  .container {
+      max-width: 495px;
   }
+}
 
 @media only screen and (max-width: 500px) {
     html {

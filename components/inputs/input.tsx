@@ -19,11 +19,7 @@ interface Props {
   mask?: string;
   placeholder?: string;
   onChangeInput?: React.Dispatch<string>;
-}
-
-interface Props {
-  name: string;
-  label?: string;
+  noMargin?: boolean;
 }
 
 type InputProps = JSX.IntrinsicElements['input'] & Props;
@@ -37,6 +33,7 @@ export function InputComponent({
   mask,
   label,
   onChangeInput,
+  noMargin,
   ...rest
 }: InputProps) {
   const [value, setValue] = useState('');
@@ -53,8 +50,13 @@ export function InputComponent({
   }, [fieldName, value, registerField]);
 
   return (
-    <S.Input>
+    <S.Input noMargin={noMargin}>
       <div className="input-content">
+        {label && (
+          <label className="label-text txt-sz-9-montserrat-bold" htmlFor={id}>
+            {label}
+          </label>
+        )}
         {mask ? (
           <ReactInputMask
             mask={mask}
@@ -87,15 +89,6 @@ export function InputComponent({
           </ReactInputMask>
         ) : (
           <>
-            {label && (
-              <label
-                className="label-text paragraph-2-bold-graphie"
-                htmlFor={id}
-              >
-                {label}
-              </label>
-            )}
-
             <input
               id={id}
               defaultValue={defaultValue}

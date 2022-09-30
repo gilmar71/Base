@@ -1,22 +1,13 @@
 import styled from 'styled-components';
 
-export const Input = styled.div`
-  /* position: relative; */
-  margin-bottom: 40px;
-  width: 100%;
+interface InputProps {
+  noMargin?: boolean;
+}
 
-  /* .label-animation {
-    color: rgb(160 160 160);
-    text-align: left;
-    display: block;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    padding: 0 20px;
-    background-color: rgb(229 229 229);
-    width: 100%;
-    transition: 0.3s;
-  } */
+export const Input = styled.div<InputProps>`
+  /* position: relative; */
+  margin-bottom: ${(props) => (props.noMargin ? '0' : '30px')};
+  width: 100%;
 
   .input-content {
     width: 100%;
@@ -36,53 +27,9 @@ export const Input = styled.div`
     }
   }
 
-  /* .input-content.edit {
-    .label-animation {
-      top: 8px;
-      transform: unset;
-    }
-
-    input:focus + .label-animation {
-      background: transparent;
-      top: 8px;
-      width: unset;
-
-      span {
-        display: unset;
-        transform: unset;
-        margin-left: unset;
-      }
-    }
-
-    .label-animation {
-      opacity: 0.3;
-      color: #000000;
-      font-size: 12px;
-      position: absolute;
-    }
-
-    input {
-      height: 50px;
-      padding-top: 23px;
-    }
-  } */
-
-  /* .label-animation.active {
-    background-color: transparent;
-    top: -2px;
-    width: auto;
-
-    span {
-      display: block;
-      transform: scale(0.9);
-      margin-left: -5px;
-    }
-  } */
-
-  /* .input-content + *,
-  .input-content + div + * {
-    display: block;
-  } */
+  label {
+    color: var(--white);
+  }
 
   input,
   textarea,
@@ -92,43 +39,12 @@ export const Input = styled.div`
     padding: 0 15px;
     color: rgba(0, 0, 0, 0.5);
     border: 0;
+    border-radius: 10px;
   }
-
-  /* textarea {
-    display: block;
-  } */
-
-  /* select {
-    background-color: #eae8ee;
-    color: rgb(51, 33, 84, 1);
-    background-image: url('/images/seta-dark.svg');
-    background-repeat: no-repeat;
-    background-position: 96% center;
-    background-size: 16px 9px;
-    outline: none;
-  } */
-
-  /* select {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-  } */
-
-  /* select::-ms-expand {
-    display: none;
-  } */
-
-  /* .selectValidator {
-    display: none;
-  } */
-
-  /* .selectValidator[value=''] + select {
-    color: #b2adc9;
-  } */
 
   input,
   select {
-    height: 50px;
+    height: 48px;
   }
 
   input:read-only {
@@ -137,7 +53,7 @@ export const Input = styled.div`
   }
 
   textarea {
-    height: 140px;
+    height: 150px;
     padding-top: 15px;
   }
 
@@ -187,64 +103,64 @@ export const Input = styled.div`
   }
 
   @media only screen and (max-width: 1600px) {
-    margin-bottom: 35px;
+    margin-bottom: ${(props) => (props.noMargin ? '0' : '25px')};
 
-    input {
-      height: 48px;
+    input,
+    select {
+      height: 46px;
+    }
+    textarea {
+      height: 145px;
+    }
+  }
+  @media only screen and (max-width: 1400px) {
+    margin-bottom: ${(props) => (props.noMargin ? '0' : '20px')};
+
+    input,
+    select {
+      height: 46px;
+    }
+    textarea {
+      height: 140px;
+    }
+  }
+  @media only screen and (max-width: 1200px) {
+    margin-bottom: ${(props) => (props.noMargin ? '0' : '15px')};
+
+    input,
+    select {
+      height: 44px;
     }
     textarea {
       height: 135px;
     }
   }
+  @media only screen and (max-width: 1024px) {
+    margin-bottom: ${(props) => (props.noMargin ? '0' : '10px')};
 
-  @media only screen and (max-width: 1400px) {
-    margin-bottom: 30px;
-
-    input {
-      height: 46px;
+    input,
+    select {
+      height: 42px;
     }
     textarea {
       height: 130px;
     }
   }
-  @media only screen and (max-width: 1200px) {
-    margin-bottom: 25px;
+  @media only screen and (max-width: 768px) {
+    margin-bottom: ${(props) => (props.noMargin ? '0' : '5px')};
 
-    input {
-      height: 44px;
+    input,
+    select {
+      height: 40px;
     }
     textarea {
       height: 125px;
     }
   }
-  @media only screen and (max-width: 1024px) {
-    margin-bottom: 20px;
-
-    input {
-      height: 42px;
-    }
-    textarea {
-      height: 120px;
-    }
-  }
-  @media only screen and (max-width: 768px) {
-    margin-bottom: 15px;
-
-    input {
-      height: 40px;
-    }
-    textarea {
-      height: 110px;
-    }
-  }
   @media only screen and (max-width: 500px) {
-    margin-bottom: 12px;
-
-    input {
+    input,
+    select {
       height: 38px;
-    }
-    textarea {
-      height: 85px;
     }
   }
 `;

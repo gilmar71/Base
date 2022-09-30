@@ -11,6 +11,7 @@ interface NextImageProps {
   isBaseUrl?: boolean;
   isBaseImageGallery?: boolean;
   src: string | undefined;
+  alt: string;
   layout: 'fill' | 'fixed' | 'intrinsic' | 'responsive' | 'raw' | undefined;
 }
 export function NextImage({
@@ -18,10 +19,12 @@ export function NextImage({
   layout,
   isBaseUrl,
   isBaseImageGallery,
+  alt,
 }: NextImageProps) {
   return (
     <S.Image>
       <Image
+        alt={alt}
         src={
           src
             ? isBaseUrl

@@ -44,9 +44,7 @@ export function HeaderComponent({ data }: HeaderProps) {
             data-aos="fade-down"
             data-aos-duration="1500"
           >
-            <div className="logo-box">
-              {/* <NextImage src="" layout="fill" alt="logomarca" /> */}
-            </div>
+            {/* <NextImage src="" layout="fill" alt="logomarca" /> */}
           </a>
         </Link>
         <div className={`menuContainer ${isActive ? 'active' : 'disabled'}`}>
@@ -69,7 +67,7 @@ export function HeaderComponent({ data }: HeaderProps) {
                   data-aos="fade-down"
                   data-aos-duration="1500"
                   key={'link-menu-' + categoria.id}
-                  className="itens link-3-objective-medium"
+                  className="itens txt-sz-8-medium"
                 >
                   {categoria.link}
                   {categoria.categorias && (
@@ -79,10 +77,7 @@ export function HeaderComponent({ data }: HeaderProps) {
                           return (
                             <li key={subCategoria.id + subCategoria.sublink}>
                               <Link href={subCategoria.href} passHref>
-                                <a
-                                  className="link-3-objective-medium"
-                                  href="replaced"
-                                >
+                                <a className="txt-sz-8-medium" href="replaced">
                                   {subCategoria.sublink}
                                 </a>
                               </Link>
