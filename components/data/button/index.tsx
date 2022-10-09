@@ -26,14 +26,14 @@ export function ButtonComponent({
   return (
     <S.Button backgroundColor={backgroundColor} $loading={loading}>
       {href && !type ? (
-        <Link href={href}>
-          <a href="replace" className="txt-sz-8-bold-roboto-slab" {...props}>
+        <Link href={href} passHref>
+          <a href="" className="txt-sz-8-medium uppercase" {...props}>
             {text}
           </a>
         </Link>
       ) : (
         <button
-          className="txt-sz-8-bold-roboto-slab"
+          className="txt-sz-8-medium uppercase"
           type={type ? type : 'submit'}
           disabled={loading}
           {...props}

@@ -7,7 +7,7 @@ import {
   InputComponent,
   TextAreaComponent,
   SelectComponent,
-} from 'components/inputs/core';
+} from 'components/data/inputs/core';
 import { useRef } from 'react';
 import { api } from 'src/services/api';
 import router from 'next/router';

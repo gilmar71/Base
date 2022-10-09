@@ -7,16 +7,17 @@ interface ButtonProps {
 }
 
 export const Button = styled.div<ButtonProps>`
+  width: 100%;
   a,
   button {
     width: 100%;
-    /* min-width: 165px; */
     height: 48px;
     cursor: ${(props) => (props.$loading ? 'not-allowed' : 'pointer')};
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #fff;
+    color: var(--secondary);
+    border-radius: 24px;
     border: 0;
     opacity: ${(props) => props.$loading && '0.8'};
     transition: all 0.4s ease-in-out;
@@ -25,11 +26,11 @@ export const Button = styled.div<ButtonProps>`
       props.backgroundColor
         ? `linear-gradient(to right, ${props.backgroundColor}, ${
             props.backgroundColor
-          }, ${lighten(0.1, props.backgroundColor)}, ${props.backgroundColor})`
-        : `linear-gradient(to right, #e33d00, #bd3300, ${lighten(
+          }, ${lighten(0.3, props.backgroundColor)}, ${props.backgroundColor})`
+        : `linear-gradient(to right, #f5cf2d;, #d4ab24, ${lighten(
             0.1,
-            '#e33d00',
-          )} , #bd3300)`};
+            '#d4ab24',
+          )} , #f5cf2d)`};
     animation: ${(props) =>
       props.$loading ? 'loading 2s ease-in-out infinite' : 'unset'};
     /* background: ${(props) => props.$loading && '#6749a3'}; */
