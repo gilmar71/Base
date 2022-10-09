@@ -13,6 +13,8 @@ interface NextImageProps {
   src: string | undefined;
   alt: string;
   layout: 'fill' | 'fixed' | 'intrinsic' | 'responsive' | 'raw' | undefined;
+  loading?: 'eager' | 'lazy' | undefined;
+  priority?: boolean;
 }
 export function NextImage({
   src,
