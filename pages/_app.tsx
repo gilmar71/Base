@@ -1,11 +1,21 @@
 import Head from 'next/head';
+
 import '../styles/reset.css';
 import '../styles/fonts.css';
+import 'swiper/css';
+import 'swiper/css/navigation';
+
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 import { GlobalStyle } from '../styles/global';
-import HomePage from 'pages';
+import { AppProps } from 'next/app';
+import { useEffect } from 'react';
 
-const App = () => {
+const App = ({ Component, pageProps }: AppProps) => {
+  useEffect(() => {
+    AOS.init({});
+  }, []);
   return (
     <>
       <Head>
@@ -26,7 +36,7 @@ const App = () => {
       </Head>
 
       <GlobalStyle />
-      <HomePage />
+      <Component {...pageProps} />
     </>
   );
 };
