@@ -12,19 +12,17 @@ interface NextImageProps {
   isBaseImageGallery?: boolean;
   src: string | undefined;
   alt: string;
-  layout: 'fill' | 'fixed' | 'intrinsic' | 'responsive' | 'raw' | undefined;
   loading?: 'eager' | 'lazy' | undefined;
   priority?: boolean;
 }
 export function NextImage({
   src,
-  layout,
   isBaseUrl,
   isBaseImageGallery,
   alt,
 }: NextImageProps) {
   return (
-    <S.Image>
+    <S.Image className="next-image">
       <Image
         alt={alt}
         src={
@@ -36,7 +34,7 @@ export function NextImage({
               : src
             : '/images/default-image.webp'
         }
-        layout={layout}
+        fill
       />
     </S.Image>
   );

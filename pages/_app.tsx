@@ -4,6 +4,8 @@ import '../styles/reset.css';
 import '../styles/fonts.css';
 import 'swiper/css';
 import 'swiper/css/navigation';
+import 'swiper/css/grid';
+import 'swiper/css/effect-coverflow';
 
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -16,11 +18,12 @@ const App = ({ Component, pageProps }: AppProps) => {
   useEffect(() => {
     AOS.init({});
   }, []);
+
   return (
     <>
       <Head>
-        <title>Base</title>
-        <link rel="canonical" href="https://mikrokosmos.vercel.app/" />
+        <title>Móveis Belo</title>
+        <link rel="canonical" href="" />
         <link rel="icon" href="/favicon.ico" />
 
         <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />

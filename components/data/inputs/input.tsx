@@ -53,7 +53,7 @@ export function InputComponent({
     <S.Input noMargin={noMargin}>
       <div className="input-content">
         {label && (
-          <label className="label-text txt-sz-9-montserrat-bold" htmlFor={id}>
+          <label className="label-text title-11-nhdisplaybold" htmlFor={id}>
             {label}
           </label>
         )}
@@ -71,7 +71,7 @@ export function InputComponent({
           >
             {() => (
               <input
-                className="paragraph-1-bold-graphie"
+                className="title-11-nhdisplayroman"
                 id={id}
                 defaultValue={defaultValue}
                 ref={inputRef}
@@ -102,7 +102,7 @@ export function InputComponent({
                   : type
               }
               {...rest}
-              className="paragraph-1-bold-graphie"
+              className="title-11-nhdisplayroman"
               onChange={(e) => {
                 if (labelAnimation) {
                   setValue(e.target.value);
@@ -115,7 +115,7 @@ export function InputComponent({
         {labelAnimation && (
           <label
             htmlFor={id}
-            className={`label-animation paragraph-1-bold-graphie ${
+            className={`label-animation title-11-nhdisplaybold ${
               value.length > 0 && 'active'
             }`}
             onClick={() => {
@@ -164,7 +164,7 @@ export function InputComponent({
       </div>
 
       {error && (
-        <span className="error paragraph-3-bold-graphie error-message">
+        <span className="error title-11-nhdisplayroman error-message">
           {error}
         </span>
       )}

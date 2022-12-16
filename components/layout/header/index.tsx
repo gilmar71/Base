@@ -1,22 +1,22 @@
-/* Next/React */
-import { useEffect, useState } from 'react';
-import { useRef } from 'react';
+import { useState, useRef } from 'react';
+
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-/* Components */
+import { linksMenu } from './data';
 
-/* Styles */
-import * as S from './styles';
 import { Container } from 'components/data/container';
+
+import * as S from './styles';
+import { MenuMobile } from './menuMobile';
 import { NextImage } from 'components/data/NextImage';
-import { ItensMenu } from './data';
 
 interface CategoriesHeader {
   id: number;
-  link: string;
+  link?: string;
   href: string;
   categorias?: Categorias[];
+  logo?: string;
 }
 interface Categorias {
   id: number;
@@ -25,6 +25,7 @@ interface Categorias {
 }
 interface HeaderProps {
   data: CategoriesHeader[];
+  isBg?: boolean;
 }
 
 export function HeaderComponent({ data }: HeaderProps) {
@@ -37,28 +38,31 @@ export function HeaderComponent({ data }: HeaderProps) {
   return (
     <S.Header>
       <Container>
-        <Link href="/" passHref>
-          <a
-            href=""
-            className="logo"
+        <Link
+          href="/"
+          data-aos="fade-down"
+          data-aos-duration="1500"
+          className="logo"
+          aria-label="logomarca da empresa"
+        >
+          <NextImage src="/images/logo.webp" alt="logomarca da empresa" />
+        </Link>
+
+        <MenuMobile setStateMenu={setIsActive} menu={isActive} />
+
+        <div className="menuContainer">
+          <button
+            type="button"
+            aria-label="botao para navegação mobile"
+            onClick={onClick}
+            className="block-bar"
             data-aos="fade-down"
             data-aos-duration="1500"
           >
-            {/* <NextImage src="" layout="fill" alt="logomarca" /> */}
-          </a>
-        </Link>
-        <div className={`menuContainer ${isActive ? 'active' : 'disabled'}`}>
-          <button
-            type="button"
-            aria-label="botao de navegacao mobile"
-            onClick={onClick}
-            className={`menuButton`}
-          >
-            <div className="bar1"></div>
-            <div className="bar2"></div>
-            <div className="bar3"></div>
+            <div></div>
+            <div></div>
+            <div></div>
           </button>
-          <div onClick={onClick} className={`bgMobile`}></div>
 
           <nav ref={dropDownRef} className={`menu`}>
             {data.map((categoria) => {
@@ -67,7 +71,7 @@ export function HeaderComponent({ data }: HeaderProps) {
                   data-aos="fade-down"
                   data-aos-duration="1500"
                   key={'link-menu-' + categoria.id}
-                  className="itens txt-sz-8-medium"
+                  className="itens link-3-objective-medium"
                 >
                   {categoria.link}
                   {categoria.categorias && (
@@ -76,10 +80,11 @@ export function HeaderComponent({ data }: HeaderProps) {
                         {categoria.categorias?.map((subCategoria) => {
                           return (
                             <li key={subCategoria.id + subCategoria.sublink}>
-                              <Link href={subCategoria.href} passHref>
-                                <a className="txt-sz-8-medium" href="replaced">
-                                  {subCategoria.sublink}
-                                </a>
+                              <Link
+                                href={subCategoria.href}
+                                className="link-3-objective-medium"
+                              >
+                                {subCategoria.sublink}
                               </Link>
                             </li>
                           );
@@ -92,19 +97,13 @@ export function HeaderComponent({ data }: HeaderProps) {
                 <Link
                   key={'link-menu-' + categoria.id}
                   href={categoria.href}
-                  passHref
+                  data-aos="fade-down"
+                  data-aos-duration="1500"
+                  className={`itens link-3-objective-medium ${
+                    router.pathname === categoria.href ? 'active' : ''
+                  }`}
                 >
-                  <a
-                    data-aos="fade-down"
-                    data-aos-duration="1500"
-                    onClick={onClick}
-                    href=""
-                    className={`itens link-3-objective-medium ${
-                      router.asPath === categoria.href ? 'active' : ''
-                    }`}
-                  >
-                    {categoria.link}
-                  </a>
+                  {categoria.link}
                 </Link>
               );
             })}

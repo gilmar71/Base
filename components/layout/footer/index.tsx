@@ -2,7 +2,8 @@ import { ButtonComponent } from 'components/data/button';
 import { Container } from 'components/data/container';
 import { NextImage } from 'components/data/NextImage';
 import Link from 'next/link';
-import { SiteMap } from './data';
+import { CodieLogo, PhoneIcon, PinIcon } from 'public/icons/icons';
+import { Services, SiteMap } from './data';
 
 import * as S from './styles';
 
@@ -11,26 +12,38 @@ export function FooterComponent() {
     <S.Footer>
       <Container>
         <div className="box-footer">
-          <Link href="/" passHref>
-            <a href="" className="logo">
-              <NextImage
-                src="/images/logo.webp"
-                layout="fill"
-                alt="logomarca"
-              />
-            </a>
-          </Link>
+          <div className="box-logo">
+            <Link href="/" className="logo">
+              <NextImage src="/images/logo.webp" alt="logomarca" />
+            </Link>
 
-          <div className="site-map">
-            <h1 className="txt-sz-9-bold uppercase">Mapa do site</h1>
+            <span className="title-6-nhdisplaylight">
+              Soluções completas em automação industrial e energia solar
+            </span>
+          </div>
+
+          <div className="site-map navigation">
+            <h1 className="title-10-nhdisplaybold">Mapa do site</h1>
             <ul>
               {SiteMap.map(({ id, title, href }) => {
                 return (
                   <li key={id}>
-                    <Link href={href} passHref>
-                      <a className="txt-sz-10" href="">
-                        {title}
-                      </a>
+                    <Link href={href} className="title-10-nhdisplayroman">
+                      {title}
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+          <div className="services navigation">
+            <h1 className="title-10-nhdisplaybold">Mapa do site</h1>
+            <ul>
+              {Services.map(({ id, title, href }) => {
+                return (
+                  <li key={id}>
+                    <Link href={href} className="title-10-nhdisplayroman">
+                      {title}
                     </Link>
                   </li>
                 );
@@ -38,128 +51,39 @@ export function FooterComponent() {
             </ul>
           </div>
           <div className="contact">
-            <h1 className="txt-sz-9-bold uppercase">Contato</h1>
+            <h1 className="title-10-nhdisplaybold">Contato</h1>
+
             <ul>
               <li>
-                <Link href="/" passHref>
-                  <a className="txt-sz-10" href="">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      viewBox="0 0 16 16"
-                    >
-                      <g>
-                        <g>
-                          <path d="M.581.768l3.25-.75a.755.755 0 0 1 .86.435l1.5 3.5a.748.748 0 0 1-.216.875L4.08 6.378a11.581 11.581 0 0 0 5.538 5.537l1.55-1.894a.75.75 0 0 1 .875-.215l3.5 1.5c.334.147.518.51.437.862l-.75 3.25A.75.75 0 0 1 14.5 16C6.497 16 0 9.515 0 1.5 0 1.15.24.847.581.77z" />
-                        </g>
-                      </g>
-                    </svg>
-                    (11)4063-3402
-                  </a>
+                <Link href="/" className="title-10-nhdisplayroman">
+                  <PhoneIcon />
+                  (71) 996803158
                 </Link>
               </li>
+
               <li>
-                <Link href="/" passHref>
-                  <a className="txt-sz-10 link" href="">
-                    (11)3090-4516
-                  </a>
+                <Link href="/" className="title-10-nhdisplayroman icon">
+                  <PhoneIcon />
+                  (71) 996654435
                 </Link>
               </li>
+
               <li>
-                <Link href="/" passHref>
-                  <a className="txt-sz-10" href="">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="18"
-                      height="19"
-                      viewBox="0 0 18 19"
-                    >
-                      <g>
-                        <g>
-                          <path d="M9.078 16.568h-.012a7.503 7.503 0 0 1-3.791-1.035l-.27-.16-2.813.731.754-2.734-.179-.28A7.401 7.401 0 0 1 1.63 9.143c0-4.084 3.341-7.414 7.456-7.414a7.4 7.4 0 0 1 5.266 2.183 7.341 7.341 0 0 1 2.182 5.242c-.003 4.083-3.345 7.414-7.451 7.414m6.34-13.726A9.106 9.106 0 0 0 9.065.256c-4.936 0-8.956 4-8.958 8.92 0 1.572.412 3.105 1.196 4.458L.032 18.256l4.752-1.24a9.047 9.047 0 0 0 4.282 1.086h.005c4.938 0 8.96-4.002 8.961-8.922 0-2.382-.93-4.624-2.62-6.308m-2.256 8.17c-.226-.112-1.325-.65-1.53-.724-.205-.076-.355-.113-.505.112-.148.222-.578.723-.708.872-.131.146-.262.157-.484.056-.225-.112-.948-.349-1.803-1.114-.666-.596-1.113-1.327-1.245-1.552-.13-.225-.014-.349.098-.461.102-.102.226-.26.338-.393.11-.135.146-.225.223-.372.075-.157.037-.28-.019-.393-.056-.112-.504-1.215-.691-1.654-.18-.438-.366-.383-.504-.383-.13-.01-.279-.01-.429-.01a.845.845 0 0 0-.597.268c-.205.225-.784.765-.784 1.857 0 1.09.802 2.148.914 2.306.112.146 1.579 2.396 3.825 3.364.536.225.953.36 1.278.471.536.17 1.024.147 1.41.091.43-.068 1.325-.54 1.512-1.07.191-.528.191-.967.135-1.068-.055-.101-.202-.158-.427-.259" />
-                        </g>
-                      </g>
-                    </svg>
-                    +55 11 98657-6567
-                  </a>
+                <Link href="/" className="title-10-nhdisplayroman">
+                  <PinIcon />
+                  Av Santos Dumont, 1883 Sala 532, 533 Centro - Salvador, BA
                 </Link>
               </li>
             </ul>
           </div>
-          <div className="client-area">
-            <h1 className="txt-sz-9-bold uppercase">Central do assinante</h1>
-            <div className="button">
-              <ButtonComponent
-                backgroundColor="#f5cf2d"
-                text="Acessar sua conta"
-              />
-            </div>
-            <div className="anatel-seal">
-              <NextImage
-                src="/images/anatel.webp"
-                alt="logomarca da Anatel"
-                layout="fill"
-              />
-            </div>
-          </div>
-        </div>
-        <div className="codie-link">
-          <Link href="https://codie.digital/" passHref>
-            <a className="codie-logo" href="" rel="external" target="_blanck">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="160"
-                height="49"
-                viewBox="0 0 160 49"
-              >
-                <g>
-                  <g>
-                    <g>
-                      <g>
-                        <path d="M120.34.66a4.024 4.024 0 0 1 3.805 7.09A4.023 4.023 0 0 1 120.34.66z" />
-                      </g>
-                      <g>
-                        <g>
-                          <path d="M124.78 11.476h-4.804a1.602 1.602 0 0 0-1.6 1.602v33.383c0 .88.72 1.603 1.6 1.603l4.803-.003c.88.003 1.601-.72 1.601-1.6l-.001-33.385c0-.881-.72-1.603-1.599-1.6" />
-                        </g>
-                      </g>
-                    </g>
-                    <g>
-                      <path d="M68.933 18.184c.037.102.061.205.096.307h.002c.04.1.085.197.121.3 3.058 8.462-1.404 17.863-9.948 20.946-8.545 3.09-17.986-1.285-21.044-9.75-.037-.102-.062-.207-.097-.31h-.002c-.038-.1-.084-.194-.12-.297-3.059-8.464 1.404-17.863 9.949-20.949 8.545-3.087 17.985 1.286 21.043 9.753zM30.89 31.928c.037.103.084.2.121.297l-.003.003c.035.104.064.204.1.307 4.46 12.336 18.168 18.688 30.62 14.19 12.453-4.502 18.934-18.148 14.476-30.482-.037-.103-.084-.2-.122-.3l.006-.002c-.036-.102-.067-.205-.104-.305C71.526 3.3 57.817-3.054 45.364 1.446c-12.452 4.5-18.931 18.146-14.475 30.482z" />
-                    </g>
-                    <g>
-                      <g>
-                        <path d="M156.027 20.085a4.023 4.023 0 0 1-.1 8.044 4.021 4.021 0 0 1-3.97-4.074 4.018 4.018 0 0 1 4.07-3.97z" />
-                      </g>
-                      <g>
-                        <g>
-                          <path d="M157.99 40.805c-9.007-.092-16.309-7.44-16.309-16.468 0-9.029 7.302-16.377 16.31-16.469v-7.5c-13.162.09-23.807 10.785-23.807 23.969 0 13.183 10.645 23.878 23.807 23.97z" />
-                        </g>
-                      </g>
-                    </g>
-                    <g>
-                      <g>
-                        <path d="M23.805 40.805c-9.007-.092-16.309-7.44-16.309-16.468 0-9.029 7.302-16.377 16.31-16.469v-7.5C10.643.459 0 11.154 0 24.338c0 13.183 10.644 23.878 23.805 23.97z" />
-                      </g>
-                    </g>
-                    <g>
-                      <g>
-                        <g>
-                          <path d="M85.31 40.552c9.007-.09 16.309-7.441 16.309-16.469 0-9.026-7.302-16.373-16.309-16.466V.115c13.16.092 23.806 10.787 23.806 23.968 0 13.186-10.647 23.88-23.806 23.973z" />
-                        </g>
-                      </g>
-                      <g>
-                        <path d="M85.31 19.182v8.176a4.094 4.094 0 0 0 3.961-4.09 4.091 4.091 0 0 0-3.96-4.086z" />
-                      </g>
-                    </g>
-                  </g>
-                </g>
-              </svg>
-            </a>
-          </Link>
         </div>
       </Container>
+
+      <div className="codie-area">
+        <Link href="https://codie.digital/" className="codie-logo">
+          <CodieLogo />
+        </Link>
+      </div>
     </S.Footer>
   );
 }

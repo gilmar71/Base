@@ -1,7 +1,7 @@
-export const ItensMenu = [
+export const linksMenu = [
   {
     id: 1,
-    link: 'início',
+    link: 'Início',
     href: '/',
   },
   {
@@ -11,103 +11,47 @@ export const ItensMenu = [
   },
   {
     id: 3,
-    link: 'tecnologia',
-    href: '/',
+    link: 'Nossos serviços',
+    href: '',
     categorias: [
       {
         id: 1,
-        sublink: 'sites',
-        href: '/dinamic',
+        sublink: 'Automação industrial',
+        href: '/servicos/automacao',
       },
       {
         id: 2,
-        sublink: 'lojas virtuais',
-        href: '/servicos',
-      },
-      {
-        id: 3,
-        sublink: 'aplicativos',
-        href: '/post',
-      },
-      {
-        id: 4,
-        sublink: 'software house',
-        href: '/',
+        sublink: 'Energia solar',
+        href: '/servicos/solar',
       },
     ],
   },
   {
     id: 4,
-    link: 'publicidade',
-    href: '/',
-    categorias: [
-      {
-        id: 1,
-        sublink: 'marketing digital',
-        href: '/',
-      },
-      {
-        id: 2,
-        sublink: 'inbound marketing',
-        href: '/',
-      },
-      {
-        id: 3,
-        sublink: 'tráfego pago',
-        href: '/',
-      },
-      {
-        id: 4,
-        sublink: 'assessoria de imprensa',
-        href: '/',
-      },
-    ],
+    link: 'Projetos',
+    href: '/projetos',
   },
   {
     id: 5,
-    link: 'design',
-    href: '/',
-    categorias: [
-      {
-        id: 1,
-        sublink: 'identidade visual',
-        href: '/',
-      },
-      {
-        id: 2,
-        sublink: 'fotografia',
-        href: '/',
-      },
-      {
-        id: 3,
-        sublink: 'filmagem',
-        href: '/',
-      },
-      {
-        id: 4,
-        sublink: 'materiais gráficos',
-        href: '/',
-      },
-    ],
+    link: 'Contato',
+    href: '/contato',
+  },
+];
+
+export const listBanners = [
+  {
+    id: 1,
+    titulo: 'Soluções completas em automação industrial',
+    subtitulo:
+      'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam.',
+    thumbnail: '',
+    imagem: 'images/banner-1.webp',
   },
   {
-    id: 6,
-    link: 'portfólio',
-    href: '/portfolio',
-  },
-  {
-    id: 7,
-    link: 'blog',
-    href: '/blog',
-  },
-  {
-    id: 8,
-    link: 'vagas',
-    href: '/',
-  },
-  {
-    id: 9,
-    link: 'contato',
-    href: '/contactPage',
+    id: 1,
+    titulo: '',
+    subtitulo: '',
+    thumbnail: '',
+    imagem: 'images/teste.jpg',
   },
 ];

@@ -1,8 +1,8 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from 'react';
 
-import { useField } from "@unform/core";
+import { useField } from '@unform/core';
 
-import * as S from "./styles";
+import * as S from './styles';
 
 export function TextAreaComponent({ id, name, label, ...rest }: any) {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -12,19 +12,27 @@ export function TextAreaComponent({ id, name, label, ...rest }: any) {
     registerField({
       name: fieldName,
       ref: inputRef.current,
-      path: "value",
+      path: 'value',
     });
   }, [fieldName, registerField]);
 
   return (
     <S.Input>
-      <label htmlFor={id} className="paragraph-2-bold-graphie">
+      <label htmlFor={id} className="title-11-nhdisplaybold">
         {label}
       </label>
 
-      <textarea id={id} defaultValue={defaultValue} ref={inputRef} {...rest} className="paragraph-1-bold-graphie" />
+      <textarea
+        id={id}
+        defaultValue={defaultValue}
+        ref={inputRef}
+        {...rest}
+        className="title-11-nhdisplayroman"
+      />
 
-      {error && <span className="paragraph-3-bold-graphie error-message">{error}</span>}
+      {error && (
+        <span className="title-11-nhdisplayroman error-message">{error}</span>
+      )}
     </S.Input>
   );
 }

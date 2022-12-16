@@ -6,7 +6,6 @@ import {
   YupValidation,
   InputComponent,
   TextAreaComponent,
-  SelectComponent,
 } from 'components/data/inputs/core';
 import { useRef } from 'react';
 import { api } from 'src/services/api';
@@ -67,7 +66,7 @@ export function BoxContact() {
     }
   }
   return (
-    <S.BoxContact>
+    <S.BoxContact id="box-contact">
       <Form className="form" ref={formRef} onSubmit={handleSubmit} action="">
         <InputComponent
           label="Nome completo"
@@ -83,28 +82,16 @@ export function BoxContact() {
           type="email"
           placeholder="Digite seu e-mail aqui"
         />
+
         <InputComponent
-          label="Endereço"
-          id="adress"
-          name="adress"
-          type="adress"
-          placeholder="Digite aqui seu endereço"
+          label="Telefone"
+          id="phone"
+          name="phone"
+          type="text"
+          placeholder="(DDD) 99999-9999"
+          mask="(99) 99999-9999"
         />
-        <div className="phone-plan">
-          <InputComponent
-            label="Telefone"
-            id="phone"
-            name="phone"
-            type="text"
-            placeholder="(DDD) 99999-9999"
-            mask="(99) 99999-9999"
-          />
-          <SelectComponent
-            name="plano"
-            label="Plano de interesse"
-            optionsSelect={[]}
-          />
-        </div>
+
         <TextAreaComponent
           label="Mensagem"
           id="message"
@@ -114,7 +101,7 @@ export function BoxContact() {
         <div className="buttons">
           <div className="recaptcha"></div>
           <ButtonComponent
-            backgroundColor="#f5cf2d"
+            backgroundColor="#e30613"
             type="submit"
             text="Enviar"
           />

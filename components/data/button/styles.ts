@@ -4,6 +4,7 @@ import { lighten } from 'polished';
 interface ButtonProps {
   backgroundColor?: string;
   $loading?: boolean;
+  color?: string;
 }
 
 export const Button = styled.div<ButtonProps>`
@@ -11,26 +12,25 @@ export const Button = styled.div<ButtonProps>`
   a,
   button {
     width: 100%;
-    height: 48px;
+    height: 52px;
     cursor: ${(props) => (props.$loading ? 'not-allowed' : 'pointer')};
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--secondary);
-    border-radius: 24px;
-    border: 0;
+    color: ${(props) => (props.color ? props.color : 'var(--white)')};
+    border: ${(props) => (props.color ? '1px solid var(--black)' : 'none')};
     opacity: ${(props) => props.$loading && '0.8'};
-    transition: all 0.4s ease-in-out;
+    transition: all 0.3s ease-in-out;
     background-size: 300% 100%;
     background-image: ${(props) =>
       props.backgroundColor
         ? `linear-gradient(to right, ${props.backgroundColor}, ${
             props.backgroundColor
           }, ${lighten(0.3, props.backgroundColor)}, ${props.backgroundColor})`
-        : `linear-gradient(to right, #f5cf2d;, #d4ab24, ${lighten(
+        : `linear-gradient(to right, #e30613;, #e30613, ${lighten(
             0.1,
-            '#d4ab24',
-          )} , #f5cf2d)`};
+            '#e30613',
+          )} , #e30613)`};
     animation: ${(props) =>
       props.$loading ? 'loading 2s ease-in-out infinite' : 'unset'};
     /* background: ${(props) => props.$loading && '#6749a3'}; */
@@ -39,8 +39,6 @@ export const Button = styled.div<ButtonProps>`
   a:hover,
   button:hover {
     background-position: ${(props) => (props.$loading ? 'unset' : '100% 0')};
-    color: #000 !important;
-    transition: all 0.4s ease-in-out;
   }
 
   @keyframes loading {

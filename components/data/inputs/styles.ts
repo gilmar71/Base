@@ -28,18 +28,17 @@ export const Input = styled.div<InputProps>`
   }
 
   label {
-    color: var(--white);
+    color: var(--black);
   }
 
   input,
   textarea,
   select {
     width: 100%;
-    background-color: var(--white);
+    background-color: rgba(0, 0, 0, 0.1);
     padding: 0 15px;
-    color: rgba(0, 0, 0, 0.5);
+    color: var(--black);
     border: 0;
-    border-radius: 10px;
   }
 
   input,

@@ -1,63 +1,81 @@
 import styled from 'styled-components';
 
-export const Header = styled.header`
+interface HeaderProps {
+  isBg?: boolean;
+}
+
+export const Header = styled.header<HeaderProps>`
   position: absolute;
   width: 100%;
-  top: 60px;
+  top: 40px;
   left: 0;
   z-index: 4;
+
   .logo {
-    max-width: 160px;
+    max-width: 260px;
+    aspect-ratio: 260/68;
     width: 100%;
     display: inline-flex;
-    svg {
-      fill: #fff;
-    }
   }
+
   .container {
     display: flex;
     align-items: center;
-    gap: 70px;
+    gap: 250px;
     justify-content: space-between;
   }
+
   .menuContainer {
-    width: calc(100% - 160px - 70px);
+    width: calc(100% - 260px - 250px);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 28px;
   }
+
   .menu {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
+
   .itens {
     color: var(--white);
-    display: inline-block;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 15px 20px;
-    border-radius: 28px;
     position: relative;
     cursor: pointer;
+    gap: 10px;
+
+    &::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      background-color: currentColor;
+      position: absolute;
+      bottom: 2px;
+      left: 0;
+      transition: 0.3s;
+    }
+
     &[data-aos][data-aos].aos-animate {
       transform: unset;
     }
+
     .subMenu-bg {
       transform: rotateX(-90deg);
       padding-top: 30px;
       position: absolute;
       left: 0;
-      width: 260px;
-      top: 35px;
+      width: 240px;
+      top: 25px;
     }
+
     .sub-menu {
-      background-color: var(--white);
+      background-color: rgba(0, 0, 0, 0.5);
       transform: rotateX(-90deg);
-      border-radius: 10px;
       display: flex;
       flex-direction: column;
       gap: 8px;
@@ -70,30 +88,48 @@ export const Header = styled.header`
 
       a {
         width: 100%;
-        color: var(--black);
+        color: var(--white);
         display: inline-flex;
         padding: 10px 18px;
-        border-radius: 10px;
       }
     }
+
+    .svg-icon {
+      stroke: var(--white);
+      max-width: 10px;
+      width: 100%;
+      transition: 0.3s ease-in-out;
+    }
+
     &:hover {
-      background-color: var(--white);
-      color: var(--black);
-      text-decoration: underline;
+      color: ${(props) => (props.isBg === true ? '#000' : 'var(--primary)')};
+
+      .svg-icon {
+        stroke: var(--primary);
+        transform: rotate(180deg);
+      }
+
+      &::after {
+        width: 100%;
+      }
+
       .sub-menu {
         transform: rotateX(0);
+
         a:hover {
-          background-color: var(--black);
+          background-color: var(--primary);
           color: var(--white);
           text-decoration: none;
         }
       }
+
       .subMenu-bg {
         transform: rotateX(0);
         z-index: 999;
       }
     }
   }
+
   .menuButton {
     display: none;
     position: absolute;
@@ -103,7 +139,7 @@ export const Header = styled.header`
     div {
       width: 37px;
       height: 3px;
-      background-color: #000;
+      background-color: var(--white);
       transition: 0.3s;
     }
 
@@ -111,6 +147,7 @@ export const Header = styled.header`
       margin-top: 10px;
     }
   }
+
   .bgMobile {
     position: fixed;
     top: 0;
@@ -122,26 +159,19 @@ export const Header = styled.header`
     opacity: 0;
     display: none;
   }
-  .menuContainer.active {
-    .menu {
-      transform: translateX(0%);
-      transition: 0.3s;
-      opacity: 1;
-      display: flex;
+
+  .block-bar {
+    width: 40px;
+    display: none;
+    flex-direction: column;
+    gap: 7px;
+    background-color: unset;
+    border: unset;
+
+    > div {
+      width: 100%;
+      height: 3px;
       background-color: #fff;
-    }
-    .menuButton {
-      .bar1 {
-        transform: rotate(-45deg) translate(-8px, 6px);
-        background-color: #000;
-      }
-      .bar2 {
-        display: none;
-      }
-      .bar3 {
-        transform: rotate(45deg) translate(-3px, -2px);
-        background-color: #000;
-      }
     }
   }
 
@@ -149,145 +179,102 @@ export const Header = styled.header`
 
   @media only screen and (max-width: 1600px) {
     .logo {
-      max-width: 150px;
+      max-width: 250px;
     }
+
     .container {
-      gap: 60px;
+      gap: 240px;
     }
+
     .menuContainer {
-      width: calc(100% - 150px - 60px);
+      width: calc(100% - 250px - 240px);
     }
-    .itens {
-      padding: 15px 20px;
+
+    .itens .subMenu-bg {
+      width: 210px;
     }
   }
+
   @media only screen and (max-width: 1400px) {
     .logo {
-      max-width: 140px;
+      max-width: 240px;
     }
+
     .container {
-      gap: 50px;
+      gap: 220px;
     }
+
     .menuContainer {
-      width: calc(100% - 140px - 50px);
+      width: calc(100% - 240px - 220px);
     }
-    .itens {
-      padding: 14px 18px;
-      .subMenu-bg {
-        top: 30px;
-        width: 220px;
-      }
+
+    .itens .subMenu-bg {
+      top: 20px;
+      width: 200px;
     }
   }
+
   @media only screen and (max-width: 1200px) {
     .logo {
-      max-width: 130px;
+      max-width: 210px;
     }
+
     .container {
-      gap: 30px;
+      gap: 150px;
     }
+
     .menuContainer {
-      width: calc(100% - 130px - 30px);
+      width: calc(100% - 210px - 150px);
     }
+
     .itens {
-      padding: 12px 12px;
+      gap: 5px;
       .subMenu-bg {
-        top: 25px;
+        width: 180px;
       }
     }
   }
+
   @media only screen and (max-width: 1024px) {
     .logo {
-      max-width: 120px;
+      max-width: 190px;
     }
-    .container {
-      gap: 20px;
-    }
-    .menuContainer {
-      width: calc(100% - 120px - 20px);
-    }
-    .itens {
-      padding: 12px 9px;
-    }
-  }
-  @media only screen and (max-width: 900px) {
-    .close-menu {
-      display: block;
-      position: absolute;
-      top: 15px;
-      right: 15px;
-      color: var(--black);
-      font-size: 25px;
-    }
-    .menuButton {
-      display: inline-flex;
-      flex-direction: column;
-      border: none;
-      background-color: unset;
-    }
-    .menu {
-      position: fixed;
-      display: flex;
-      top: 0;
-      right: 0;
-      width: 280px;
-      height: 100vh;
-      flex-direction: column;
-      padding-top: 120px;
-      z-index: 100;
-      background-color: var(--white-gray);
-      gap: 15px;
-      overflow-y: auto;
-      transform: translateX(100%);
-      -webkit-transition: 0.3s;
-      opacity: 0;
-      justify-content: flex-start;
-    }
-    .itens {
-      width: 100%;
-      display: inline-flex;
-      color: var(--black);
-      padding: 15px 25px;
 
-      .subMenu-bg {
-        transform: rotateX(-90deg);
-        padding-top: 30px;
-        position: absolute;
-        left: 0;
-        width: 100%;
-        top: 20px;
-      }
-      .sub-menu {
-        background-color: var(--black);
-        a {
-          color: var(--white);
-          justify-content: center;
-          text-decoration: none;
-          &:hover {
-            background-color: var(--white-gray);
-            color: var(--black);
-          }
-        }
-      }
-      &:hover {
-        background-color: var(--black);
-        color: var(--white);
-      }
+    .container {
+      gap: 100px;
     }
+
     .menuContainer {
-      border: none;
-      padding: 0;
-      width: unset;
-    }
-    .menuContainer.active {
-      .bgMobile {
-        opacity: 1;
-        display: block;
-      }
+      width: calc(100% - 190px - 100px);
     }
   }
+
+  @media only screen and (max-width: 900px) {
+    .menu {
+      display: none;
+    }
+
+    .menuContainer {
+      background-color: unset;
+      justify-content: flex-end;
+    }
+
+    .block-bar {
+      display: flex;
+    }
+  }
+
   @media only screen and (max-width: 768px) {
   }
+
   @media only screen and (max-width: 500px) {
+  }
+  @media only screen and (max-width: 400px) {
+    .menuContainer {
+      width: 100%;
+    }
+    .container {
+      gap: unset;
+    }
   }
 `;

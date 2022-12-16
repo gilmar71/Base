@@ -13,6 +13,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<any> {
   href?: string;
   type?: 'submit' | 'button';
   loading?: boolean;
+  color?: string;
 }
 
 export function ButtonComponent({
@@ -21,19 +22,23 @@ export function ButtonComponent({
   href,
   type,
   loading,
+  color,
   ...props
 }: ButtonProps) {
   return (
-    <S.Button backgroundColor={backgroundColor} $loading={loading}>
-      {href && !type ? (
-        <Link href={href} passHref>
-          <a href="" className="txt-sz-8-medium uppercase" {...props}>
-            {text}
-          </a>
+    <S.Button
+      className="button-component"
+      color={color}
+      backgroundColor={backgroundColor}
+      $loading={loading}
+    >
+      {href ? (
+        <Link href={href} className="link-4-nhdisplaybold" {...props}>
+          {text}
         </Link>
       ) : (
         <button
-          className="txt-sz-8-medium uppercase"
+          className="link-4-nhdisplaybold"
           type={type ? type : 'submit'}
           disabled={loading}
           {...props}

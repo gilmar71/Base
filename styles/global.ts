@@ -3,7 +3,9 @@ import { createGlobalStyle } from 'styled-components';
 export const GlobalStyle = createGlobalStyle`
 
 :root {
-   
+   --white: #fff;
+   --black: #000;
+   --primary: #e30613;
 }
 
 html {
@@ -11,7 +13,7 @@ html {
 }
 
 body {
-    background-color: var(--black);
+    background-color: #f3f3f3;
     overflow-x: hidden !important;
 }
 
@@ -24,7 +26,7 @@ body::-webkit-scrollbar-track {
 }
 
 body::-webkit-scrollbar-thumb {
-  background: var(--yellow);
+  background: var(--primary);
 }
 
 body::-webkit-scrollbar-thumb:hover {
@@ -66,7 +68,7 @@ a:hover::before {
 
 ol,
 ul {
-    list-style: none !important;
+    list-style: none;
     padding-left: 0 !important;
     margin-bottom: 0 !important;
 }
@@ -83,30 +85,18 @@ p {
     margin-right: auto;
 }
 
-  .show-mobile {
-    display: none !important;
-  }
 
   @media only screen and (max-width: 1600px) {
-    html {
-        font-size: 15.5px;
-    }
     .container {
       max-width: 1330px;
     }
   }
   @media only screen and (max-width: 1400px) {
-    html {
-        font-size: 15px;
-    }
     .container {
       max-width: 1150px;
     }
   }
   @media only screen and (max-width: 1200px) {
-    html {
-        font-size: 14.5px;
-    }
     .container {
       max-width: 990px;
     }
@@ -115,9 +105,6 @@ p {
     }
   }
   @media only screen and (max-width: 1024px) {
-    html {
-        font-size: 14px;
-    }
     .container {
       max-width: 870px;
     }
@@ -136,9 +123,6 @@ p {
     }
 }
 @media only screen and (max-width:768px) {
-  html {
-        font-size: 13.5px;
-    }
   .container {
       max-width: 625px;
     }
@@ -150,8 +134,5 @@ p {
 }
 
 @media only screen and (max-width: 500px) {
-    html {
-        font-size: 13px;
-    }
-  }
+}
 `;
