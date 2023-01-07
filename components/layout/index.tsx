@@ -1,7 +1,7 @@
 import { HeaderComponent } from './header';
 import { FooterComponent } from './footer';
 import * as S from './styles';
-import { ItensMenu } from './header/data';
+import { linksMenu } from './header/data';
 
 interface LayoutProps {
   children?: React.ReactNode;
@@ -10,7 +10,7 @@ interface LayoutProps {
 export function Layout({ children }: LayoutProps) {
   return (
     <S.Layout>
-      <HeaderComponent data={ItensMenu} />
+      <HeaderComponent data={linksMenu} />
 
       {children}
 
