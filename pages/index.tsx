@@ -11,29 +11,7 @@ interface HomePageProps {}
 export default function HomePage() {
   const router = useRouter();
 
-  return (
-    <Layout>
-      {/* <Head>
-        <title>{content.head.pageTitle}</title>
-        <meta name="description" content={content.head.metaDescription} />
-        <meta itemProp="description" content={content.head.metaDescription} />
-        <meta
-          name="twitter:description"
-          content={content.head.metaDescription}
-        />
-        <meta name="og:description" content={content.head.metaDescription} />
-        <meta property="og:title" content={content.head.pageTitle} />
-        <meta
-          property="og:url"
-          content={'https://autosombra.com.br' + router.pathname}
-        />
-        <link
-          rel="canonical"
-          href={'https://autosombra.com.br' + router.pathname}
-        />
-      </Head> */}
-    </Layout>
-  );
+  return <></>;
 }
 
 // export const getServerSideProps: GetServerSideProps = async () => {
