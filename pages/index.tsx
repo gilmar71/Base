@@ -5,13 +5,18 @@ import { useRouter } from 'next/router';
 import { api } from 'src/services/api';
 
 import { Layout } from 'components/layout';
+import { Banner } from 'components/sections/home/banner';
 
 interface HomePageProps {}
 
 export default function HomePage() {
   const router = useRouter();
 
-  return <></>;
+  return (
+    <>
+      <Banner />
+    </>
+  );
 }
 
 // export const getServerSideProps: GetServerSideProps = async () => {

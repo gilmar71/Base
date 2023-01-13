@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
 export const Banner = styled.section`
+  padding-top: 300px;
+  padding-left: 200px;
+  display: flex;
+
   .bg {
     /* background-image: url('/images/home-banner.jpg'); */
     width: 100%;
