@@ -12,7 +12,7 @@ import DatePicker from 'react-datepicker';
 import { subDays, addDays } from 'date-fns';
 import { teste } from './data';
 
-export function Banner() {
+export function Dropdown() {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(null);
   const [startDate2, setStartDate2] = useState(new Date());
@@ -29,27 +29,15 @@ export function Banner() {
   };
 
   return (
-    <S.Banner>
-      <DatePicker
-        selected={startDate}
-        onChange={onChange}
-        startDate={startDate}
-        endDate={endDate}
-        dateFormat="dd/MM/yyyy"
-        excludeDateIntervals={disabledDateRanges}
-        monthsShown={2}
-        minDate={moment().toDate()}
-        selectsRange
-        inline
-      />
-
-      {/* <DatePicker
-        selected={startDate}
-        dateFormat="dd/MM/yyyy"
-        onChange={(date) => setStartDate2(date)}
-        value={startDate2}
-        excludeDateIntervals={disabledDateRanges}
-      /> */}
-    </S.Banner>
+    <S.Dropdown>
+      <div className="dropdown">
+        <button className="dropbtn">Dropdown</button>
+        <div className="dropdown-content">
+          <a href="#">Link 1</a>
+          <a href="#">Link 2</a>
+          <a href="#">Link 3</a>
+        </div>
+      </div>
+    </S.Dropdown>
   );
 }

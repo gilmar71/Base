@@ -6,6 +6,9 @@ import { api } from 'src/services/api';
 
 import { Layout } from 'components/layout';
 import { Banner } from 'components/sections/home/banner';
+import { DatePicker } from 'components/sections/home/datepicker';
+import { DatePickerTeste } from 'components/sections/home/datepickerTest';
+import { Dropdown } from 'components/sections/home/dropdown';
 
 interface HomePageProps {}
 
@@ -14,7 +17,7 @@ export default function HomePage() {
 
   return (
     <>
-      <Banner />
+      <Dropdown />
     </>
   );
 }
