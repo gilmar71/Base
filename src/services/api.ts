@@ -1,5 +1,7 @@
 import axios from 'axios';
-import { parseCookies } from 'nookies';
+// import { parseCookies } from 'nookies';
+
+const pageUrl = '';
 
 const apiURL = 'https://apimikrokosmos.codie.digital/';
 const baseImage = 'https://mikrokosmos.codie.digital/uploads/';
@@ -47,4 +49,4 @@ export function getAPIClient(ctx?: any) {
 
 const api = getAPIClient();
 
-export { api, apiURL, baseImage, baseImageGallery };
+export { api, apiURL, pageUrl, baseImage, baseImageGallery };
