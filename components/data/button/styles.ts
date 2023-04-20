@@ -1,44 +1,58 @@
 import styled from 'styled-components';
-import { lighten } from 'polished';
 
 interface ButtonProps {
-  backgroundColor?: string;
+  backgroundColor?: boolean;
   $loading?: boolean;
   color?: string;
+  hoverColor?: string;
+  maxWidth?: string;
+  marginTop?: boolean;
+  center?: boolean;
 }
 
 export const Button = styled.div<ButtonProps>`
   width: 100%;
+  margin-left: ${({ center }) => (center ? 'auto' : '')};
+  margin-right: ${({ center }) => (center ? 'auto' : '')};
+  margin-top: ${({ marginTop }) => (marginTop ? '30px' : '')};
+  max-width: ${({ maxWidth }) => (maxWidth ? maxWidth : '')};
   a,
   button {
     width: 100%;
-    height: 52px;
-    cursor: ${(props) => (props.$loading ? 'not-allowed' : 'pointer')};
+    height: 48px;
+    cursor: ${({ $loading }) => ($loading ? 'not-allowed' : 'pointer')};
     display: flex;
     align-items: center;
     justify-content: center;
-    color: ${(props) => (props.color ? props.color : 'var(--white)')};
-    border: ${(props) => (props.color ? '1px solid var(--black)' : 'none')};
-    opacity: ${(props) => props.$loading && '0.8'};
-    transition: all 0.3s ease-in-out;
-    background-size: 300% 100%;
-    background-image: ${(props) =>
-      props.backgroundColor
-        ? `linear-gradient(to right, ${props.backgroundColor}, ${
-            props.backgroundColor
-          }, ${lighten(0.3, props.backgroundColor)}, ${props.backgroundColor})`
-        : `linear-gradient(to right, #e30613;, #e30613, ${lighten(
-            0.1,
-            '#e30613',
-          )} , #e30613)`};
-    animation: ${(props) =>
-      props.$loading ? 'loading 2s ease-in-out infinite' : 'unset'};
-    /* background: ${(props) => props.$loading && '#6749a3'}; */
+    color: ${({ backgroundColor }) =>
+      backgroundColor ? 'var(--white)' : 'var(--primary-color)'};
+    border-radius: 5px;
+    border: ${({ backgroundColor }) =>
+      backgroundColor ? 'none' : '2px solid var(--primary-color)'};
+    opacity: ${({ $loading }) => $loading && '0.8'};
+    transition: all 0.4s ease-in-out;
+    background-size: 300%;
+    background-image: ${({ backgroundColor }) =>
+      backgroundColor
+        ? `linear-gradient(
+      to right,
+      #2dafba,
+      #118e99,
+        #2dafba,
+        #118e99
+    )`
+        : ''};
+    background-position: left;
+    animation: ${({ $loading }) =>
+      $loading ? 'loading 2s ease-in-out infinite' : 'unset'};
   }
 
   a:hover,
   button:hover {
-    background-position: ${(props) => (props.$loading ? 'unset' : '100% 0')};
+    background-position: ${({ $loading }) => ($loading ? 'unset' : 'right')};
+    background-color: ${({ backgroundColor }) =>
+      backgroundColor ? 'none' : 'var(--primary-color)'};
+    color: ${({ backgroundColor }) => (backgroundColor ? '' : 'var(--white)')};
   }
 
   @keyframes loading {

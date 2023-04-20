@@ -38,13 +38,7 @@ export function HeaderComponent({ data }: HeaderProps) {
   return (
     <S.Header>
       <Container>
-        <Link
-          href="/"
-          data-aos="fade-down"
-          data-aos-duration="1500"
-          className="logo"
-          aria-label="logomarca da empresa"
-        >
+        <Link href="/" className="logo" aria-label="logomarca da empresa">
           <NextImage src="/images/logo.webp" alt="logomarca da empresa" />
         </Link>
 
@@ -56,8 +50,6 @@ export function HeaderComponent({ data }: HeaderProps) {
             aria-label="botao para navegação mobile"
             onClick={onClick}
             className="block-bar"
-            data-aos="fade-down"
-            data-aos-duration="1500"
           >
             <div></div>
             <div></div>
@@ -68,8 +60,6 @@ export function HeaderComponent({ data }: HeaderProps) {
             {data.map((categoria) => {
               return categoria.categorias ? (
                 <span
-                  data-aos="fade-down"
-                  data-aos-duration="1500"
                   key={'link-menu-' + categoria.id}
                   className="itens link-3-objective-medium"
                 >
@@ -97,8 +87,6 @@ export function HeaderComponent({ data }: HeaderProps) {
                 <Link
                   key={'link-menu-' + categoria.id}
                   href={categoria.href}
-                  data-aos="fade-down"
-                  data-aos-duration="1500"
                   className={`itens link-3-objective-medium ${
                     router.pathname === categoria.href ? 'active' : ''
                   }`}

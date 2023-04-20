@@ -9,11 +9,17 @@ import * as S from './styles';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<any> {
   text: string;
-  backgroundColor?: string;
+  backgroundColor?: boolean;
   href?: string;
   type?: 'submit' | 'button';
   loading?: boolean;
+  rel?: 'external';
+  target?: '_blanck';
   color?: string;
+  maxWidth?: string;
+  marginTop?: boolean;
+  center?: boolean;
+  hoverColor?: string;
 }
 
 export function ButtonComponent({
@@ -22,23 +28,39 @@ export function ButtonComponent({
   href,
   type,
   loading,
+  rel,
+  target,
   color,
+  maxWidth,
+  marginTop,
+  center,
+  hoverColor,
   ...props
 }: ButtonProps) {
   return (
     <S.Button
-      className="button-component"
+      className="button"
       color={color}
+      hoverColor={hoverColor}
       backgroundColor={backgroundColor}
       $loading={loading}
+      maxWidth={maxWidth}
+      marginTop={marginTop}
+      center={center}
     >
-      {href ? (
-        <Link href={href} className="link-4-nhdisplaybold" {...props}>
+      {href && !type ? (
+        <Link
+          href={href}
+          rel={rel}
+          target={target}
+          className="link-4 "
+          {...props}
+        >
           {text}
         </Link>
       ) : (
         <button
-          className="link-4-nhdisplaybold"
+          className="link-4"
           type={type ? type : 'submit'}
           disabled={loading}
           {...props}
