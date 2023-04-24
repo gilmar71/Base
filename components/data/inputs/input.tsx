@@ -9,7 +9,7 @@ const ReactInputMask = dynamic(() => import('react-input-mask'), {
 
 import * as S from './styles';
 
-interface Props {
+export interface Props {
   id?: string;
   name: string;
   labelAnimation?: string;
@@ -20,6 +20,7 @@ interface Props {
   placeholder?: string;
   onChangeInput?: React.Dispatch<string>;
   noMargin?: boolean;
+  hasBar?: boolean;
 }
 
 type InputProps = JSX.IntrinsicElements['input'] & Props;
@@ -32,6 +33,7 @@ export function InputComponent({
   type,
   mask,
   label,
+  hasBar,
   onChangeInput,
   noMargin,
   ...rest
@@ -53,10 +55,13 @@ export function InputComponent({
     <S.Input noMargin={noMargin}>
       <div className="input-content">
         {label && (
-          <label className="label-text title-11-nhdisplaybold" htmlFor={id}>
+          <label className="label-text title-11-roboto-medium" htmlFor={id}>
             {label}
           </label>
         )}
+
+        {hasBar && <span className="title-11-roboto-medium bar">|</span>}
+
         {mask ? (
           <ReactInputMask
             mask={mask}
@@ -71,7 +76,7 @@ export function InputComponent({
           >
             {() => (
               <input
-                className="title-11-nhdisplayroman"
+                className="title-11-roboto-regular"
                 id={id}
                 defaultValue={defaultValue}
                 ref={inputRef}
@@ -102,7 +107,7 @@ export function InputComponent({
                   : type
               }
               {...rest}
-              className="title-11-nhdisplayroman"
+              className="title-11-roboto-regular"
               onChange={(e) => {
                 if (labelAnimation) {
                   setValue(e.target.value);
@@ -115,7 +120,7 @@ export function InputComponent({
         {labelAnimation && (
           <label
             htmlFor={id}
-            className={`label-animation title-11-nhdisplaybold ${
+            className={`label-animation title-11-roboto-regular ${
               value.length > 0 && 'active'
             }`}
             onClick={() => {
@@ -164,7 +169,7 @@ export function InputComponent({
       </div>
 
       {error && (
-        <span className="error title-11-nhdisplayroman error-message">
+        <span className="error title-11-roboto-regular error-message">
           {error}
         </span>
       )}

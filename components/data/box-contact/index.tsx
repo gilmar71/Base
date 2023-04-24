@@ -1,16 +1,12 @@
-import * as S from './styles';
-
-import {
-  Form,
-  FormHandles,
-  YupValidation,
-  InputComponent,
-  TextAreaComponent,
-} from 'components/data/inputs/core';
-import { useRef } from 'react';
-import { api } from 'src/services/api';
 import router from 'next/router';
-import { ButtonComponent } from '../button';
+
+import { api } from 'src/services/api';
+
+import { FormHandler } from 'codieweb/dist/cjs/components/data/form-handler';
+
+import { InputComponent, TextAreaComponent } from 'components/data/inputs/core';
+
+import * as S from './styles';
 
 interface SubmitProps {
   name: string;
@@ -20,93 +16,70 @@ interface SubmitProps {
 }
 
 export function BoxContact() {
-  const formRef = useRef<FormHandles>(null);
+  async function handleSucess(data: SubmitProps) {
+    const response = await api.post('form', { data });
 
-  async function handleSubmit({ name, email, message, phone }: SubmitProps) {
-    const Yup = await import('yup');
-
-    try {
-      const phoneOnlyNumbers = phone?.replace(/[^0-9]/g, '');
-
-      const schema = Yup.object().shape({
-        name: Yup.string().required('Por favor insira seu nome'),
-        email: Yup.string()
-          .email('e-mail inválido')
-          .required('Por favor insira seu e-mail'),
-        message: Yup.string().required('Por favor insira sua mensagem'),
-        phone: Yup.string()
-          .required('Por favor insira seu telefone')
-          .min(11, 'Favor inserir um número válido'),
-      });
-
-      await schema.validate(
-        { name, email, message, phone: phoneOnlyNumbers },
-        {
-          abortEarly: false,
-        },
-      );
-
-      formRef.current?.setErrors({});
-
-      const response = await api.post('form', {
-        name,
-        email,
-        message,
-        phone: phoneOnlyNumbers,
-      });
-
-      if (response.status === 200) {
-        router.push({
-          pathname: '/contato/sucesso',
-          query: { name },
-        });
-      }
-    } catch (err) {
-      YupValidation(Yup, err, formRef);
+    if (response.status === 200) {
+      router.push({ pathname: '/contato/sucesso', query: data.name });
     }
   }
   return (
     <S.BoxContact id="box-contact">
-      <Form className="form" ref={formRef} onSubmit={handleSubmit} action="">
+      <FormHandler
+        button={{
+          text: 'Enviar',
+          className: 'link-3',
+          color: '#fff',
+          backgroundColor: 'var(--primary-color)',
+        }}
+        onSucess={handleSucess}
+        defaultSchemas={{
+          name: true,
+          email: true,
+          phone: true,
+          message: true,
+        }}
+        recaptcha={{
+          active: true,
+          key: '6LcSmKclAAAAABuhhiHd_Vlf5Mj046_9dywsioHv',
+        }}
+      >
         <InputComponent
-          label="Nome completo"
           id="name"
           name="name"
           type="text"
+          label="Nome completo"
           placeholder="Digite seu nome completo aqui"
+          hasBar
         />
+
         <InputComponent
-          label="E-mail"
           id="email"
           name="email"
           type="email"
+          label="E-mail"
           placeholder="Digite seu e-mail aqui"
+          hasBar
         />
 
         <InputComponent
-          label="Telefone"
           id="phone"
-          name="phone"
           type="text"
-          placeholder="(DDD) 99999-9999"
-          mask="(99) 99999-9999"
+          name="phone"
+          label="Telefone"
+          mask="(99) 9 9999-9999"
+          placeholder="(DDD) 9 9999-9999"
+          hasBar
         />
 
         <TextAreaComponent
-          label="Mensagem"
           id="message"
           name="message"
+          label="Mensagem"
           placeholder="O que deseja dizer?"
+          hasBar
         />
-        <div className="buttons">
-          <div className="recaptcha"></div>
-          <ButtonComponent
-            backgroundColor="#e30613"
-            type="submit"
-            text="Enviar"
-          />
-        </div>
-      </Form>
+      </FormHandler>
     </S.BoxContact>
   );
 }

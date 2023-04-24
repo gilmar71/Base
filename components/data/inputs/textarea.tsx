@@ -4,7 +4,7 @@ import { useField } from '@unform/core';
 
 import * as S from './styles';
 
-export function TextAreaComponent({ id, name, label, ...rest }: any) {
+export function TextAreaComponent({ id, name, hasBar, label, ...rest }: any) {
   const inputRef = useRef<HTMLInputElement>(null);
   const { fieldName, registerField, defaultValue, error } = useField(name);
 
@@ -18,21 +18,25 @@ export function TextAreaComponent({ id, name, label, ...rest }: any) {
 
   return (
     <S.Input>
-      <label htmlFor={id} className="title-11-nhdisplaybold">
-        {label}
-      </label>
+      <div className="input-textarea">
+        <label htmlFor={id} className="title-11-roboto-medium label-text">
+          {label}
+        </label>
 
-      <textarea
-        id={id}
-        defaultValue={defaultValue}
-        ref={inputRef}
-        {...rest}
-        className="title-11-nhdisplayroman"
-      />
+        {hasBar && <span className="title-11-roboto-medium bar">|</span>}
 
-      {error && (
-        <span className="title-11-nhdisplayroman error-message">{error}</span>
-      )}
+        <textarea
+          id={id}
+          defaultValue={defaultValue}
+          ref={inputRef}
+          {...rest}
+          className="title-11-roboto-regular"
+        />
+
+        {error && (
+          <span className="title-11-roboto-medium error-message">{error}</span>
+        )}
+      </div>
     </S.Input>
   );
 }

@@ -1,10 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from 'react';
 
-import { useField } from "@unform/core";
+import { useField } from '@unform/core';
 
-import ReactInputMask from "react-input-mask";
+import ReactInputMask from 'react-input-mask';
 
-import * as S from "./styles";
+import * as S from './styles';
 
 export function InputEditComponent({
   id,
@@ -24,19 +24,24 @@ export function InputEditComponent({
     registerField({
       name: fieldName,
       ref: inputRef.current || value,
-      path: "value",
+      path: 'value',
     });
   }, [fieldName, registerField]);
 
   function handleChange(e) {
-    setValue(e.target.value)
+    setValue(e.target.value);
   }
 
   return (
     <S.Input>
-      <div className={`input-content edit ${readOnly && "read-only"}`}>
+      <div className={`input-content edit ${readOnly && 'read-only'}`}>
         {mask ? (
-          <ReactInputMask mask={mask} value={value || defaultValue || ""} onChange={handleChange} readOnly={readOnly}>
+          <ReactInputMask
+            mask={mask}
+            value={value || defaultValue || ''}
+            onChange={handleChange}
+            readOnly={readOnly}
+          >
             {() => (
               <input
                 id={id}
@@ -61,7 +66,10 @@ export function InputEditComponent({
         )}
 
         {label && (
-          <label htmlFor={id} className="label-animation paragraph-1-bold-graphie">
+          <label
+            htmlFor={id}
+            className="label-animation paragraph-1-bold-graphie"
+          >
             <span>{label}</span>
           </label>
         )}

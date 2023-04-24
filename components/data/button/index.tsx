@@ -53,14 +53,14 @@ export function ButtonComponent({
           href={href}
           rel={rel}
           target={target}
-          className="link-4 "
+          className="link-4 uppercase"
           {...props}
         >
           {text}
         </Link>
       ) : (
         <button
-          className="link-4"
+          className="link-4 uppercase"
           type={type ? type : 'submit'}
           disabled={loading}
           {...props}

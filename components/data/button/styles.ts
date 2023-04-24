@@ -25,8 +25,8 @@ export const Button = styled.div<ButtonProps>`
     align-items: center;
     justify-content: center;
     color: ${({ backgroundColor }) =>
-      backgroundColor ? 'var(--white)' : 'var(--primary-color)'};
-    border-radius: 5px;
+      backgroundColor ? 'var(--black)' : 'var(--primary-color)'};
+    border-radius: 24px;
     border: ${({ backgroundColor }) =>
       backgroundColor ? 'none' : '2px solid var(--primary-color)'};
     opacity: ${({ $loading }) => $loading && '0.8'};
@@ -36,10 +36,10 @@ export const Button = styled.div<ButtonProps>`
       backgroundColor
         ? `linear-gradient(
       to right,
-      #2dafba,
-      #118e99,
-        #2dafba,
-        #118e99
+      #ff9900,
+      #c2801d,
+        #ff9900,
+        #c2801d
     )`
         : ''};
     background-position: left;

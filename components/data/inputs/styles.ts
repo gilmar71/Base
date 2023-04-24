@@ -5,12 +5,23 @@ interface InputProps {
 }
 
 export const Input = styled.div<InputProps>`
-  /* position: relative; */
   margin-bottom: ${(props) => (props.noMargin ? '0' : '30px')};
   width: 100%;
+  background-color: #fff;
+  padding-left: 15px;
+  border-radius: 5px;
+  overflow: hidden;
+
+  .bar {
+    color: #000;
+  }
 
   .input-content {
     width: 100%;
+    display: flex;
+    gap: 7px;
+    align-items: center;
+    justify-content: center;
     position: relative;
 
     input:focus + .label-animation,
@@ -27,18 +38,23 @@ export const Input = styled.div<InputProps>`
     }
   }
 
-  label {
-    color: var(--black);
+  .label-text {
+    color: #000;
+    width: 100%;
+    max-width: fit-content;
   }
 
   input,
   textarea,
   select {
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.1);
-    padding: 0 15px;
-    color: var(--black);
+    /* padding: 0 15px; */
+    resize: none;
     border: 0;
+    background-color: transparent;
+    /* Esse box-shadow manipula o que acontece no preenchimento automático do input */
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0),
+      inset 0 0 0 100px rgba(255, 255, 255, 1);
   }
 
   input,
@@ -51,7 +67,9 @@ export const Input = styled.div<InputProps>`
     cursor: not-allowed;
   }
 
-  textarea {
+  .input-textarea {
+    display: flex;
+    gap: 7px;
     height: 150px;
     padding-top: 15px;
   }
@@ -59,30 +77,30 @@ export const Input = styled.div<InputProps>`
   input::-webkit-input-placeholder,
   textarea::-webkit-input-placeholder {
     /* Chrome/Opera/Safari */
-    color: rgba(0, 0, 0, 0.5);
+    color: rgba(0, 0, 0, 1);
   }
 
   input::-moz-placeholder,
   textarea::-moz-placeholder {
     /* Firefox 19+ */
-    color: rgba(0, 0, 0, 0.5);
+    color: rgba(0, 0, 0, 1);
   }
 
   input:-ms-input-placeholder,
   textarea:-ms-input-placeholder {
     /* IE 10+ */
-    color: rgba(0, 0, 0, 0.5);
+    color: rgba(0, 0, 0, 1);
   }
 
   input:-moz-placeholder,
   textarea:-moz-placeholder {
     /* Firefox 18- */
-    color: rgba(0, 0, 0, 0.5);
+    color: rgba(0, 0, 0, 1);
   }
 
   input::placeholder,
   textarea::placeholder {
-    color: rgba(0, 0, 0, 0.5);
+    color: rgba(0, 0, 0, 1);
   }
 
   .eye {
@@ -108,10 +126,8 @@ export const Input = styled.div<InputProps>`
     select {
       height: 46px;
     }
-    textarea {
-      height: 145px;
-    }
   }
+
   @media only screen and (max-width: 1400px) {
     margin-bottom: ${(props) => (props.noMargin ? '0' : '20px')};
 
@@ -119,10 +135,12 @@ export const Input = styled.div<InputProps>`
     select {
       height: 46px;
     }
-    textarea {
-      height: 140px;
+
+    .input-textarea {
+      height: 130px;
     }
   }
+
   @media only screen and (max-width: 1200px) {
     margin-bottom: ${(props) => (props.noMargin ? '0' : '15px')};
 
@@ -130,10 +148,8 @@ export const Input = styled.div<InputProps>`
     select {
       height: 44px;
     }
-    textarea {
-      height: 135px;
-    }
   }
+
   @media only screen and (max-width: 1024px) {
     margin-bottom: ${(props) => (props.noMargin ? '0' : '10px')};
 
@@ -141,21 +157,19 @@ export const Input = styled.div<InputProps>`
     select {
       height: 42px;
     }
-    textarea {
-      height: 130px;
-    }
   }
-  @media only screen and (max-width: 768px) {
-    margin-bottom: ${(props) => (props.noMargin ? '0' : '5px')};
 
+  @media only screen and (max-width: 768px) {
     input,
     select {
       height: 40px;
     }
-    textarea {
-      height: 125px;
+
+    .input-textarea {
+      height: 120px;
     }
   }
+
   @media only screen and (max-width: 500px) {
     input,
     select {
