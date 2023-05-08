@@ -99,11 +99,11 @@ export function HeaderComponent({ data, fixed }: HeaderProps) {
               );
             })}
 
-            <ButtonComponent
+            {/* <ButtonComponent
               text={'Entre em contato'}
               backgroundColor
               href="/"
-            />
+            /> */}
           </nav>
         </div>
       </Container>

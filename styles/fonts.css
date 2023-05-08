@@ -1,18 +1,18 @@
 @font-face {
-  font-family: 'NeueHaasDisplayBold';
-  src: url('/fonts/NeueHaasDisplayBold.ttf') format('truetype');
+  font-family: 'Feltro Texture 1';
+  src: url('/fonts/Feltro Texture 1.otf') format('opentype');
   font-weight: 700;
   font-display: swap;
 }
 @font-face {
-  font-family: 'NeueHaasDisplayRoman';
-  src: url('/fonts/NeueHaasDisplayRoman.ttf') format('truetype');
-  font-weight: 500;
+  font-family: 'NotoSerif-Bold';
+  src: url('/fonts/NotoSerif-Bold.ttf') format('truetype');
+  font-weight: 700;
   font-display: swap;
 }
 @font-face {
-  font-family: 'NeueHaasDisplayLight';
-  src: url('/fonts/NeueHaasDisplayLight.ttf') format('truetype');
+  font-family: 'Palanquin-Medium';
+  src: url('/fonts/Palanquin-Medium.ttf') format('truetype');
   font-weight: 500;
   font-display: swap;
 }
@@ -37,19 +37,19 @@ td {
 }
 
 body {
-  font-family: 'Montserrat' !important;
+  font-family: 'Palanquin-Medium';
 }
 
-[class*='-nhdisplaybold'] {
-  font-family: 'NeueHaasDisplayBold';
+[class*='-feltro'] {
+  font-family: 'Feltro Texture 1';
 }
 
-[class*='-nhdisplayroman'] {
-  font-family: 'NeueHaasDisplayRoman';
+[class*='-notoserifBold'] {
+  font-family: 'NotoSerif-Bold';
 }
 
-[class*='-nhdisplaylight'] {
-  font-family: 'NeueHaasDisplayLight';
+[class*='-palanquinMedium'] {
+  font-family: 'Palanquin-Medium';
 }
 
 .uppercase {
@@ -115,6 +115,9 @@ body {
 }
 [class*='title-12'] {
   font-size: 40px;
+}
+[class*='banner-title'] {
+  font-size: 120px;
 }
 
 /* Paragraphs */
@@ -187,6 +190,9 @@ body {
   [class*='title-12'] {
     font-size: 38px;
   }
+  [class*='banner-title'] {
+    font-size: 110px;
+  }
 
   /* Paragraphs */
   [class*='paragraph-1'] {
@@ -257,6 +263,9 @@ body {
   [class*='title-12'] {
     font-size: 36px;
   }
+  [class*='banner-title'] {
+    font-size: 100px;
+  }
 
   /* Paragraphs */
   [class*='paragraph-1'] {
@@ -325,6 +334,9 @@ body {
   }
   [class*='title-12'] {
     font-size: 34px;
+  }
+  [class*='banner-title'] {
+    font-size: 85px;
   }
 
   /* Paragraphs */
@@ -466,6 +478,9 @@ body {
   [class*='title-12'] {
     font-size: 31px;
   }
+  [class*='banner-title'] {
+    font-size: 80px;
+  }
 
   /* Paragraphs */
   [class*='paragraph-1'] {
@@ -507,7 +522,7 @@ body {
     font-size: 46px;
   }
   [class*='title-3'] {
-    font-size: 44px;
+    font-size: 40px;
   }
   [class*='title-4'] {
     font-size: 34px;
@@ -535,6 +550,9 @@ body {
   }
   [class*='title-12'] {
     font-size: 30px;
+  }
+  [class*='banner-title'] {
+    font-size: 70px;
   }
 
   /* Paragraphs */
@@ -566,11 +584,17 @@ body {
   }
 }
 @media only screen and (max-width: 650px) {
+  [class*='title-3'] {
+    font-size: 36px;
+  }
   [class*='title-4'] {
     font-size: 30px;
   }
   [class*='title-12'] {
     font-size: 29px;
+  }
+  [class*='banner-title'] {
+    font-size: 65px;
   }
 }
 @media only screen and (max-width: 500px) {
@@ -582,7 +606,7 @@ body {
     font-size: 43px;
   }
   [class*='title-3'] {
-    font-size: 40px;
+    font-size: 32px;
   }
   [class*='title-4'] {
     font-size: 27px;
@@ -610,6 +634,9 @@ body {
   }
   [class*='title-12'] {
     font-size: 27px;
+  }
+  [class*='banner-title'] {
+    font-size: 55px;
   }
 
   /* Paragraphs */
@@ -644,6 +671,9 @@ body {
   }
 }
 @media only screen and (max-width: 400px) {
+  [class*='title-3'] {
+    font-size: 30px;
+  }
   [class*='title-4'] {
     font-size: 25px;
   }
@@ -656,6 +686,10 @@ body {
   [class*='title-12'] {
     font-size: 23.5px;
   }
+  [class*='banner-title'] {
+    font-size: 45px;
+  }
+
   [class*='paragraph-1'] {
     font-size: 12px;
   }
