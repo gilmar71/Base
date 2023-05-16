@@ -5,7 +5,6 @@ interface ButtonProps {
   $loading?: boolean;
   color?: string;
   hoverColor?: string;
-  maxWidth?: string;
   marginTop?: boolean;
   center?: boolean;
 }
@@ -15,17 +14,17 @@ export const Button = styled.div<ButtonProps>`
   margin-left: ${({ center }) => (center ? 'auto' : '')};
   margin-right: ${({ center }) => (center ? 'auto' : '')};
   margin-top: ${({ marginTop }) => (marginTop ? '30px' : '')};
-  max-width: ${({ maxWidth }) => (maxWidth ? maxWidth : '')};
+
   a,
   button {
     width: 100%;
-    height: 48px;
+    height: 40px;
     cursor: ${({ $loading }) => ($loading ? 'not-allowed' : 'pointer')};
     display: flex;
     align-items: center;
     justify-content: center;
     color: ${({ backgroundColor }) =>
-      backgroundColor ? 'var(--black)' : 'var(--primary-color)'};
+      backgroundColor ? 'var(--secondary-color)' : 'var(--primary-color)'};
     border-radius: 24px;
     border: ${({ backgroundColor }) =>
       backgroundColor ? 'none' : '2px solid var(--primary-color)'};
@@ -36,10 +35,10 @@ export const Button = styled.div<ButtonProps>`
       backgroundColor
         ? `linear-gradient(
       to right,
-      #ff9900,
-      #c2801d,
-        #ff9900,
-        #c2801d
+      #4adbc3,
+      #3cb09d,
+        #4adbc3,
+        #3cb09d
     )`
         : ''};
     background-position: left;
@@ -76,51 +75,38 @@ export const Button = styled.div<ButtonProps>`
   }
 
   @media only screen and (max-width: 1600px) {
-    a,
-    button {
-      height: 46px;
-    }
   }
 
   @media only screen and (max-width: 1400px) {
-    a,
-    button {
-      height: 44px;
-    }
-  }
-
-  @media only screen and (max-width: 1200px) {
-    a,
-    button {
-      height: 42px;
-    }
-  }
-
-  @media only screen and (max-width: 1024px) {
-    a,
-    button {
-      height: 40px;
-    }
-  }
-
-  @media only screen and (max-width: 768px) {
     a,
     button {
       height: 38px;
     }
   }
 
-  @media only screen and (max-width: 600px) {
+  @media only screen and (max-width: 1200px) {
+    margin-top: ${({ marginTop }) => (marginTop ? '20px' : '')};
+  }
+
+  @media only screen and (max-width: 1024px) {
+    margin-top: ${({ marginTop }) => (marginTop ? '15px' : '')};
+
     a,
     button {
       height: 36px;
     }
   }
 
+  @media only screen and (max-width: 768px) {
+  }
+
+  @media only screen and (max-width: 600px) {
+  }
+
   @media only screen and (max-width: 450px) {
     a,
     button {
-      height: 32px;
+      height: 34px;
     }
   }
 

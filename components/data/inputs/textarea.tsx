@@ -4,7 +4,14 @@ import { useField } from '@unform/core';
 
 import * as S from './styles';
 
-export function TextAreaComponent({ id, name, hasBar, label, ...rest }: any) {
+export function TextAreaComponent({
+  id,
+  name,
+  label,
+  hasBar,
+  noMargin,
+  ...rest
+}: any) {
   const inputRef = useRef<HTMLInputElement>(null);
   const { fieldName, registerField, defaultValue, error } = useField(name);
 
@@ -16,25 +23,49 @@ export function TextAreaComponent({ id, name, hasBar, label, ...rest }: any) {
     });
   }, [fieldName, registerField]);
 
-  return (
-    <S.Input>
-      <div className="input-textarea">
-        <label htmlFor={id} className="title-11-roboto-medium label-text">
-          {label}
-        </label>
+  const fontSizeFamilyLabel = 'title-11-zonaproBold uppercase';
+  const fontSizeFamilyInput = 'title-11';
 
-        {hasBar && <span className="title-11-roboto-medium bar">|</span>}
+  return (
+    <S.Input hasBar={hasBar} noMargin={noMargin}>
+      <div className="input-textarea">
+        {label && (
+          <label
+            className={`label-text ${
+              fontSizeFamilyLabel ? fontSizeFamilyLabel : 'title-11'
+            }`}
+            htmlFor={id}
+          >
+            {label}
+          </label>
+        )}
+
+        {hasBar && (
+          <span
+            className={`${
+              fontSizeFamilyLabel ? fontSizeFamilyLabel : 'title-11'
+            } bar`}
+          >
+            |
+          </span>
+        )}
 
         <textarea
           id={id}
           defaultValue={defaultValue}
           ref={inputRef}
           {...rest}
-          className="title-11-roboto-regular"
+          className={fontSizeFamilyInput ? fontSizeFamilyInput : 'title-11'}
         />
 
         {error && (
-          <span className="title-11-roboto-medium error-message">{error}</span>
+          <span
+            className={`error ${
+              fontSizeFamilyLabel ? fontSizeFamilyLabel : 'title-11'
+            } error-message`}
+          >
+            {error}
+          </span>
         )}
       </div>
     </S.Input>

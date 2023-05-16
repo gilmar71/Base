@@ -1,4 +1,4 @@
-export interface PageInformationProps {
+export interface IPageInformations {
   head: {
     pageTitle: string;
     metaDescription: string;
@@ -6,47 +6,119 @@ export interface PageInformationProps {
     headScripts: string;
   };
   body: { bodyScripts: string };
-  item?: {
-    id?: number;
-    titulo: string;
-    subtitulo?: string;
-    thumbnail?: string;
-    imagem: string;
-    url?: string;
-    descricao?: string;
-    tituloPagina?: string;
-    imagemInovacao?: string;
-    fundadorImagem?: string;
-    fundadorTitulo?: string;
-    fundadorDescricao?: string;
-    extra1?: string;
-    extra2?: string;
-    textoA?: string;
-    textoB?: string;
-    textoC?: string;
-  };
-  detail?: {
-    id: number;
+  banner: {
     titulo: string;
     subtitulo: string;
+    descricao: string;
+    imagem: string;
+    thumbnail: string;
+    url: string;
+    id: number;
+    ativo: boolean;
+    dataCriacao: string;
+    dataEdicao: string;
+  };
+  detail: {
+    id: number;
+    titulo: string;
     thumbnail: string;
     imagem: string;
     url: string;
-    sku: string;
-    composicao?: string;
-    garantia?: string;
-    enriquecimento?: string;
-    modoUsar?: string;
+    categoriaId: number;
     descricao: string;
-    descricao2?: string;
-    categoriaTitle?: string;
-    categoriaUrl?: string;
   };
-  imagens?: Imagens[];
-  arquivos?: Arquivos[];
+  categorias: ICategories[];
+  depoimentos: IDepoiments[];
+  marcas: IBrands[];
+  blogs: IEvents[];
+  servicos: IServices[];
+  proposito: {
+    subCategoriaId: number;
+    titulo: string;
+    descricao: string;
+    imagem: string;
+    thumbnail: string;
+    id: number;
+    ativo: boolean;
+    dataCriacao: string;
+    dataEdicao: string;
+  };
+  sobre: {
+    detail: {
+      id: number;
+      titulo: string;
+      subtitulo: string;
+      thumbnail: string;
+      imagem: string;
+      categoriaId: number;
+      descricao: string;
+    };
+    imagens: IImagens[];
+  };
+  posts: IPosts[];
+  imagens: IImagens[];
+  categoria: {
+    subCategorias: [];
+    autor: [];
+    noticias: [];
+    products: [];
+    titulo: string;
+    descricao: string;
+    imagem: string;
+    pageTitle: string;
+    metaDescription: string;
+    url: string;
+    id: number;
+    ativo: boolean;
+    excluido: boolean;
+    dataEdicao: string;
+  };
 }
 
-export interface Imagens {
+interface ICategories {
+  subCategorias: [];
+  autor: [];
+  noticias: [];
+  products: [];
+  servicos: IServices[];
+  titulo: string;
+  descricao: string;
+  url: string;
+  id: number;
+}
+
+export interface IServices {
+  categoriaId: number;
+  titulo: string;
+  descricao?: string;
+  imagem?: string;
+  url: string;
+  id: number;
+}
+
+interface IDepoiments {
+  titulo: string;
+  subtitulo: string;
+  descricao: string;
+  imagem: string;
+  id: number;
+}
+
+export interface IBrands {
+  detail: IDetails;
+  imagens: IImagens[];
+}
+
+interface IDetails {
+  id: number;
+  titulo: string;
+  thumbnail: string;
+  imagem: string;
+  url: string;
+  categoriaId: number;
+}
+
+export interface IImagens {
   fileType: string;
   fileSize: string;
   fileData: string;
@@ -62,19 +134,23 @@ export interface Imagens {
   dataEdicao: string;
 }
 
-export interface Arquivos {
-  fileName: string;
-  fileType: string;
-  fileSize: string;
-  fileData: string;
-  guid: string;
-  slug: string;
-  placeReceived: string;
-  tableId: number;
-  tableAction: string;
+export interface IEvents {
+  data: string;
+  categoriaId: number;
+  titulo: string;
+  subtitulo: string;
+  imagem: string;
+  url: string;
   id: number;
-  ativo: boolean;
-  excluido: boolean;
-  dataCriacao: string;
-  dataEdicao: string;
+}
+
+export interface IPosts {
+  id: number;
+  titulo: string;
+  subtitulo: string;
+  imagem?: string;
+  url: string;
+  categoriaId: number;
+  descricao?: string;
+  data: string;
 }

@@ -156,6 +156,10 @@ export const Menu = styled.section`
         width: 100%;
         color: #000;
         border-radius: 10px;
+
+        &.active {
+          color: red;
+        }
       }
 
       .sub-link:first-child {

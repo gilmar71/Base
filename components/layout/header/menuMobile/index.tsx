@@ -16,6 +16,7 @@ export function MenuMobile({ menu, data, setStateMenu }: MenuMobileProps) {
   const [dropdown, setDropdown] = useState('');
   const router = useRouter();
 
+  const urlPage = router.query.url;
   return (
     <S.Menu className={`menuMobile ${menu ? 'active' : ''}`}>
       <div className="filter" onClick={() => setStateMenu(false)}></div>
@@ -40,7 +41,7 @@ export function MenuMobile({ menu, data, setStateMenu }: MenuMobileProps) {
                       ? 'active'
                       : 'false'
                     : ''
-                } link-4`}
+                } link-4 uppercase`}
                 onClick={() => setDropdown(categoria.link!)}
               >
                 <div className="title">
@@ -70,11 +71,18 @@ export function MenuMobile({ menu, data, setStateMenu }: MenuMobileProps) {
                     {categoria.categorias?.map((subCategoria) => {
                       return (
                         <Link
-                          href={subCategoria.href}
-                          key={subCategoria.id + subCategoria.sublink}
-                          className="sub-link link-4-objective-medium"
+                          href={{
+                            pathname: '/servico/[url]',
+                            query: {
+                              url: subCategoria.url,
+                            },
+                          }}
+                          key={subCategoria.id + subCategoria.titulo}
+                          className={`sub-link link-4 ${
+                            urlPage === subCategoria.url ? 'active' : ''
+                          }`}
                         >
-                          {subCategoria.sublink}
+                          {subCategoria.titulo}
                         </Link>
                       );
                     })}

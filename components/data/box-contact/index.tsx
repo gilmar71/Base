@@ -8,6 +8,12 @@ import { InputComponent, TextAreaComponent } from 'components/data/inputs/core';
 
 import * as S from './styles';
 
+interface IBoxContact {
+  hasBar?: boolean;
+  fontSizeFamilyLabel?: string;
+  fontSizeFamilyInput?: string;
+}
+
 interface SubmitProps {
   name: string;
   email: string;
@@ -15,7 +21,11 @@ interface SubmitProps {
   phone: string;
 }
 
-export function BoxContact() {
+export function BoxContact({
+  hasBar,
+  fontSizeFamilyLabel,
+  fontSizeFamilyInput,
+}: IBoxContact) {
   async function handleSucess(data: SubmitProps) {
     const response = await api.post('form', { data });
 
@@ -28,9 +38,9 @@ export function BoxContact() {
       <FormHandler
         button={{
           text: 'Enviar',
-          className: 'link-3',
+          className: 'link-4-zonapro',
           color: '#fff',
-          backgroundColor: 'var(--primary-color)',
+          backgroundColor: 'var(--tertiary-color)',
         }}
         onSucess={handleSucess}
         defaultSchemas={{
@@ -41,7 +51,7 @@ export function BoxContact() {
         }}
         recaptcha={{
           active: true,
-          key: '6LcSmKclAAAAABuhhiHd_Vlf5Mj046_9dywsioHv',
+          key: '6Leo8_4lAAAAALz89Tb6i1937jkUbqllMqCkdKRA',
         }}
       >
         <InputComponent
@@ -50,7 +60,9 @@ export function BoxContact() {
           type="text"
           label="Nome completo"
           placeholder="Digite seu nome completo aqui"
-          hasBar
+          fontSizeFamilyLabel={fontSizeFamilyLabel}
+          fontSizeFamilyInput={fontSizeFamilyInput}
+          hasBar={hasBar}
         />
 
         <InputComponent
@@ -59,7 +71,9 @@ export function BoxContact() {
           type="email"
           label="E-mail"
           placeholder="Digite seu e-mail aqui"
-          hasBar
+          fontSizeFamilyLabel={fontSizeFamilyLabel}
+          fontSizeFamilyInput={fontSizeFamilyInput}
+          hasBar={hasBar}
         />
 
         <InputComponent
@@ -69,7 +83,9 @@ export function BoxContact() {
           label="Telefone"
           mask="(99) 9 9999-9999"
           placeholder="(DDD) 9 9999-9999"
-          hasBar
+          fontSizeFamilyLabel={fontSizeFamilyLabel}
+          fontSizeFamilyInput={fontSizeFamilyInput}
+          hasBar={hasBar}
         />
 
         <TextAreaComponent
@@ -77,7 +93,10 @@ export function BoxContact() {
           name="message"
           label="Mensagem"
           placeholder="O que deseja dizer?"
-          hasBar
+          noMargin
+          fontSizeFamilyLabel={fontSizeFamilyLabel}
+          fontSizeFamilyInput={fontSizeFamilyInput}
+          hasBar={hasBar}
         />
       </FormHandler>
     </S.BoxContact>

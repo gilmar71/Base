@@ -22,8 +22,8 @@ export interface CategoriesHeader {
 }
 interface Categorias {
   id: number;
-  sublink: string;
-  href: string;
+  titulo: string;
+  url: string;
 }
 interface HeaderProps {
   data: CategoriesHeader[];
@@ -72,12 +72,12 @@ export function HeaderComponent({ data, fixed }: HeaderProps) {
                       <ul className="sub-menu">
                         {categoria.categorias?.map((subCategoria) => {
                           return (
-                            <li key={subCategoria.id + subCategoria.sublink}>
+                            <li key={subCategoria.id + subCategoria.titulo}>
                               <Link
-                                href={subCategoria.href}
+                                href={subCategoria.url}
                                 className="link-3 uppercase"
                               >
-                                {subCategoria.sublink}
+                                {subCategoria.titulo}
                               </Link>
                             </li>
                           );

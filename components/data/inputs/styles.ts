@@ -2,15 +2,16 @@ import styled from 'styled-components';
 
 interface InputProps {
   noMargin?: boolean;
+  hasBar?: boolean;
 }
 
 export const Input = styled.div<InputProps>`
-  margin-bottom: ${(props) => (props.noMargin ? '0' : '30px')};
   width: 100%;
-  background-color: #fff;
-  padding-left: 15px;
-  border-radius: 5px;
-  overflow: hidden;
+  margin-bottom: ${({ noMargin }) => (noMargin ? '0' : '30px')};
+  background-color: ${({ hasBar }) => hasBar && '#fff'};
+  padding-left: ${({ hasBar }) => hasBar && '15px'};
+  border-radius: ${({ hasBar }) => hasBar && '5px'};
+  overflow: ${({ hasBar }) => hasBar && 'hidden'};
 
   .bar {
     color: #000;
@@ -18,11 +19,11 @@ export const Input = styled.div<InputProps>`
 
   .input-content {
     width: 100%;
-    display: flex;
-    gap: 7px;
-    align-items: center;
-    justify-content: center;
     position: relative;
+    display: ${({ hasBar }) => hasBar && 'flex'};
+    gap: ${({ hasBar }) => hasBar && '7px'};
+    align-items: ${({ hasBar }) => hasBar && 'center'};
+    justify-content: ${({ hasBar }) => hasBar && 'center'};
 
     input:focus + .label-animation,
     .label-animation:focus {
@@ -42,16 +43,21 @@ export const Input = styled.div<InputProps>`
     color: #000;
     width: 100%;
     max-width: fit-content;
+
+    & + * {
+      margin-top: ${({ hasBar }) => (hasBar ? '' : '5px')};
+    }
   }
 
   input,
   textarea,
   select {
     width: 100%;
-    /* padding: 0 15px; */
+    padding: ${({ hasBar }) => (hasBar ? '' : '0 15px')};
     resize: none;
     border: 0;
-    background-color: transparent;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.1);
     /* Esse box-shadow manipula o que acontece no preenchimento automático do input */
     box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0),
       inset 0 0 0 100px rgba(255, 255, 255, 1);
@@ -68,39 +74,44 @@ export const Input = styled.div<InputProps>`
   }
 
   .input-textarea {
-    display: flex;
-    gap: 7px;
-    height: 150px;
-    padding-top: 15px;
+    height: ${({ hasBar }) => hasBar && '150px'};
+    padding-top: ${({ hasBar }) => hasBar && '15px'};
+    gap: ${({ hasBar }) => hasBar && '7px'};
+    display: ${({ hasBar }) => hasBar && 'flex'};
+  }
+
+  textarea {
+    height: ${({ hasBar }) => (hasBar ? '' : '150px')};
+    padding-top: ${({ hasBar }) => (hasBar ? '' : '15px')};
   }
 
   input::-webkit-input-placeholder,
   textarea::-webkit-input-placeholder {
     /* Chrome/Opera/Safari */
-    color: rgba(0, 0, 0, 1);
+    color: rgba(0, 0, 0, 0.5);
   }
 
   input::-moz-placeholder,
   textarea::-moz-placeholder {
     /* Firefox 19+ */
-    color: rgba(0, 0, 0, 1);
+    color: rgba(0, 0, 0, 0.5);
   }
 
   input:-ms-input-placeholder,
   textarea:-ms-input-placeholder {
     /* IE 10+ */
-    color: rgba(0, 0, 0, 1);
+    color: rgba(0, 0, 0, 0.5);
   }
 
   input:-moz-placeholder,
   textarea:-moz-placeholder {
     /* Firefox 18- */
-    color: rgba(0, 0, 0, 1);
+    color: rgba(0, 0, 0, 0.5);
   }
 
   input::placeholder,
   textarea::placeholder {
-    color: rgba(0, 0, 0, 1);
+    color: rgba(0, 0, 0, 0.5);
   }
 
   .eye {
@@ -120,7 +131,7 @@ export const Input = styled.div<InputProps>`
   }
 
   @media only screen and (max-width: 1600px) {
-    margin-bottom: ${(props) => (props.noMargin ? '0' : '25px')};
+    margin-bottom: ${({ noMargin }) => (noMargin ? '0' : '25px')};
 
     input,
     select {
@@ -129,7 +140,7 @@ export const Input = styled.div<InputProps>`
   }
 
   @media only screen and (max-width: 1400px) {
-    margin-bottom: ${(props) => (props.noMargin ? '0' : '20px')};
+    margin-bottom: ${({ noMargin }) => (noMargin ? '0' : '20px')};
 
     input,
     select {
@@ -137,12 +148,16 @@ export const Input = styled.div<InputProps>`
     }
 
     .input-textarea {
-      height: 130px;
+      height: ${({ hasBar }) => hasBar && '130px'};
+    }
+
+    textarea {
+      height: ${({ hasBar }) => (hasBar ? '' : '130px')};
     }
   }
 
   @media only screen and (max-width: 1200px) {
-    margin-bottom: ${(props) => (props.noMargin ? '0' : '15px')};
+    margin-bottom: ${({ noMargin }) => (noMargin ? '0' : '15px')};
 
     input,
     select {
@@ -151,7 +166,7 @@ export const Input = styled.div<InputProps>`
   }
 
   @media only screen and (max-width: 1024px) {
-    margin-bottom: ${(props) => (props.noMargin ? '0' : '10px')};
+    margin-bottom: ${({ noMargin }) => (noMargin ? '0' : '10px')};
 
     input,
     select {
@@ -166,7 +181,11 @@ export const Input = styled.div<InputProps>`
     }
 
     .input-textarea {
-      height: 120px;
+      height: ${({ hasBar }) => hasBar && '120px'};
+    }
+
+    textarea {
+      height: ${({ hasBar }) => (hasBar ? '' : '120px')};
     }
   }
 

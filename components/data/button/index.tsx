@@ -44,7 +44,6 @@ export function ButtonComponent({
       hoverColor={hoverColor}
       backgroundColor={backgroundColor}
       $loading={loading}
-      maxWidth={maxWidth}
       marginTop={marginTop}
       center={center}
     >
@@ -53,14 +52,14 @@ export function ButtonComponent({
           href={href}
           rel={rel}
           target={target}
-          className="link-4 uppercase"
+          className="link-4-zonaproBold"
           {...props}
         >
           {text}
         </Link>
       ) : (
         <button
-          className="link-4 uppercase"
+          className="link-4-zonaproBold"
           type={type ? type : 'submit'}
           disabled={loading}
           {...props}

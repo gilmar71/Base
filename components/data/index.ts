@@ -1,17 +1,21 @@
 import { Container } from './container';
 import { NextImage } from './NextImage';
-import { ButtonComponent } from './button';
 import { LoaderComponent } from './loader';
-import { BoxContact } from './box-contact';
 import { LoaderCircle } from './loader-circle';
 import { BreadCrumbComponent } from './breadcrumb';
+import { ButtonComponent } from './button';
+import { SliderGallery } from './thumbs-swiper';
+import { BoxContact } from './box-contact';
+import { Card } from './card';
 
 export {
+  Card,
   NextImage,
   Container,
   BoxContact,
   LoaderCircle,
-  ButtonComponent,
+  SliderGallery,
   LoaderComponent,
+  ButtonComponent,
   BreadCrumbComponent,
 };
