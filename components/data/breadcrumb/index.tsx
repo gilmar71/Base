@@ -17,7 +17,7 @@ export function BreadCrumbComponent({ list }: BreadCrumbProps) {
   return (
     <S.BreadCrumb>
       {list.map((itemList) => (
-        <li key={itemList.label} className="txt-sz-10-regular uppercase">
+        <li key={itemList.label} className="link-3">
           {itemList.url ? (
             <Link href={itemList.url}>{itemList.label}</Link>
           ) : (

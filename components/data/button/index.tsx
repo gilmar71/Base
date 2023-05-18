@@ -1,72 +1,33 @@
-/* React/Next */
-import Link from 'next/link';
-
-/* Components */
-import { LoaderCircle } from '../loader-circle';
-
-/* Styles */
 import * as S from './styles';
 
-interface ButtonProps extends React.ButtonHTMLAttributes<any> {
-  text: string;
-  backgroundColor?: boolean;
-  href?: string;
-  type?: 'submit' | 'button';
-  loading?: boolean;
-  rel?: 'external';
-  target?: '_blanck';
-  color?: string;
-  maxWidth?: string;
-  marginTop?: boolean;
-  center?: boolean;
-  hoverColor?: string;
+interface IButton {
+  url: string;
+  text?: string;
+  hasBg?: boolean;
+  icon?: JSX.Element;
+  borderRadius?: string;
+  externalLink?: boolean;
 }
 
-export function ButtonComponent({
+export function Button({
+  url,
   text,
-  backgroundColor,
-  href,
-  type,
-  loading,
-  rel,
-  target,
-  color,
-  maxWidth,
-  marginTop,
-  center,
-  hoverColor,
-  ...props
-}: ButtonProps) {
+  icon,
+  hasBg,
+  externalLink,
+  borderRadius,
+}: IButton) {
   return (
     <S.Button
-      className="button"
-      color={color}
-      hoverColor={hoverColor}
-      backgroundColor={backgroundColor}
-      $loading={loading}
-      marginTop={marginTop}
-      center={center}
+      href={url}
+      className="link-4 button"
+      hasBg={hasBg}
+      rel={`${externalLink && 'external'}`}
+      target={`${externalLink && '_blank'}`}
+      borderRadius={borderRadius}
     >
-      {href && !type ? (
-        <Link
-          href={href}
-          rel={rel}
-          target={target}
-          className="link-4-zonaproBold"
-          {...props}
-        >
-          {text}
-        </Link>
-      ) : (
-        <button
-          className="link-4-zonaproBold"
-          type={type ? type : 'submit'}
-          disabled={loading}
-          {...props}
-        >
-          {loading ? <LoaderCircle size={40} /> : text}
-        </button>
-      )}
+      {icon}
+      {text}
     </S.Button>
   );
 }
