@@ -1,21 +1,23 @@
+import { Loader } from './loader';
+import { Button } from './button';
 import { Container } from './container';
-import { NextImage } from './NextImage';
-import { LoaderComponent } from './loader';
-import { LoaderCircle } from './loader-circle';
-import { BreadCrumbComponent } from './breadcrumb';
-import { ButtonComponent } from './button';
-import { SliderGallery } from './thumbs-swiper';
+import { NextImage } from './next-image';
+import { BreadCrumb } from './breadcrumb';
 import { BoxContact } from './box-contact';
-import { Card } from './card';
+import { MenuMobile } from './menu-mobile';
+import { CardValues } from './card-values';
+import { LoaderCircle } from './loader-circle';
+import { SliderGallery } from './thumbs-swiper';
 
 export {
-  Card,
+  Button,
+  Loader,
   NextImage,
   Container,
   BoxContact,
+  MenuMobile,
+  BreadCrumb,
+  CardValues,
   LoaderCircle,
   SliderGallery,
-  LoaderComponent,
-  ButtonComponent,
-  BreadCrumbComponent,
 };

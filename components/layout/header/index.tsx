@@ -3,46 +3,39 @@ import { useState, useRef } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-import { linksMenu } from './data';
+import { ICategoriesHeader } from 'src/interfaces/header';
 
-import { Container } from 'components/data/container';
+import { NavDownIcon } from 'components/icons';
+import { Container, MenuMobile, NextImage } from 'components/data';
 
 import * as S from './styles';
-import { MenuMobile } from './menuMobile';
-import { NextImage } from 'components/data/NextImage';
-import { ButtonComponent } from 'components/data';
-import { LogoLightIcon } from 'components/icons';
 
-export interface CategoriesHeader {
-  id: number;
-  link?: string;
-  href: string;
-  categorias?: Categorias[];
-  logo?: string;
-}
 interface Categorias {
   id: number;
-  titulo: string;
-  url: string;
+  sublink: string;
+  href: string;
 }
+
 interface HeaderProps {
-  data: CategoriesHeader[];
-  isBg?: boolean;
+  data: ICategoriesHeader[];
+  noBg?: boolean;
   fixed: boolean;
 }
 
-export function HeaderComponent({ data, fixed }: HeaderProps) {
+export function HeaderComponent({ data, noBg, fixed }: HeaderProps) {
   const dropDownRef = useRef(null);
   const [isActive, setIsActive] = useState(false);
   const onClick = () => setIsActive(!isActive);
 
   const router = useRouter();
 
+  const urlPage = router.query.url;
+
   return (
-    <S.Header fixed={fixed}>
+    <S.Header fixed={fixed} noBg={noBg}>
       <Container>
         <Link href="/" className="logo" aria-label="logomarca da empresa">
-          <LogoLightIcon />
+          <NextImage src={'/images/logo.webp'} alt={'logomarca'} />
         </Link>
 
         <MenuMobile data={data} setStateMenu={setIsActive} menu={isActive} />
@@ -59,7 +52,7 @@ export function HeaderComponent({ data, fixed }: HeaderProps) {
             <div></div>
           </button>
 
-          <nav ref={dropDownRef} className={`menu`}>
+          <nav ref={dropDownRef} className="menu">
             {data.map((categoria) => {
               return categoria.categorias ? (
                 <span
@@ -67,14 +60,22 @@ export function HeaderComponent({ data, fixed }: HeaderProps) {
                   className="itens link-3 uppercase"
                 >
                   {categoria.link}
+
+                  <NavDownIcon />
+
                   {categoria.categorias && (
                     <div className="subMenu-bg">
                       <ul className="sub-menu">
-                        {categoria.categorias?.map((subCategoria) => {
+                        {categoria.categorias.map((subCategoria) => {
                           return (
                             <li key={subCategoria.id + subCategoria.titulo}>
                               <Link
-                                href={subCategoria.url}
+                                href={{
+                                  pathname: '/servico/[url]',
+                                  query: {
+                                    url: subCategoria.url,
+                                  },
+                                }}
                                 className="link-3 uppercase"
                               >
                                 {subCategoria.titulo}

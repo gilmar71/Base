@@ -24,7 +24,7 @@ export function PaginationComponent({
       {hasPreviousPage && (
         <span
           style={{ display: currentPage == 1 ? 'none' : 'block' }}
-          className="txt-sz-8-bold-roboto-slab"
+          className="title-4-8-bold"
           onClick={() => onSelect(currentPage - 1)}
         >
           {'<'}
@@ -38,8 +38,8 @@ export function PaginationComponent({
             type="button"
             className={`${
               currentPage === pageItem
-                ? 'txt-sz-8-bold-roboto-slab active'
-                : 'txt-sz-8-bold-roboto-slab'
+                ? 'title-4-8-bold active'
+                : 'title-4-8-bold'
             }`}
             onClick={() => onSelect(pageItem)}
           >

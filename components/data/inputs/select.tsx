@@ -38,7 +38,7 @@ export function SelectComponent({
     <S.Input>
       <div className="input-content">
         {label && (
-          <label className="label-text txt-sz-9-montserrat-bold" htmlFor={id}>
+          <label className="label-text title-4" htmlFor={id}>
             {label}
           </label>
         )}

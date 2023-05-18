@@ -1,26 +1,23 @@
-/* React/Next */
 import Image from 'next/image';
 
-/* Api/Data */
 import { baseImage, baseImageGallery } from 'src/services/api';
 
-/* Styles */
 import * as S from './styles';
 
-interface NextImageProps {
-  isBaseUrl?: boolean;
-  isBaseImageGallery?: boolean;
-  src: string | undefined;
+interface INextImage {
   alt: string;
-  loading?: 'eager' | 'lazy' | undefined;
   priority?: boolean;
+  isBaseUrl?: boolean;
+  src: string | undefined;
+  isBaseImageGallery?: boolean;
+  loading?: 'eager' | 'lazy' | undefined;
 }
 export function NextImage({
   src,
+  alt,
   isBaseUrl,
   isBaseImageGallery,
-  alt,
-}: NextImageProps) {
+}: INextImage) {
   return (
     <S.Image className="next-image">
       <Image
@@ -32,7 +29,7 @@ export function NextImage({
               : isBaseImageGallery
               ? baseImageGallery + src
               : src
-            : '/images/default-image.webp'
+            : '/images/default-image.png'
         }
         fill
       />

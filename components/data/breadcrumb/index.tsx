@@ -2,14 +2,14 @@ import Link from 'next/link';
 
 import * as S from './styles';
 
-interface BreadCrumbProps {
+interface IBreadCrumb {
   list?: {
     label: string;
     url: string;
   }[];
 }
 
-export function BreadCrumbComponent({ list }: BreadCrumbProps) {
+export function BreadCrumb({ list }: IBreadCrumb) {
   if (!list) {
     return <div></div>;
   }

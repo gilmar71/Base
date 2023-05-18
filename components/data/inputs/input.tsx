@@ -57,15 +57,13 @@ export function InputComponent({
     });
   }, [fieldName, value, registerField]);
 
-  // const fontSizeFamilyInput = 'title-11';
-
   return (
     <S.Input hasBar={hasBar} noMargin={noMargin}>
       <div className="input-content">
         {label && (
           <label
             className={`label-text ${
-              fontSizeFamilyLabel ? fontSizeFamilyLabel : 'title-11'
+              fontSizeFamilyLabel ? fontSizeFamilyLabel : 'title-4'
             }`}
             htmlFor={id}
           >
@@ -76,7 +74,7 @@ export function InputComponent({
         {hasBar && (
           <span
             className={`${
-              fontSizeFamilyLabel ? fontSizeFamilyLabel : 'title-11'
+              fontSizeFamilyLabel ? fontSizeFamilyLabel : 'title-4'
             } bar`}
           >
             |
@@ -98,7 +96,7 @@ export function InputComponent({
             {() => (
               <input
                 className={
-                  fontSizeFamilyInput ? fontSizeFamilyInput : 'title-11'
+                  fontSizeFamilyInput ? fontSizeFamilyInput : 'title-4'
                 }
                 id={id}
                 defaultValue={defaultValue}
@@ -130,7 +128,7 @@ export function InputComponent({
                   : type
               }
               {...rest}
-              className={fontSizeFamilyInput ? fontSizeFamilyInput : 'title-11'}
+              className={fontSizeFamilyInput ? fontSizeFamilyInput : 'title-4'}
               onChange={(e) => {
                 if (labelAnimation) {
                   setValue(e.target.value);
@@ -144,7 +142,7 @@ export function InputComponent({
           <label
             htmlFor={id}
             className={`label-animation ${
-              fontSizeFamilyLabel ? fontSizeFamilyLabel : 'title-11'
+              fontSizeFamilyLabel ? fontSizeFamilyLabel : 'title-4'
             } ${value.length > 0 && 'active'}`}
             onClick={() => {
               inputRef.current?.focus();
@@ -169,7 +167,7 @@ export function InputComponent({
       {error && (
         <span
           className={`error ${
-            fontSizeFamilyLabel ? fontSizeFamilyLabel : 'title-11'
+            fontSizeFamilyLabel ? fontSizeFamilyLabel : 'title-4'
           } error-message`}
         >
           {error}

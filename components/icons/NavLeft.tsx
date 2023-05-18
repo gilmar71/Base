@@ -2,8 +2,6 @@ export function NavLeftIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="9.195"
-      height="16.39"
       viewBox="0 0 9.195 16.39"
       className="svg-icon"
     >

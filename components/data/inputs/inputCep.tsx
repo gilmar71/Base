@@ -93,7 +93,7 @@ export function InputCep({
       <S.Input noMargin={noMargin}>
         <div className="input-content">
           {label && (
-            <label className="label-text txt-sz-9-montserrat-bold" htmlFor={id}>
+            <label className="label-text title-4-9-bold" htmlFor={id}>
               {label}
             </label>
           )}
@@ -106,7 +106,7 @@ export function InputCep({
           >
             {() => (
               <input
-                className="paragraph-1-bold-graphie"
+                className="paragraph-1-bold"
                 ref={inputRef}
                 type="text"
                 name="zipCode"
@@ -118,9 +118,7 @@ export function InputCep({
         </div>
 
         {error && (
-          <span className="error paragraph-3-bold-graphie error-message">
-            {error}
-          </span>
+          <span className="error paragraph-3-bold error-message">{error}</span>
         )}
       </S.Input>
 

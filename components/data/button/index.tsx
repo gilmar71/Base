@@ -20,7 +20,7 @@ export function Button({
   return (
     <S.Button
       href={url}
-      className="link-4 button"
+      className="link-3 button"
       hasBg={hasBg}
       rel={`${externalLink && 'external'}`}
       target={`${externalLink && '_blank'}`}

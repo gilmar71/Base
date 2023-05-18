@@ -5,7 +5,7 @@ import { api } from 'src/services/api';
 
 import { Layout } from 'components/layout';
 
-interface HomePageProps {}
+interface IHomePage {}
 
 export default function HomePage() {
   const router = useRouter();
@@ -14,28 +14,11 @@ export default function HomePage() {
 }
 
 // export const getServerSideProps: GetServerSideProps = async () => {
-//   const depositions = await api.get<IDeposition[]>(
-//     `/component/depoimentos/GetAll`
-//   );
-
-//   const content = await api.get<PageContent>(`/pages/home`);
-
-//   const banners = await api.get<Banner[]>(`/component/banners/home`);
-
-//   if (!banners || !content || !customers || !depositions || null) {
-//     return {
-//       props: {
-//         banners: null,
-//         notFound: true,
-//       },
-//     };
-//   }
+//   const responseHomeData = await api.get<IPageInformations>(`pages/home`);
 
 //   return {
 //     props: {
-//       banners: banners.data,
-//       content: content.data,
-//       depositions: depositions.data,
+//       homeData: responseHomeData.data,
 //     },
 //   };
 // };

@@ -1,6 +1,6 @@
-import * as S from "./styles";
+import * as S from './styles';
 
-export function LoaderComponent() {
+export function Loader() {
   return (
     <S.Loader>
       <div className="text">
@@ -13,7 +13,7 @@ export function LoaderComponent() {
         </div>
       </div>
 
-      <img src="images/collection/Goblin.gif" loading="lazy"/>
+      <img src="images/collection/Goblin.gif" loading="lazy" />
     </S.Loader>
   );
 }

@@ -2,17 +2,16 @@ export function ArrowRightIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="25"
-      height="25"
+      width="14"
+      height="14"
       viewBox="0 0 25 25"
-      className="svg-icon"
+      className="svg-icon arrow"
     >
       <g>
         <g>
           <g>
             <path
               fill="none"
-              stroke="#f90"
               strokeLinecap="round"
               strokeLinejoin="round"
               strokeMiterlimit="20"
@@ -23,7 +22,6 @@ export function ArrowRightIcon() {
           <g>
             <path
               fill="none"
-              stroke="#f90"
               strokeLinecap="round"
               strokeLinejoin="round"
               strokeMiterlimit="20"

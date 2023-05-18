@@ -26,7 +26,7 @@ export const Menu = styled.section`
 
   .menu-mobile {
     overflow-y: auto;
-    width: 250px;
+    width: 325px;
     height: 100%;
     background-color: #eeeeee;
     position: relative;
@@ -126,6 +126,7 @@ export const Menu = styled.section`
 
   .link.active {
     color: red;
+    font-weight: 700;
     background-color: #fff;
   }
 
@@ -144,30 +145,19 @@ export const Menu = styled.section`
     }
 
     .subMenu-bg {
-      padding-top: 12px;
+      padding-top: 15px;
       width: 100%;
       display: none;
       flex-direction: column;
-      transition: all 5s ease-out;
+      transition: 3s;
       opacity: 0;
+      gap: 8px;
 
       .sub-link {
-        padding: 8px 0;
+        padding: 10px;
         width: 100%;
         color: #000;
-        border-radius: 10px;
-
-        &.active {
-          color: red;
-        }
-      }
-
-      .sub-link:first-child {
-        padding-top: 0;
-      }
-
-      .sub-link:last-child {
-        padding-bottom: 0;
+        background-color: #eeeeee;
       }
     }
   }
@@ -176,17 +166,19 @@ export const Menu = styled.section`
     background-color: #fff;
 
     .title {
-      color: var(--red);
-
       svg {
         transform: rotate(90deg);
-        stroke: var(--red);
       }
     }
 
     .subMenu-bg {
       display: flex;
       opacity: 1;
+
+      .sub-link.active {
+        color: red;
+        font-weight: 700;
+      }
     }
   }
 
@@ -223,6 +215,12 @@ export const Menu = styled.section`
 
     .menu-mobile {
       transform: translateX(0%);
+    }
+  }
+
+  @media only screen and (max-width: 390px) {
+    .menu-mobile {
+      width: 90%;
     }
   }
 `;

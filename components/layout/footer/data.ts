@@ -1,18 +1,22 @@
-export const footerData = [
+export const linksMenuFooter = [
   {
-    title: 'nossos serviços',
-    href: '#nossos-serviços',
+    id: 1,
+    link: 'Home',
+    href: '/',
   },
   {
-    title: 'vantagens',
-    href: '#vantagens',
+    id: 2,
+    link: 'Sobre nós',
+    href: '/sobre',
   },
   {
-    title: 'galeria',
-    href: '#galeria',
+    id: 3,
+    link: 'Eventos',
+    href: '/eventos',
   },
   {
-    title: 'sobre nós',
-    href: '#sobre-nos',
+    id: 4,
+    link: 'Contato',
+    href: '/contato',
   },
 ];

@@ -1,24 +1,24 @@
-import { Form } from "@unform/web";
-import { FormHandles } from "@unform/core";
+import { Form } from '@unform/web';
+import { FormHandles } from '@unform/core';
 
-import { YupValidation } from "src/utils/yup-validation";
+import { YupValidation } from 'src/utils/yup-validation';
 
-import { RadioInput } from "./radios";
-import { InputComponent } from "./input";
-import { SelectComponent } from "./select";
-import { TextAreaComponent } from "./textarea";
-import { InputEditComponent } from "./input-edit";
-import { InputCep } from "./inputCep";
+import { InputCep } from './inputCep';
+import { RadioInput } from './radios';
+import { InputComponent } from './input';
+import { SelectComponent } from './select';
+import { TextAreaComponent } from './textarea';
+import { InputEditComponent } from './input-edit';
 
 export {
   Form,
-  YupValidation,
+  InputCep,
   RadioInput,
+  YupValidation,
   InputComponent,
-  InputEditComponent,
-  TextAreaComponent,
   SelectComponent,
-  InputCep
+  TextAreaComponent,
+  InputEditComponent,
 };
 
 export type { FormHandles };

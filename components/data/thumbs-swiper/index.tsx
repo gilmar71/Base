@@ -1,6 +1,6 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import * as S from './styles';
-import { NextImage } from '../NextImage';
+import { NextImage } from '../next-image';
 import { NavLeftIcon, NavRightIcon } from 'components/icons';
 import { useLayoutEffect, useRef, useState } from 'react';
 import { IPageInformations } from 'src/interfaces/pageInformations';

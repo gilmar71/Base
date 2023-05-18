@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, InputHTMLAttributes } from "react";
-import * as S from "./styles";
+import React, { useEffect, useRef, InputHTMLAttributes } from 'react';
+import * as S from './styles';
 
-import { useField } from "@unform/core";
+import { useField } from '@unform/core';
 
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
@@ -13,14 +13,14 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
 
 export function RadioInput({ name, options, ...rest }) {
   const inputRefs = useRef<HTMLInputElement[]>([]);
-  const { fieldName, registerField, defaultValue = "", error } = useField(name);
+  const { fieldName, registerField, defaultValue = '', error } = useField(name);
 
   useEffect(() => {
     registerField({
       name: fieldName,
       ref: inputRefs.current,
       getValue: (refs: HTMLInputElement[]) => {
-        return refs.find((ref) => ref.checked)?.value || "";
+        return refs.find((ref) => ref.checked)?.value || '';
       },
       setValue: (refs: HTMLInputElement[], id: string) => {
         const inputRef = refs.find((ref) => ref.id === id);
@@ -40,7 +40,7 @@ export function RadioInput({ name, options, ...rest }) {
           <label
             htmlFor={option.label + option.value}
             key={option.label + option.value}
-            className="paragraph-2-regular-graphie"
+            className="paragraph-2-regular"
           >
             <input
               ref={(ref) => ref && (inputRefs.current[index] = ref)}
@@ -57,9 +57,7 @@ export function RadioInput({ name, options, ...rest }) {
       </div>
 
       {error && (
-        <span className="error paragraph-3-bold-graphie error-message">
-          {error}
-        </span>
+        <span className="error paragraph-3-bold error-message">{error}</span>
       )}
     </S.InputRadio>
   );

@@ -1,36 +1,65 @@
-import { ButtonComponent } from 'components/data/button';
-import { Container } from 'components/data/container';
-import { NextImage } from 'components/data/NextImage';
 import Link from 'next/link';
 
-import * as S from './styles';
-import { footerData } from './data';
+import { Container, NextImage } from 'components/data';
+
 import {
   CodieIcon,
   EmailIcon,
   FacebookIcon,
   InstagramIcon,
-  LogoLightIcon,
 } from 'components/icons';
-import { linksMenu } from '../header/data';
+import { linksContact, linksSuporte } from '../header/data';
+
+import { linksMenuFooter } from './data';
+
+import * as S from './styles';
 
 export function FooterComponent() {
   return (
     <S.Footer>
       <Container>
         <Link href="/" className="logo">
-          <LogoLightIcon />
+          <NextImage src={'/images/logo.webp'} alt={'logomarca'} />
         </Link>
 
-        <ul className="navigation">
-          {linksMenu.map((link, index) => (
-            <li key={link.link + index}>
-              <Link className="link-3 link uppercase" href={link.href}>
-                {link.link}
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <div className="nav-box">
+          <h3 className="link-5 uppercase title">Menu</h3>
+          <ul className="navigation">
+            {linksMenuFooter.map((link, index) => (
+              <li key={link.link + index}>
+                <Link className="link-5 link " href={link.href}>
+                  {link.link}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="nav-box">
+          <h3 className="link-5 uppercase title">Contato</h3>
+          <ul className="navigation">
+            {linksContact.map((link, index) => (
+              <li key={link.link + index}>
+                <Link className="link-5 link " href={link.href}>
+                  {link.link}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="nav-box">
+          <h3 className="link-5 uppercase title">Suporte</h3>
+          <ul className="navigation">
+            {linksSuporte.map((link, index) => (
+              <li key={link.link + index}>
+                <Link className="link-5 link " href={link.href}>
+                  {link.link}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
 
         <ul className="socials">
           <li>

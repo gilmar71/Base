@@ -1,36 +1,53 @@
 import styled from 'styled-components';
 
 interface HeaderProps {
-  isBg?: boolean;
+  noBg?: boolean;
   fixed: boolean;
 }
 
 export const Header = styled.header<HeaderProps>`
   position: fixed;
   width: 100%;
-  padding: ${({ fixed }) => (fixed ? '' : '15px 0')};
+  padding: ${({ fixed }) => (fixed ? '20px 0' : '35px 0')};
   left: 0;
   z-index: 4;
   transition: 0.5s;
-  background-color: ${({ fixed }) => (fixed ? '#393939' : '')};
+  background-image: ${({ fixed, noBg }) =>
+    (fixed || noBg) && `linear-gradient(-87deg, #670d92 0%, #e21776 100%)`};
   z-index: 99;
 
   .logo {
-    max-width: 200px;
-    aspect-ratio: 200/115;
+    max-width: ${({ fixed, noBg }) =>
+      fixed ? '190px' : noBg ? '284px' : '224px'};
+    aspect-ratio: ${({ fixed, noBg }) =>
+      fixed || noBg ? '284/210' : '224/160'};
     width: 100%;
     display: inline-flex;
+    position: ${({ fixed, noBg }) => (fixed || noBg) && 'absolute'};
+    background-color: ${({ fixed, noBg }) =>
+      (fixed || noBg) && 'var(--tertiary-color)'};
+    padding: ${({ fixed, noBg }) => (fixed || noBg) && '25px'};
+    top: ${({ fixed, noBg }) => (fixed ? '-20px' : noBg && '-35px')};
+    left: ${({ fixed, noBg }) => (fixed || noBg) && '0'};
+    align-items: ${({ fixed, noBg }) => (fixed || noBg) && 'center'};
+    border-radius: ${({ fixed, noBg }) => (fixed || noBg) && '0 0 35px 35px'};
+
+    .next-image {
+      aspect-ratio: 224/160;
+    }
   }
 
   .container {
     display: flex;
     align-items: center;
-    gap: 250px;
-    justify-content: space-between;
+    gap: 300px;
+    justify-content: ${({ fixed, noBg }) =>
+      fixed || noBg ? 'flex-end' : 'space-between'};
+    position: ${({ fixed, noBg }) => (fixed || noBg) && 'relative'};
   }
 
   .menuContainer {
-    width: calc(100% - 200px - 250px);
+    width: calc(100% - 224px - 300px);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -44,7 +61,7 @@ export const Header = styled.header<HeaderProps>`
   }
 
   .itens {
-    color: var(--white);
+    color: #fff;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -73,12 +90,13 @@ export const Header = styled.header<HeaderProps>`
       padding-top: 30px;
       position: absolute;
       left: 0;
-      width: 240px;
+      width: 380px;
       top: 25px;
     }
 
     .sub-menu {
-      background-color: rgba(0, 0, 0, 0.5);
+      background-color: ${({ fixed, noBg }) =>
+        fixed || noBg ? '#000' : 'rgba(0,0,0,0.5)'};
       transform: rotateX(-90deg);
       display: flex;
       flex-direction: column;
@@ -92,24 +110,26 @@ export const Header = styled.header<HeaderProps>`
 
       a {
         width: 100%;
-        color: var(--white);
+        color: #fff;
         display: inline-flex;
         padding: 10px 18px;
       }
     }
 
     .svg-icon {
-      stroke: var(--white);
-      max-width: 10px;
+      stroke: #fff;
+      max-width: 15px;
       width: 100%;
       transition: 0.3s ease-in-out;
     }
 
     &:hover {
-      color: var(--primary-color);
+      color: ${({ fixed, noBg }) =>
+        fixed || noBg ? '#000' : 'var(--tertiary-color)'};
 
       .svg-icon {
-        stroke: var(--primary);
+        stroke: ${({ fixed, noBg }) =>
+          fixed || noBg ? '#000' : 'var(--tertiary-color)'};
         transform: rotate(180deg);
       }
 
@@ -121,8 +141,8 @@ export const Header = styled.header<HeaderProps>`
         transform: rotateX(0);
 
         a:hover {
-          background-color: var(--primary);
-          color: var(--white);
+          background-color: var(--tertiary-color);
+          color: #fff;
           text-decoration: none;
         }
       }
@@ -147,7 +167,7 @@ export const Header = styled.header<HeaderProps>`
     div {
       width: 37px;
       height: 3px;
-      background-color: var(--white);
+      background-color: #fff;
       transition: 0.3s;
     }
 
@@ -187,19 +207,20 @@ export const Header = styled.header<HeaderProps>`
 
   @media only screen and (max-width: 1600px) {
     .logo {
-      max-width: 190px;
+      max-width: ${({ fixed, noBg }) =>
+        fixed ? '180px' : noBg ? '240px' : '190px'};
     }
 
     .container {
-      gap: 220px;
+      gap: 280px;
     }
 
     .menuContainer {
-      width: calc(100% - 190px - 220px);
+      width: calc(100% - 190px - 280px);
     }
 
     .itens .subMenu-bg {
-      width: 210px;
+      width: 355px;
     }
 
     .button {
@@ -208,21 +229,25 @@ export const Header = styled.header<HeaderProps>`
   }
 
   @media only screen and (max-width: 1400px) {
+    padding: ${({ fixed }) => (fixed ? '20px 0' : '25px 0')};
+
     .logo {
-      max-width: 170px;
+      max-width: ${({ fixed, noBg }) =>
+        fixed ? '170px' : noBg ? '210px' : '170px'};
+      top: ${({ fixed, noBg }) => (fixed ? '-20px' : noBg && '-25px')};
     }
 
     .container {
-      gap: 120px;
+      gap: 260px;
     }
 
     .menuContainer {
-      width: calc(100% - 170px - 120px);
+      width: calc(100% - 170px - 260px);
     }
 
     .itens .subMenu-bg {
       top: 20px;
-      width: 200px;
+      width: 335px;
     }
 
     .button {
@@ -232,21 +257,23 @@ export const Header = styled.header<HeaderProps>`
 
   @media only screen and (max-width: 1200px) {
     .logo {
-      max-width: 150px;
+      max-width: ${({ fixed, noBg }) =>
+        fixed ? '170px' : noBg ? '190px' : '170px'};
     }
 
     .container {
-      gap: 100px;
+      gap: 220px;
     }
 
     .menuContainer {
-      width: calc(100% - 150px - 100px);
+      width: calc(100% - 150px - 220px);
     }
 
     .itens {
       gap: 5px;
+
       .subMenu-bg {
-        width: 180px;
+        width: 320px;
       }
     }
 
@@ -257,19 +284,35 @@ export const Header = styled.header<HeaderProps>`
 
   @media only screen and (max-width: 1024px) {
     .logo {
-      max-width: 140px;
+      max-width: ${({ fixed, noBg }) =>
+        fixed ? '160px' : noBg ? '180px' : '140px'};
     }
 
     .container {
-      gap: 90px;
+      gap: 170px;
     }
 
     .menuContainer {
-      width: calc(100% - 140px - 90px);
+      width: calc(100% - 140px - 170px);
     }
   }
 
   @media only screen and (max-width: 900px) {
+    padding: ${({ fixed }) => (fixed ? '15px 0' : '25px 0')};
+
+    .logo {
+      max-width: ${({ fixed }) => (fixed ? '150px' : '160px')};
+      position: absolute;
+      top: ${({ fixed, noBg }) => (fixed ? '-15px' : noBg ? '-25px' : '12px')};
+      padding: ${({ fixed, noBg }) => (fixed || noBg) && '20px'};
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .container {
+      justify-content: flex-end;
+    }
+
     .menu {
       display: none;
     }
@@ -277,6 +320,8 @@ export const Header = styled.header<HeaderProps>`
     .menuContainer {
       background-color: unset;
       justify-content: flex-end;
+      width: 100%;
+      max-width: fit-content;
     }
 
     .block-bar {
@@ -288,11 +333,26 @@ export const Header = styled.header<HeaderProps>`
   }
 
   @media only screen and (max-width: 500px) {
+    padding: ${({ fixed }) => (fixed ? '15px 0' : '20px 0')};
+
+    .logo {
+      max-width: ${({ fixed }) => (fixed ? '120px' : '140px')};
+      top: ${({ fixed, noBg }) => (fixed ? '-20px' : noBg ? '-20px' : '12px')};
+    }
   }
-  @media only screen and (max-width: 400px) {
+
+  @media only screen and (max-width: 390px) {
+    padding: ${({ fixed }) => (fixed ? '15px 0' : '15px 0')};
+
+    .logo {
+      max-width: ${({ fixed }) => (fixed ? '110px' : '130px')};
+      padding: ${({ fixed, noBg }) => (fixed || noBg) && '15px'};
+    }
+
     .menuContainer {
       width: 100%;
     }
+
     .container {
       gap: unset;
     }

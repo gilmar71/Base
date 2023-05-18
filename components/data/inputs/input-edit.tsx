@@ -47,7 +47,7 @@ export function InputEditComponent({
                 id={id}
                 ref={inputRef}
                 type={type}
-                className="paragraph-1-bold-graphie"
+                className="paragraph-1-bold"
                 readOnly={readOnly}
                 {...rest}
               />
@@ -59,26 +59,21 @@ export function InputEditComponent({
             defaultValue={defaultValue}
             ref={inputRef}
             type={type}
-            className="paragraph-1-bold-graphie"
+            className="paragraph-1-bold"
             readOnly={readOnly}
             {...rest}
           />
         )}
 
         {label && (
-          <label
-            htmlFor={id}
-            className="label-animation paragraph-1-bold-graphie"
-          >
+          <label htmlFor={id} className="label-animation paragraph-1-bold">
             <span>{label}</span>
           </label>
         )}
       </div>
 
       {error && (
-        <span className="error paragraph-3-bold-graphie error-message">
-          {error}
-        </span>
+        <span className="error paragraph-3-bold error-message">{error}</span>
       )}
     </S.Input>
   );

@@ -23,8 +23,8 @@ export function TextAreaComponent({
     });
   }, [fieldName, registerField]);
 
-  const fontSizeFamilyLabel = 'title-11-zonaproBold uppercase';
-  const fontSizeFamilyInput = 'title-11';
+  const fontSizeFamilyLabel = 'title-4 uppercase';
+  const fontSizeFamilyInput = 'title-4';
 
   return (
     <S.Input hasBar={hasBar} noMargin={noMargin}>
@@ -32,7 +32,7 @@ export function TextAreaComponent({
         {label && (
           <label
             className={`label-text ${
-              fontSizeFamilyLabel ? fontSizeFamilyLabel : 'title-11'
+              fontSizeFamilyLabel ? fontSizeFamilyLabel : 'title-4'
             }`}
             htmlFor={id}
           >
@@ -43,7 +43,7 @@ export function TextAreaComponent({
         {hasBar && (
           <span
             className={`${
-              fontSizeFamilyLabel ? fontSizeFamilyLabel : 'title-11'
+              fontSizeFamilyLabel ? fontSizeFamilyLabel : 'title-4'
             } bar`}
           >
             |
@@ -55,13 +55,13 @@ export function TextAreaComponent({
           defaultValue={defaultValue}
           ref={inputRef}
           {...rest}
-          className={fontSizeFamilyInput ? fontSizeFamilyInput : 'title-11'}
+          className={fontSizeFamilyInput ? fontSizeFamilyInput : 'title-4'}
         />
 
         {error && (
           <span
             className={`error ${
-              fontSizeFamilyLabel ? fontSizeFamilyLabel : 'title-11'
+              fontSizeFamilyLabel ? fontSizeFamilyLabel : 'title-4'
             } error-message`}
           >
             {error}

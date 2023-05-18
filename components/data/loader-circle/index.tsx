@@ -1,21 +1,21 @@
-interface LoaderCircleProps {
+interface ILoaderCircle {
   size: number;
   color?: string;
 }
 
-export function LoaderCircle({ size, color }: LoaderCircleProps) {
+export function LoaderCircle({ size, color }: ILoaderCircle) {
   return (
     <>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         style={{
-          margin: "auto",
-          background: "none",
-          display: "block",
-          shapeRendering: "auto",
+          margin: 'auto',
+          background: 'none',
+          display: 'block',
+          shapeRendering: 'auto',
         }}
-        width={size + "px"}
-        height={size + "px"}
+        width={size + 'px'}
+        height={size + 'px'}
         viewBox="0 0 100 100"
         preserveAspectRatio="xMidYMid"
         className="loader-button"
@@ -24,7 +24,7 @@ export function LoaderCircle({ size, color }: LoaderCircleProps) {
           cx="50"
           cy="50"
           fill="none"
-          stroke={color ? color : "#ffffff"}
+          stroke={color ? color : '#ffffff'}
           strokeWidth="10"
           r="35"
           strokeDasharray="164.93361431346415 56.97787143782138"
