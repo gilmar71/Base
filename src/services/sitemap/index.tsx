@@ -32,14 +32,7 @@ export const generateMapSite = async (
 
   const dateFormated = year + '-' + month + '-' + day;
 
-  const fixedPages = [
-    '',
-    '/implantes-e-proteses-dentarias',
-    '/ortodontia',
-    '/Endontia',
-    '/clínica-geral',
-    '/cirurgia',
-  ];
+  const fixedPages = ['', 'sobre'];
 
   const generateSiteMap = fixedPages.map((url) => ({
     url,

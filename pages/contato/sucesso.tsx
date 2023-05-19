@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 
 import { Layout } from 'components/layout';
 
-import { ButtonComponent, Container } from 'components/data/';
+import { Button, Container } from 'components/data/';
 
 import * as S from 'styles/pages/success';
 
@@ -32,7 +32,7 @@ export default function SuccessPage() {
             Obrigado {query.name} pelo contato!
           </p>
 
-          <ButtonComponent backgroundColor text="Voltar" href="/" />
+          <Button hasBg text="Voltar" url="/" />
         </Container>
       </S.SuccessPage>
     </Layout>

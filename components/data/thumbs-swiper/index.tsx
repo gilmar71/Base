@@ -4,7 +4,6 @@ import { NextImage } from '../next-image';
 import { NavLeftIcon, NavRightIcon } from 'components/icons';
 import { useLayoutEffect, useRef, useState } from 'react';
 import { IPageInformations } from 'src/interfaces/pageInformations';
-import { baseImageBlog } from 'src/services/api';
 
 interface ISliderGallery {
   data: IPageInformations;
@@ -75,7 +74,7 @@ export function SliderGallery({ data }: ISliderGallery) {
             return (
               <SwiperSlide key={images.guid + index}>
                 <NextImage
-                  src={baseImageBlog + data.detail.id + '/' + images.fileData}
+                  src={data.detail.id + '/' + images.fileData}
                   alt={'imagem que representa um evento'}
                 />
               </SwiperSlide>
@@ -103,7 +102,7 @@ export function SliderGallery({ data }: ISliderGallery) {
           return (
             <SwiperSlide key={images.guid + index}>
               <NextImage
-                src={baseImageBlog + data.detail.id + '/' + images.fileData}
+                src={data.detail.id + '/' + images.fileData}
                 alt={'imagem que representa um evento'}
               />
             </SwiperSlide>

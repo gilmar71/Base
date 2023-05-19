@@ -1,14 +1,13 @@
 import axios from 'axios';
-// import { parseCookies } from 'nookies';
+import { parseCookies } from 'nookies';
 
 const pageUrl = '';
 
 const apiURL = 'https://apimikrokosmos.codie.digital/';
 const baseImage = 'https://mikrokosmos.codie.digital/uploads/';
 const baseImageGallery = 'https://mikrokosmos.codie.digital/imagens/Products/';
-const baseVideo = 'https://mikrokosmos.codie.digital/uploads/videos/';
 export function getAPIClient(ctx?: any) {
-  // const { "auth.token": token } = parseCookies(ctx);
+  const { 'auth.token': token } = parseCookies(ctx);
 
   const api = axios.create({
     baseURL: apiURL,
@@ -40,9 +39,9 @@ export function getAPIClient(ctx?: any) {
     },
   );
 
-  // if (token) {
-  //   api.defaults.headers["Authorization"] = `Bearer ${token}`;
-  // }
+  if (token) {
+    api.defaults.headers['Authorization'] = `Bearer ${token}`;
+  }
 
   return api;
 }

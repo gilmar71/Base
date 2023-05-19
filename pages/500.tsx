@@ -2,7 +2,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 
 import { Layout } from 'components/layout';
-import { Container, ButtonComponent } from 'components/data';
+import { Container, Button } from 'components/data';
 
 import * as S from 'styles/pages/notfound';
 
@@ -35,7 +35,7 @@ export default function Page500() {
             clique no botão abaixo ou tente recarregar a página
           </p>
 
-          <ButtonComponent text={'Recarregar'} href="/" />
+          <Button text={'Recarregar'} url="/" />
         </Container>
       </S.NotFound>
     </Layout>

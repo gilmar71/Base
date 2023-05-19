@@ -15,7 +15,7 @@ interface LayoutProps {
 }
 
 export function Layout({ noBg, children }: LayoutProps) {
-  const swrLinks = linksSections();
+  // const swrLinks = linksSections();
 
   const [fixed, setFixed] = useState(false);
 
@@ -50,7 +50,6 @@ export function Layout({ noBg, children }: LayoutProps) {
       id: 3,
       link: 'Serviços',
       href: '',
-      categorias: swrLinks?.data.servicos,
     },
     {
       id: 4,

@@ -1,19 +1,7 @@
 @font-face {
-  font-family: 'Feltro Texture 1';
-  src: url('/fonts/Feltro Texture 1.otf') format('opentype');
+  font-family: '';
+  src: url('/fonts/.otf') format('opentype');
   font-weight: 700;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'NotoSerif-Bold';
-  src: url('/fonts/NotoSerif-Bold.ttf') format('truetype');
-  font-weight: 700;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Palanquin-Medium';
-  src: url('/fonts/Palanquin-Medium.ttf') format('truetype');
-  font-weight: 500;
   font-display: swap;
 }
 
@@ -23,14 +11,8 @@ body {
 }
 
 /* Font Classes ---------------------------------------------------------- */
-[class*='-feltro'] {
-  font-family: 'Feltro Texture 1';
-}
-[class*='-notoserifBold'] {
-  font-family: 'NotoSerif-Bold';
-}
-[class*='-palanquinMedium'] {
-  font-family: 'Palanquin-Medium';
+[class*='-'] {
+  font-family: '';
 }
 
 /* Transform Classes ---------------------------------------------------------- */
@@ -61,7 +43,7 @@ body {
 /* Font-Sizes ---------------------------------------------------------- */
 /* Titles */
 [class*='title-1'] {
-  font-size: 80px;
+  font-size: 3rem;
 }
 [class*='title-2'] {
   font-size: 70px;
