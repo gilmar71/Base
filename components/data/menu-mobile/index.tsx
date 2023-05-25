@@ -87,6 +87,7 @@ export function MenuMobile({ menu, data, setStateMenu }: MenuMobileProps) {
                 className={`link link-3 uppercase ${
                   router.pathname === categoria.href ? 'active' : ''
                 }`}
+                onClick={() => setStateMenu(false)}
               >
                 {categoria.link}
               </Link>

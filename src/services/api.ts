@@ -2,8 +2,12 @@ import axios from 'axios';
 import { parseCookies } from 'nookies';
 
 const pageUrl = '';
+const apiWhattsApp = 'https://api.whatsapp.com/send/?phone=';
+const instagramLink = '';
+const facebookLink = '';
 
 const apiURL = 'https://apimikrokosmos.codie.digital/';
+const painel = 'https://painel-grandnet.codiehost.com.br/';
 const baseImage = 'https://mikrokosmos.codie.digital/uploads/';
 const baseImageGallery = 'https://mikrokosmos.codie.digital/imagens/Products/';
 export function getAPIClient(ctx?: any) {
@@ -48,4 +52,14 @@ export function getAPIClient(ctx?: any) {
 
 const api = getAPIClient();
 
-export { api, apiURL, pageUrl, baseImage, baseImageGallery };
+export {
+  api,
+  apiURL,
+  painel,
+  pageUrl,
+  baseImage,
+  facebookLink,
+  apiWhattsApp,
+  instagramLink,
+  baseImageGallery,
+};

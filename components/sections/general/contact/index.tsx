@@ -8,7 +8,7 @@ interface IContact {
 
 export function Contact({ isPage }: IContact) {
   return (
-    <S.Contact isPage={isPage}>
+    <S.Contact id="contato" isPage={isPage}>
       <Container>
         {isPage && (
           <div className="box-title">

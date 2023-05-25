@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 
+import { useRouter } from 'next/router';
+
 import { Whattsapp } from 'codieweb/dist/cjs/components/data/whattsapp';
 
 import { linksSections } from 'src/hooks/sections-links';
@@ -16,6 +18,7 @@ interface LayoutProps {
 
 export function Layout({ noBg, children }: LayoutProps) {
   // const swrLinks = linksSections();
+  const router = useRouter();
 
   const [fixed, setFixed] = useState(false);
 
@@ -38,28 +41,33 @@ export function Layout({ noBg, children }: LayoutProps) {
   const linksMenu = [
     {
       id: 1,
-      link: 'Home',
-      href: '/',
+      link: 'Vantagens',
+      href: `${router.asPath === '/' ? '#vantagens' : '/#vantagens'}`,
     },
     {
       id: 2,
-      link: 'Sobre nós',
-      href: '/sobre',
+      link: 'Planos',
+      href: `${router.asPath === '/' ? '#planos' : '/#planos'}`,
     },
     {
       id: 3,
-      link: 'Serviços',
-      href: '',
+      link: 'FAQ',
+      href: `${router.asPath === '/' ? '#faqs' : '/#faqs'}`,
     },
     {
       id: 4,
-      link: 'Eventos',
-      href: '/eventos',
+      link: 'Sobre nós',
+      href: `${router.asPath === '/' ? '#sobre' : '/#sobre'}`,
     },
     {
       id: 5,
       link: 'Contato',
-      href: '/contato',
+      href: `${router.asPath === '/' ? '#contato' : '/#contato'}`,
+    },
+    {
+      id: 6,
+      link: 'Central do Assinante',
+      href: '',
     },
   ];
   return (
