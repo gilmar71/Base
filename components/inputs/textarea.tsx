@@ -10,6 +10,9 @@ export function TextAreaComponent({
   label,
   hasBar,
   noMargin,
+  hasBorder,
+  fontSizeFamilyInput,
+  fontSizeFamilyLabel,
   ...rest
 }: any) {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -23,16 +26,13 @@ export function TextAreaComponent({
     });
   }, [fieldName, registerField]);
 
-  const fontSizeFamilyLabel = 'title-4 uppercase';
-  const fontSizeFamilyInput = 'title-4';
-
   return (
-    <S.Input hasBar={hasBar} noMargin={noMargin}>
+    <S.Input hasBar={hasBar} noMargin={noMargin} hasBorder={hasBorder}>
       <div className="input-textarea">
         {label && (
           <label
             className={`label-text ${
-              fontSizeFamilyLabel ? fontSizeFamilyLabel : 'title-4'
+              fontSizeFamilyLabel ? fontSizeFamilyLabel : 'paragraph-2'
             }`}
             htmlFor={id}
           >
@@ -43,7 +43,7 @@ export function TextAreaComponent({
         {hasBar && (
           <span
             className={`${
-              fontSizeFamilyLabel ? fontSizeFamilyLabel : 'title-4'
+              fontSizeFamilyLabel ? fontSizeFamilyLabel : 'paragraph-2'
             } bar`}
           >
             |
@@ -55,13 +55,13 @@ export function TextAreaComponent({
           defaultValue={defaultValue}
           ref={inputRef}
           {...rest}
-          className={fontSizeFamilyInput ? fontSizeFamilyInput : 'title-4'}
+          className={fontSizeFamilyInput ? fontSizeFamilyInput : 'paragraph-2'}
         />
 
         {error && (
           <span
             className={`error ${
-              fontSizeFamilyLabel ? fontSizeFamilyLabel : 'title-4'
+              fontSizeFamilyLabel ? fontSizeFamilyLabel : 'paragraph-2'
             } error-message`}
           >
             {error}

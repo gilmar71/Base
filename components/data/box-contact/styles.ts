@@ -24,7 +24,7 @@ export const BoxContact = styled.div`
       width: 100%;
 
       button {
-        border-radius: 10px;
+        border-radius: 24px;
       }
     }
 
@@ -67,6 +67,8 @@ export const BoxContact = styled.div`
   }
 
   @media only screen and (max-width: 650px) {
+    max-width: unset;
+
     .actions {
       flex-direction: column;
       align-items: center;
@@ -81,7 +83,7 @@ export const BoxContact = styled.div`
     }
   }
 
-  @media only screen and (max-width: 500px) {
+  @media only screen and (max-width: 390px) {
     max-width: 304px;
   }
 `;

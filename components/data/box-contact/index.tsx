@@ -10,6 +10,7 @@ import * as S from './styles';
 
 interface IBoxContact {
   hasBar?: boolean;
+  hasBorder?: boolean;
   fontSizeFamilyLabel?: string;
   fontSizeFamilyInput?: string;
 }
@@ -23,11 +24,12 @@ interface SubmitProps {
 
 export function BoxContact({
   hasBar,
+  hasBorder,
   fontSizeFamilyLabel,
   fontSizeFamilyInput,
 }: IBoxContact) {
   async function handleSucess(data: SubmitProps) {
-    const response = await api.post('form', { data });
+    const response = await api.post('form', data);
 
     if (response.status === 200) {
       router.push({ pathname: '/contato/sucesso', query: data.name });
@@ -38,9 +40,9 @@ export function BoxContact({
       <FormHandler
         button={{
           text: 'Enviar',
-          className: 'link-4-zonapro',
+          className: 'link-1 uppercase',
           color: '#fff',
-          backgroundColor: 'var(--tertiary-color)',
+          backgroundColor: 'var(--primary-color)',
         }}
         onSucess={handleSucess}
         defaultSchemas={{
@@ -58,11 +60,12 @@ export function BoxContact({
           id="name"
           name="name"
           type="text"
-          label="Nome completo"
+          label="Nome"
           placeholder="Digite seu nome completo aqui"
           fontSizeFamilyLabel={fontSizeFamilyLabel}
           fontSizeFamilyInput={fontSizeFamilyInput}
           hasBar={hasBar}
+          hasBorder={hasBorder}
         />
 
         <InputComponent
@@ -74,6 +77,7 @@ export function BoxContact({
           fontSizeFamilyLabel={fontSizeFamilyLabel}
           fontSizeFamilyInput={fontSizeFamilyInput}
           hasBar={hasBar}
+          hasBorder={hasBorder}
         />
 
         <InputComponent
@@ -86,6 +90,7 @@ export function BoxContact({
           fontSizeFamilyLabel={fontSizeFamilyLabel}
           fontSizeFamilyInput={fontSizeFamilyInput}
           hasBar={hasBar}
+          hasBorder={hasBorder}
         />
 
         <TextAreaComponent
@@ -97,6 +102,7 @@ export function BoxContact({
           fontSizeFamilyLabel={fontSizeFamilyLabel}
           fontSizeFamilyInput={fontSizeFamilyInput}
           hasBar={hasBar}
+          hasBorder={hasBorder}
         />
       </FormHandler>
     </S.BoxContact>

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 interface InputProps {
   noMargin?: boolean;
   hasBar?: boolean;
+  hasBorder?: boolean;
 }
 
 export const Input = styled.div<InputProps>`
@@ -10,8 +11,9 @@ export const Input = styled.div<InputProps>`
   margin-bottom: ${({ noMargin }) => (noMargin ? '0' : '30px')};
   background-color: ${({ hasBar }) => hasBar && '#fff'};
   padding-left: ${({ hasBar }) => hasBar && '15px'};
-  border-radius: ${({ hasBar }) => hasBar && '5px'};
+  border-radius: 10px;
   overflow: ${({ hasBar }) => hasBar && 'hidden'};
+  border: ${({ hasBorder }) => hasBorder && '1px solid rgba(23,23,23,0.4)'};
 
   .bar {
     color: #000;

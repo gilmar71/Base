@@ -22,6 +22,7 @@ export interface Props {
   placeholder?: string;
   onChangeInput?: React.Dispatch<string>;
   noMargin?: boolean;
+  hasBorder?: boolean;
   hasBar?: boolean;
   fontSizeFamilyLabel?: string;
   fontSizeFamilyInput?: string;
@@ -38,6 +39,7 @@ export function InputComponent({
   label,
   hasBar,
   noMargin,
+  hasBorder,
   onChangeInput,
   labelAnimation,
   fontSizeFamilyInput,
@@ -58,12 +60,12 @@ export function InputComponent({
   }, [fieldName, value, registerField]);
 
   return (
-    <S.Input hasBar={hasBar} noMargin={noMargin}>
+    <S.Input hasBar={hasBar} noMargin={noMargin} hasBorder={hasBorder}>
       <div className="input-content">
         {label && (
           <label
             className={`label-text ${
-              fontSizeFamilyLabel ? fontSizeFamilyLabel : 'title-4'
+              fontSizeFamilyLabel ? fontSizeFamilyLabel : 'paragraph-2'
             }`}
             htmlFor={id}
           >
@@ -74,7 +76,7 @@ export function InputComponent({
         {hasBar && (
           <span
             className={`${
-              fontSizeFamilyLabel ? fontSizeFamilyLabel : 'title-4'
+              fontSizeFamilyLabel ? fontSizeFamilyLabel : 'paragraph-2'
             } bar`}
           >
             |
@@ -96,7 +98,7 @@ export function InputComponent({
             {() => (
               <input
                 className={
-                  fontSizeFamilyInput ? fontSizeFamilyInput : 'title-4'
+                  fontSizeFamilyInput ? fontSizeFamilyInput : 'paragraph-2'
                 }
                 id={id}
                 defaultValue={defaultValue}
@@ -128,7 +130,9 @@ export function InputComponent({
                   : type
               }
               {...rest}
-              className={fontSizeFamilyInput ? fontSizeFamilyInput : 'title-4'}
+              className={
+                fontSizeFamilyInput ? fontSizeFamilyInput : 'paragraph-2'
+              }
               onChange={(e) => {
                 if (labelAnimation) {
                   setValue(e.target.value);
@@ -142,7 +146,7 @@ export function InputComponent({
           <label
             htmlFor={id}
             className={`label-animation ${
-              fontSizeFamilyLabel ? fontSizeFamilyLabel : 'title-4'
+              fontSizeFamilyLabel ? fontSizeFamilyLabel : 'paragraph-2'
             } ${value.length > 0 && 'active'}`}
             onClick={() => {
               inputRef.current?.focus();
@@ -167,7 +171,7 @@ export function InputComponent({
       {error && (
         <span
           className={`error ${
-            fontSizeFamilyLabel ? fontSizeFamilyLabel : 'title-4'
+            fontSizeFamilyLabel ? fontSizeFamilyLabel : 'paragraph-2'
           } error-message`}
         >
           {error}
