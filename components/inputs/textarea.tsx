@@ -11,6 +11,7 @@ export function TextAreaComponent({
   hasBar,
   noMargin,
   hasBorder,
+  borderWithBar,
   fontSizeFamilyInput,
   fontSizeFamilyLabel,
   ...rest
@@ -27,7 +28,12 @@ export function TextAreaComponent({
   }, [fieldName, registerField]);
 
   return (
-    <S.Input hasBar={hasBar} noMargin={noMargin} hasBorder={hasBorder}>
+    <S.Input
+      hasBar={hasBar}
+      noMargin={noMargin}
+      hasBorder={hasBorder}
+      borderWithBar={borderWithBar}
+    >
       <div className="input-textarea">
         {label && (
           <label

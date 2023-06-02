@@ -4,13 +4,18 @@ import { api } from 'src/services/api';
 
 import { FormHandler } from 'codieweb/dist/cjs/components/data/form-handler';
 
-import { InputComponent, TextAreaComponent } from 'components/data/inputs/core';
+import {
+  InputMask,
+  InputComponent,
+  TextAreaComponent,
+} from 'components/data/inputs';
 
 import * as S from './styles';
 
 interface IBoxContact {
   hasBar?: boolean;
   hasBorder?: boolean;
+  borderWithBar?: boolean;
   fontSizeFamilyLabel?: string;
   fontSizeFamilyInput?: string;
 }
@@ -25,6 +30,7 @@ interface SubmitProps {
 export function BoxContact({
   hasBar,
   hasBorder,
+  borderWithBar,
   fontSizeFamilyLabel,
   fontSizeFamilyInput,
 }: IBoxContact) {
@@ -66,6 +72,7 @@ export function BoxContact({
           fontSizeFamilyInput={fontSizeFamilyInput}
           hasBar={hasBar}
           hasBorder={hasBorder}
+          borderWithBar={borderWithBar}
         />
 
         <InputComponent
@@ -78,9 +85,10 @@ export function BoxContact({
           fontSizeFamilyInput={fontSizeFamilyInput}
           hasBar={hasBar}
           hasBorder={hasBorder}
+          borderWithBar={borderWithBar}
         />
 
-        <InputComponent
+        <InputMask
           id="phone"
           type="text"
           name="phone"
@@ -91,6 +99,7 @@ export function BoxContact({
           fontSizeFamilyInput={fontSizeFamilyInput}
           hasBar={hasBar}
           hasBorder={hasBorder}
+          borderWithBar={borderWithBar}
         />
 
         <TextAreaComponent
@@ -103,6 +112,7 @@ export function BoxContact({
           fontSizeFamilyInput={fontSizeFamilyInput}
           hasBar={hasBar}
           hasBorder={hasBorder}
+          borderWithBar={borderWithBar}
         />
       </FormHandler>
     </S.BoxContact>

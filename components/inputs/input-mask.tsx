@@ -1,51 +1,69 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 
 import { useField } from '@unform/core';
 
+import ReactInputMask from 'comigo-tech-react-input-mask';
+
 import * as S from './styles';
 
-export interface Props {
+interface Props {
   name: string;
+  mask: string;
   label?: string;
-  type: string;
-  mask?: string;
+  edit?: boolean;
   placeholder?: string;
+  onChangeInput?: React.Dispatch<string>;
   noMargin?: boolean;
   hasBorder?: boolean;
-  hasBar?: boolean;
   borderWithBar?: boolean;
+  hasBar?: boolean;
   fontSizeFamilyLabel?: string;
   fontSizeFamilyInput?: string;
 }
 
 type InputProps = JSX.IntrinsicElements['input'] & Props;
 
-export function InputComponent({
+export function InputMask({
   id,
   name,
-  type,
   mask,
   label,
   hasBar,
   noMargin,
   hasBorder,
   placeholder,
+  onChangeInput,
   borderWithBar,
   fontSizeFamilyInput,
   fontSizeFamilyLabel,
-  ...rest
+  readOnly,
 }: InputProps) {
   const [value, setValue] = useState('');
-  const inputRef = useRef<HTMLInputElement>(null);
   const { fieldName, registerField, defaultValue, error } = useField(name);
+
+  const ref = useRef(null);
 
   useEffect(() => {
     registerField({
       name: fieldName,
-      ref: inputRef.current || value,
-      path: 'value',
+      ref: null,
+      getValue: () => {
+        return value.replaceAll('_', '');
+      },
+      setValue: () => {
+        setValue(value);
+      },
+      clearValue: () => {
+        setValue('');
+      },
     });
   }, [fieldName, value, registerField]);
+
+  useEffect(() => {
+    if (defaultValue) {
+      setValue(defaultValue);
+    }
+  }, [defaultValue]);
 
   return (
     <S.Input
@@ -53,7 +71,6 @@ export function InputComponent({
       noMargin={noMargin}
       hasBorder={hasBorder}
       borderWithBar={borderWithBar}
-      className={name}
     >
       <div className="input-content">
         {label && (
@@ -61,7 +78,7 @@ export function InputComponent({
             className={`label-text ${
               fontSizeFamilyLabel ? fontSizeFamilyLabel : 'paragraph-2'
             }`}
-            htmlFor={name}
+            htmlFor={id}
           >
             {label}
           </label>
@@ -78,23 +95,33 @@ export function InputComponent({
         )}
 
         <input
-          id={name}
+          style={{ display: 'none' }}
+          ref={ref}
+          defaultValue={value}
+          type="text"
           name={name}
-          type={type}
-          ref={inputRef}
-          placeholder={placeholder}
-          defaultValue={defaultValue}
+        />
+
+        <ReactInputMask
+          mask={mask}
+          onChange={(e) => {
+            setValue(e.target.value);
+
+            if (onChangeInput) {
+              onChangeInput(e.target.value);
+            }
+          }}
+          value={value}
           className={fontSizeFamilyInput ? fontSizeFamilyInput : 'paragraph-2'}
-          {...rest}
+          id={id}
+          type="text"
+          placeholder={placeholder}
+          readOnly={readOnly}
         />
       </div>
 
       {error && (
-        <span
-          className={`error ${
-            fontSizeFamilyLabel ? fontSizeFamilyLabel : 'paragraph-2'
-          } error-message`}
-        >
+        <span className="error paragraph-3-medium-lato error-message">
           {error}
         </span>
       )}

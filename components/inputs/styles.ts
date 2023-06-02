@@ -4,6 +4,7 @@ interface InputProps {
   noMargin?: boolean;
   hasBar?: boolean;
   hasBorder?: boolean;
+  borderWithBar?: boolean;
 }
 
 export const Input = styled.div<InputProps>`
@@ -13,7 +14,8 @@ export const Input = styled.div<InputProps>`
   padding-left: ${({ hasBar }) => hasBar && '15px'};
   border-radius: 10px;
   overflow: ${({ hasBar }) => hasBar && 'hidden'};
-  border: ${({ hasBorder }) => hasBorder && '1px solid rgba(23,23,23,0.4)'};
+  border: ${({ borderWithBar }) =>
+    borderWithBar && '1px solid rgba(23,23,23,0.4)'};
 
   .bar {
     color: #000;
@@ -63,6 +65,7 @@ export const Input = styled.div<InputProps>`
     /* Esse box-shadow manipula o que acontece no preenchimento automático do input */
     box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0),
       inset 0 0 0 100px rgba(255, 255, 255, 1);
+    border: ${({ hasBorder }) => hasBorder && '1px solid rgba(23,23,23,0.4)'};
   }
 
   input,
@@ -195,122 +198,6 @@ export const Input = styled.div<InputProps>`
     input,
     select {
       height: 38px;
-    }
-  }
-`;
-
-export const InputEdit = styled.div`
-  width: 100%;
-  height: 60px;
-  border-radius: 10px;
-  background-color: rgba(51, 33, 84, 0.1);
-  position: relative;
-  padding: 22px 50px 15px 20px;
-
-  input {
-    background-color: transparent;
-    border: 0;
-    color: var(--base-color);
-    width: 100%;
-  }
-
-  .editIcon {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    right: 23px;
-    margin: 0;
-    display: flex;
-
-    svg {
-      cursor: pointer;
-      opacity: 0.3;
-      transition: 0.3s;
-    }
-    svg:hover {
-      opacity: 1;
-    }
-  }
-`;
-
-export const InputRadio = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: flex-start;
-  flex-direction: column;
-  margin-bottom: 15px;
-
-  .error-message {
-    margin-top: -5px;
-  }
-  .input-content {
-    display: flex;
-    justify-content: flex-start;
-    gap: 15px;
-    width: 100%;
-  }
-
-  label {
-    cursor: pointer;
-  }
-
-  input[type='radio'] {
-    -webkit-appearance: none;
-    width: 16px;
-    height: 16px;
-    border: 1px solid #000;
-    border-radius: 50%;
-    outline: none;
-    background-color: #fff;
-    transition: 0.3s;
-  }
-
-  input[type='radio']:before {
-    content: '';
-    display: block;
-    width: 8px;
-    height: 8px;
-    margin: 3px auto;
-    border-radius: 50%;
-  }
-  input[type='radio']:checked:hover {
-    background-color: transparent;
-  }
-  input[type='radio']:checked:before {
-    background: var(--secundary-color);
-  }
-
-  label {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-
-  @media only screen and (max-width: 768px) {
-    label {
-      span {
-        /* width: calc(100% - 22px); */
-      }
-    }
-  }
-
-  @media only screen and (max-width: 400px) {
-    input[type='radio'] {
-      width: 10px;
-      height: 10px;
-    }
-
-    input[type='radio']:before {
-      content: '';
-      width: 5px;
-      height: 5px;
-      margin: 1.2px auto 0px;
-    }
-
-    label {
-      span {
-        width: calc(100% - 16px);
-      }
     }
   }
 `;
