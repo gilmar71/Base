@@ -41,9 +41,8 @@ export const Image = styled.div<IImageStyles>`
 
   img {
     width: 100%;
-    position: relative;
     height: inherit;
-    position: relative;
+    position: relative !important;
     min-height: inherit;
     max-height: inherit;
     min-width: inherit;
@@ -51,8 +50,6 @@ export const Image = styled.div<IImageStyles>`
     object-fit: cover;
     object-position: center center;
     aspect-ratio: inherit;
-
-    /* HOVER EFFECT */
     -webkit-transform: scale(1);
     transform: scale(1);
     -webkit-transition: 0.3s ease-in-out;

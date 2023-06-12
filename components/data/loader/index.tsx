@@ -1,19 +1,22 @@
+import { Error } from '../error-body';
 import * as S from './styles';
 
 export function Loader() {
   return (
-    <S.Loader>
-      <div className="text">
-        <p className="title-1-bold-cinzel">Carregando</p>
-        <div className="lds-ellipsis">
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
+    <Error name="loader">
+      <S.Loader>
+        <div className="text">
+          <p className="title-1-bold-cinzel">Carregando</p>
+          <div className="lds-ellipsis">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
         </div>
-      </div>
 
-      <img src="images/collection/Goblin.gif" loading="lazy" />
-    </S.Loader>
+        <img src="images/collection/Goblin.gif" loading="lazy" />
+      </S.Loader>
+    </Error>
   );
 }

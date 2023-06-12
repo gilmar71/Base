@@ -6,97 +6,45 @@ export interface IPageInformations {
     headScripts: string;
   };
   body: { bodyScripts: string };
-  banner: {
-    titulo: string;
-    subtitulo: string;
-    descricao: string;
-    imagem: string;
-    thumbnail: string;
-    url: string;
-    id: number;
-    ativo: boolean;
-    dataCriacao: string;
-    dataEdicao: string;
-  };
-  detail: {
-    id: number;
-    titulo: string;
-    thumbnail: string;
-    imagem: string;
-    url: string;
-    categoriaId: number;
-    descricao: string;
-  };
-  categorias: ICategories[];
+  banner: IBanners;
   depoimentos: IDepoiments[];
-  marcas: IBrands[];
-  blogs: IEvents[];
-  servicos: IServices[];
-  proposito: {
-    subCategoriaId: number;
-    titulo: string;
-    descricao: string;
-    imagem: string;
-    thumbnail: string;
-    id: number;
-    ativo: boolean;
-    dataCriacao: string;
-    dataEdicao: string;
-  };
-  sobre: {
-    detail: {
-      id: number;
+  faqs: IFaqs[];
+  blogs: [];
+  servicos: [
+    {
       titulo: string;
-      subtitulo: string;
-      thumbnail: string;
-      imagem: string;
-      categoriaId: number;
       descricao: string;
-    };
-    imagens: IImagens[];
-  };
-  posts: IPosts[];
-  imagens: IImagens[];
-  categoria: {
-    subCategorias: [];
-    autor: [];
-    noticias: [];
-    products: [];
-    titulo: string;
-    descricao: string;
-    imagem: string;
-    pageTitle: string;
-    metaDescription: string;
-    url: string;
-    id: number;
-    ativo: boolean;
-    excluido: boolean;
-    dataEdicao: string;
-  };
+      imagem: string;
+      url: string;
+      id: number;
+    },
+  ];
+  sobre: ISobre;
+  instituto: ISobre;
+  institutoGaleria?: IInstitutoGaleria;
+  detail?: IBlogDetail;
 }
 
-interface ICategories {
-  subCategorias: [];
-  autor: [];
-  noticias: [];
-  products: [];
-  servicos: IServices[];
+export interface IBanners {
   titulo: string;
   descricao: string;
+  imagem: string;
+  thumbnail: string;
   url: string;
   id: number;
+  ativo: boolean;
+  dataCriacao: string;
+  dataEdicao: string;
 }
 
 export interface IServices {
-  categoriaId: number;
   titulo: string;
-  descricao?: string;
-  imagem?: string;
+  subtitulo: string;
   url: string;
   id: number;
 }
 
-interface IDepoiments {
+export interface IDepoiments {
   titulo: string;
   subtitulo: string;
   descricao: string;
@@ -104,21 +52,33 @@ interface IDepoiments {
   id: number;
 }
 
-export interface IBrands {
-  detail: IDetails;
-  imagens: IImagens[];
+export interface IFaqs {
+  titulo: string;
+  descricao: string;
+  url?: string;
+  id: number;
 }
 
-interface IDetails {
-  id: number;
+export interface ISobre {
   titulo: string;
-  thumbnail: string;
+  descricao: string;
   imagem: string;
   url: string;
-  categoriaId: number;
+  id: number;
+  ativo: boolean;
+  dataCriacao: string;
+  dataEdicao: string;
 }
 
-export interface IImagens {
+export interface IInstitutoGaleria {
+  id: number;
+  titulo: string;
+  descricao: string;
+  url: string;
+  imagens: IGaleriaInstituto[];
+}
+
+export interface IGaleriaInstituto {
   fileType: string;
   fileSize: string;
   fileData: string;
@@ -134,23 +94,15 @@ export interface IImagens {
   dataEdicao: string;
 }
 
-export interface IEvents {
-  data: string;
-  categoriaId: number;
+export interface IBlogDetail {
+  id: number;
   titulo: string;
   subtitulo: string;
+  categoriaBlogId: number;
+  thumbnail: string;
   imagem: string;
   url: string;
-  id: number;
-}
-
-export interface IPosts {
-  id: number;
-  titulo: string;
-  subtitulo: string;
-  imagem?: string;
-  url: string;
-  categoriaId: number;
-  descricao?: string;
-  data: string;
+  descricao: string;
+  dataCadastro: string;
+  dataCriacao: string;
 }

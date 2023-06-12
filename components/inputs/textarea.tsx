@@ -4,20 +4,28 @@ import { useField } from '@unform/core';
 
 import * as S from './styles';
 
-export function TextAreaComponent({
-  id,
-  name,
-  label,
-  hasBar,
-  noMargin,
-  hasBorder,
-  borderWithBar,
-  fontSizeFamilyInput,
-  fontSizeFamilyLabel,
-  ...rest
-}: any) {
+export interface Props {
+  id: string;
+  name: string;
+  label?: string;
+  hasBar?: boolean;
+  noMargin?: boolean;
+  hasBorder?: boolean;
+  placeholder: string;
+  borderWithBar?: boolean;
+  fontSizeFamilyInput?: string;
+  fontSizeFamilyLabel?: string;
+}
+
+export interface IInputProps {
+  configs: Props;
+}
+
+export function TextAreaComponent({ configs, ...rest }: any) {
   const inputRef = useRef<HTMLInputElement>(null);
-  const { fieldName, registerField, defaultValue, error } = useField(name);
+  const { fieldName, registerField, defaultValue, error } = useField(
+    configs.name,
+  );
 
   useEffect(() => {
     registerField({
@@ -29,27 +37,31 @@ export function TextAreaComponent({
 
   return (
     <S.Input
-      hasBar={hasBar}
-      noMargin={noMargin}
-      hasBorder={hasBorder}
-      borderWithBar={borderWithBar}
+      hasBar={configs.hasBar}
+      noMargin={configs.noMargin}
+      hasBorder={configs.hasBorder}
+      borderWithBar={configs.borderWithBar}
     >
       <div className="input-textarea">
-        {label && (
+        {configs.label && (
           <label
             className={`label-text ${
-              fontSizeFamilyLabel ? fontSizeFamilyLabel : 'paragraph-2'
+              configs.fontSizeFamilyLabel
+                ? configs.fontSizeFamilyLabel
+                : 'paragraph-2'
             }`}
-            htmlFor={id}
+            htmlFor={configs.id}
           >
-            {label}
+            {configs.label}
           </label>
         )}
 
-        {hasBar && (
+        {configs.hasBar && (
           <span
             className={`${
-              fontSizeFamilyLabel ? fontSizeFamilyLabel : 'paragraph-2'
+              configs.fontSizeFamilyLabel
+                ? configs.fontSizeFamilyLabel
+                : 'paragraph-2'
             } bar`}
           >
             |
@@ -57,17 +69,24 @@ export function TextAreaComponent({
         )}
 
         <textarea
-          id={id}
+          id={configs.id}
           defaultValue={defaultValue}
+          placeholder={configs.placeholder}
           ref={inputRef}
           {...rest}
-          className={fontSizeFamilyInput ? fontSizeFamilyInput : 'paragraph-2'}
+          className={
+            configs.fontSizeFamilyInput
+              ? configs.fontSizeFamilyInput
+              : 'paragraph-2'
+          }
         />
 
         {error && (
           <span
             className={`error ${
-              fontSizeFamilyLabel ? fontSizeFamilyLabel : 'paragraph-2'
+              configs.fontSizeFamilyLabel
+                ? configs.fontSizeFamilyLabel
+                : 'paragraph-2'
             } error-message`}
           >
             {error}

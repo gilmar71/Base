@@ -4,6 +4,7 @@ import { Navigation, SwiperOptions } from 'swiper';
 import { NavLeftIcon, NavRightIcon } from 'components/icons';
 
 import * as S from './styles';
+import { Error } from '../error-body';
 
 interface IBoxSwiper {
   name: string;
@@ -35,53 +36,55 @@ export function BoxSwiper({
   };
 
   return (
-    <S.BoxSwiper
-      className={`box-swiper ${name}`}
-      $name={name}
-      $navColor={navColor}
-    >
-      {hasNavigation && (
-        <>
-          <button
-            type="button"
-            className={`nav-left-${name} button-nav`}
-            aria-label="botão de navegação esquerdo"
-          >
-            <NavLeftIcon />
-          </button>
-
-          <button
-            type="button"
-            className={`nav-right-${name} button-nav`}
-            aria-label="botão de navegação direito"
-          >
-            <NavRightIcon />
-          </button>
-        </>
-      )}
-
-      {hasPagination && <div className={`swiper-pagination-${name}`}></div>}
-
-      <Swiper
-        className={`swiper-${name}`}
-        slidesPerView="auto"
-        navigation={{
-          nextEl: `.nav-right-${name}`,
-          prevEl: `.nav-left-${name}`,
-        }}
-        modules={[Navigation]}
-        pagination={{
-          el: `.swiper-pagination-${name}`,
-          clickable: true,
-          renderBullet: function (index, className) {
-            return `<div class="${className} pagination-bullet"></div>`;
-          },
-          bulletClass: 'swiper-pagination-bullet',
-        }}
-        breakpoints={breakpoints ? breakpoints : defaultBreakpoints}
+    <Error name="box-swiper">
+      <S.BoxSwiper
+        className={`box-swiper ${name}`}
+        $name={name}
+        $navColor={navColor}
       >
-        {children}
-      </Swiper>
-    </S.BoxSwiper>
+        {hasNavigation && (
+          <>
+            <button
+              type="button"
+              className={`nav-left-${name} button-nav`}
+              aria-label="botão de navegação esquerdo"
+            >
+              <NavLeftIcon />
+            </button>
+
+            <button
+              type="button"
+              className={`nav-right-${name} button-nav`}
+              aria-label="botão de navegação direito"
+            >
+              <NavRightIcon />
+            </button>
+          </>
+        )}
+
+        {hasPagination && <div className={`swiper-pagination-${name}`}></div>}
+
+        <Swiper
+          className={`swiper-${name}`}
+          slidesPerView="auto"
+          navigation={{
+            nextEl: `.nav-right-${name}`,
+            prevEl: `.nav-left-${name}`,
+          }}
+          modules={[Navigation]}
+          pagination={{
+            el: `.swiper-pagination-${name}`,
+            clickable: true,
+            renderBullet: function (index, className) {
+              return `<div class="${className} pagination-bullet"></div>`;
+            },
+            bulletClass: 'swiper-pagination-bullet',
+          }}
+          breakpoints={breakpoints ? breakpoints : defaultBreakpoints}
+        >
+          {children}
+        </Swiper>
+      </S.BoxSwiper>
+    </Error>
   );
 }

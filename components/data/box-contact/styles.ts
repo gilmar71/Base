@@ -1,8 +1,17 @@
 import styled from 'styled-components';
 
-export const BoxContact = styled.div`
+interface IBoxContactStyles {
+  $type?: 1 | 2 | 3 | 4 | 5;
+}
+
+export const BoxContact = styled.div<IBoxContactStyles>`
   width: 100%;
   max-width: 48vw;
+  margin-left: ${({ $type }) => $type === 5 && 'auto'};
+
+  .title + * {
+    margin-top: 30px;
+  }
 
   .form {
     display: flex;
@@ -36,9 +45,18 @@ export const BoxContact = styled.div`
   }
 
   @media only screen and (max-width: 1600px) {
+    .title + * {
+      margin-top: 25px;
+    }
   }
 
   @media only screen and (max-width: 1400px) {
+    max-width: 50vw;
+
+    .title + * {
+      margin-top: 20px;
+    }
+
     .actions {
       gap: 20px;
     }
@@ -46,6 +64,15 @@ export const BoxContact = styled.div`
 
   @media only screen and (max-width: 1200px) {
     max-width: 60vw;
+    margin-right: ${({ $type }) => $type === 5 && 'auto'};
+
+    .title {
+      text-align: ${({ $type }) => $type === 5 && 'center'};
+
+      & + * {
+        margin-top: 15px;
+      }
+    }
 
     .actions {
       gap: 15px;
@@ -53,6 +80,14 @@ export const BoxContact = styled.div`
   }
 
   @media only screen and (max-width: 1024px) {
+    .title {
+      display: none;
+
+      & + * {
+        margin-top: 0;
+      }
+    }
+
     .actions {
       margin-top: 10px;
     }

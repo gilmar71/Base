@@ -9,20 +9,28 @@ export const PaginationStyle = styled.div`
 
   button,
   span {
-    width: 42px;
-    height: 42px;
+    width: 47px;
+    height: 47px;
+    border-radius: 10px;
     background-color: transparent;
-    color: #fff;
-    border: 1px solid var(--orange);
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
     display: flex !important;
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    font-size: 18px;
+
+    &:hover {
+      color: #fff;
+      background-color: var(--primary-color);
+    }
   }
 
   button.active {
+    font-weight: 700;
     background-color: var(--primary-color);
-    color: var(--orange);
+    color: #fff;
   }
 
   @media only screen and (max-width: 1600px) {

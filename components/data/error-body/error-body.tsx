@@ -1,15 +1,15 @@
 import React from "react";
 
 interface IErrorBoundaryComponentProps {
-  nameComponent: string;
+  name: string;
 }
 
 export const ErrorBoundaryComponent = ({
-  nameComponent,
+  name,
 }: IErrorBoundaryComponentProps) => {
   return (
     <div className="title-2-bold" style={{ color: "#000" }}>
-      Error component: {nameComponent}
+      Error component: {name}
     </div>
   );
 };

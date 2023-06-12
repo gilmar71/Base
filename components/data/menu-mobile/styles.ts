@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Menu = styled.section`
+export const Menu = styled.div`
   position: fixed;
   height: 100vh;
   width: 100%;
@@ -56,7 +56,7 @@ export const Menu = styled.section`
         padding: 0 25px;
       }
 
-      a,
+      .link,
       span {
         color: #fff;
         cursor: pointer;
@@ -64,14 +64,14 @@ export const Menu = styled.section`
         width: 100%;
         border-radius: 0;
         color: #000;
+
+        &.active {
+          color: red;
+        }
       }
 
       .itens.active {
         color: var(--red);
-      }
-
-      .link-active {
-        color: var(--secondary-color);
       }
     }
 
@@ -125,7 +125,6 @@ export const Menu = styled.section`
   }
 
   .link.active {
-    color: red;
     font-weight: 700;
     background-color: #fff;
   }
@@ -216,6 +215,10 @@ export const Menu = styled.section`
     .menu-mobile {
       transform: translateX(0%);
     }
+  }
+
+  .button {
+    margin-left: 20px;
   }
 
   @media only screen and (max-width: 390px) {

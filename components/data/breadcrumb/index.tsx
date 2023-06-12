@@ -1,6 +1,7 @@
 import Link from 'next/link';
 
 import * as S from './styles';
+import { Error } from '../error-body';
 
 interface IBreadCrumb {
   list?: {
@@ -15,16 +16,18 @@ export function BreadCrumb({ list }: IBreadCrumb) {
   }
 
   return (
-    <S.BreadCrumb>
-      {list.map((itemList) => (
-        <li key={itemList.label} className="link-3">
-          {itemList.url ? (
-            <Link href={itemList.url}>{itemList.label}</Link>
-          ) : (
-            <span>{itemList.label}</span>
-          )}
-        </li>
-      ))}
-    </S.BreadCrumb>
+    <Error name="breadcrumb">
+      <S.BreadCrumb>
+        {list.map((itemList) => (
+          <li key={itemList.label} className="link-3">
+            {itemList.url ? (
+              <Link href={itemList.url}>{itemList.label}</Link>
+            ) : (
+              <span>{itemList.label}</span>
+            )}
+          </li>
+        ))}
+      </S.BreadCrumb>
+    </Error>
   );
 }

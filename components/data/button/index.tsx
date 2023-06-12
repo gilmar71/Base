@@ -1,3 +1,4 @@
+import { Error } from '../error-body';
 import * as S from './styles';
 
 interface IButton {
@@ -18,16 +19,18 @@ export function Button({
   borderRadius,
 }: IButton) {
   return (
-    <S.Button
-      href={url}
-      className="link-3 button"
-      hasBg={hasBg}
-      rel={`${externalLink && 'external'}`}
-      target={`${externalLink && '_blank'}`}
-      borderRadius={borderRadius}
-    >
-      {icon}
-      {text}
-    </S.Button>
+    <Error name="button-component">
+      <S.Button
+        href={url}
+        className="link-1 uppercase button"
+        $hasBg={hasBg}
+        rel={`${externalLink ? 'external' : ''}`}
+        target={`${externalLink ? '_blank' : ''}`}
+        $borderRadius={borderRadius}
+      >
+        {icon}
+        {text}
+      </S.Button>
+    </Error>
   );
 }

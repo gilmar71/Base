@@ -9,25 +9,30 @@ export interface IOption {
   value: string;
 }
 
-export interface ISelect {
+export interface SelectProps {
   name: string;
   label: string;
+  hasBorder?: boolean;
+  hasBar?: boolean;
+  borderWithBar?: boolean;
   placeholder?: string;
   optionsSelect: IOption[];
+  fontSizeFamilyLabel?: string;
+  fontSizeFamilyInput?: string;
 }
 
-export function SelectComponent({
-  name,
-  label,
-  placeholder,
-  optionsSelect,
-  ...rest
-}: ISelect) {
+export interface ISelect {
+  configs: SelectProps;
+}
+
+export function SelectComponent({ configs, ...rest }: ISelect) {
   const [value, setValue] = useState('');
 
   const inputRef = useRef<HTMLSelectElement>(null);
 
-  const { fieldName, registerField, defaultValue, error } = useField(name);
+  const { fieldName, registerField, defaultValue, error } = useField(
+    configs.name,
+  );
 
   useEffect(() => {
     registerField({
@@ -41,32 +46,47 @@ export function SelectComponent({
   }, [fieldName, value, registerField]);
 
   return (
-    <S.Input>
+    <S.Input
+      hasBar={configs.hasBar}
+      hasBorder={configs.hasBorder}
+      borderWithBar={configs.borderWithBar}
+    >
       <div className="input-content">
-        {label && (
-          <label className="label-text title-4" htmlFor={label}>
-            {label}
+        {configs.label && (
+          <label
+            className={`label-text ${
+              configs.fontSizeFamilyLabel
+                ? configs.fontSizeFamilyLabel
+                : 'paragraph-2'
+            }`}
+            htmlFor={configs.label}
+          >
+            {configs.label}
           </label>
         )}
 
         <select
-          id={name}
-          name={name}
+          id={configs.name}
+          name={configs.name}
           ref={inputRef}
           value={defaultValue || value}
-          className={`paragraph-2 select-${name}`}
+          className={`${
+            configs.fontSizeFamilyInput
+              ? configs.fontSizeFamilyInput
+              : 'paragraph-2'
+          } select-${configs.name}`}
           onChange={(e) => {
             setValue(e.target.value);
           }}
           {...rest}
         >
-          {placeholder && (
+          {configs.placeholder && (
             <option className="placeholder-select paragraph-2">
-              {placeholder}
+              {configs.placeholder}
             </option>
           )}
 
-          {optionsSelect.map((option, i) => {
+          {configs.optionsSelect.map((option, i) => {
             return (
               <option
                 key={'select' + option.value + i}

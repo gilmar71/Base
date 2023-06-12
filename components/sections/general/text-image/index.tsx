@@ -1,4 +1,4 @@
-import { Button, Container, NextImage } from 'components/data';
+import { Button, Container, Error, NextImage } from 'components/data';
 
 import { ISobre } from 'src/interfaces/pageInformations';
 
@@ -11,58 +11,60 @@ interface ITextImage {
 
 export function TextImage({ type, data }: ITextImage) {
   return (
-    <S.TextImage $type={type}>
-      <Container>
-        {type === 3 ? (
-          <NextImage
-            className="hide-mobile"
-            alt={data.titulo}
-            src={data.imagem}
-            hasHover
-          />
-        ) : (
-          <NextImage
-            className="hide-mobile"
-            isBaseUrl
-            alt={data.titulo}
-            src={data.imagem}
-            hasHover
-          />
-        )}
-
-        <div className="box-text">
-          <h2 className="title-2 uppercase">{data.titulo}</h2>
-
+    <Error name="text-image">
+      <S.TextImage $type={type}>
+        <Container>
           {type === 3 ? (
             <NextImage
-              className="show-mobile"
+              className="hide-mobile"
               alt={data.titulo}
               src={data.imagem}
+              hasHover
             />
           ) : (
             <NextImage
-              className="show-mobile"
-              isBaseUrl
+              className="hide-mobile"
+              isUploads
               alt={data.titulo}
               src={data.imagem}
+              hasHover
             />
           )}
 
-          <div
-            className="paragraph-2 description"
-            dangerouslySetInnerHTML={{ __html: data.descricao }}
-          ></div>
+          <div className="box-text">
+            <h2 className="title-2 uppercase">{data.titulo}</h2>
 
-          <Button
-            url={data.url}
-            text={
-              type === 1
-                ? 'Saiba mais sobre nós'
-                : 'Saiba mais sobre o instituto'
-            }
-          />
-        </div>
-      </Container>
-    </S.TextImage>
+            {type === 3 ? (
+              <NextImage
+                className="show-mobile"
+                alt={data.titulo}
+                src={data.imagem}
+              />
+            ) : (
+              <NextImage
+                className="show-mobile"
+                isUploads
+                alt={data.titulo}
+                src={data.imagem}
+              />
+            )}
+
+            <div
+              className="paragraph-2 description"
+              dangerouslySetInnerHTML={{ __html: data.descricao }}
+            ></div>
+
+            <Button
+              url={data.url}
+              text={
+                type === 1
+                  ? 'Saiba mais sobre nós'
+                  : 'Saiba mais sobre o instituto'
+              }
+            />
+          </div>
+        </Container>
+      </S.TextImage>
+    </Error>
   );
 }

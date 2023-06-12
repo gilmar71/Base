@@ -7,12 +7,12 @@ import ReactInputMask from 'comigo-tech-react-input-mask';
 import * as S from './styles';
 
 interface Props {
+  id: string;
   name: string;
   mask: string;
   label?: string;
   edit?: boolean;
   placeholder?: string;
-  onChangeInput?: React.Dispatch<string>;
   noMargin?: boolean;
   hasBorder?: boolean;
   borderWithBar?: boolean;
@@ -21,25 +21,18 @@ interface Props {
   fontSizeFamilyInput?: string;
 }
 
-type InputProps = JSX.IntrinsicElements['input'] & Props;
+export interface IInputProps {
+  configs: Props;
+  onChangeInput?: React.Dispatch<string>;
+}
 
-export function InputMask({
-  id,
-  name,
-  mask,
-  label,
-  hasBar,
-  noMargin,
-  hasBorder,
-  placeholder,
-  onChangeInput,
-  borderWithBar,
-  fontSizeFamilyInput,
-  fontSizeFamilyLabel,
-  readOnly,
-}: InputProps) {
+type InputProps = JSX.IntrinsicElements['input'] & IInputProps;
+
+export function InputMask({ onChangeInput, configs, readOnly }: InputProps) {
   const [value, setValue] = useState('');
-  const { fieldName, registerField, defaultValue, error } = useField(name);
+  const { fieldName, registerField, defaultValue, error } = useField(
+    configs.name,
+  );
 
   const ref = useRef(null);
 
@@ -67,27 +60,31 @@ export function InputMask({
 
   return (
     <S.Input
-      hasBar={hasBar}
-      noMargin={noMargin}
-      hasBorder={hasBorder}
-      borderWithBar={borderWithBar}
+      hasBar={configs.hasBar}
+      noMargin={configs.noMargin}
+      hasBorder={configs.hasBorder}
+      borderWithBar={configs.borderWithBar}
     >
       <div className="input-content">
-        {label && (
+        {configs.label && (
           <label
             className={`label-text ${
-              fontSizeFamilyLabel ? fontSizeFamilyLabel : 'paragraph-2'
+              configs.fontSizeFamilyLabel
+                ? configs.fontSizeFamilyLabel
+                : 'paragraph-2'
             }`}
-            htmlFor={id}
+            htmlFor={configs.id}
           >
-            {label}
+            {configs.label}
           </label>
         )}
 
-        {hasBar && (
+        {configs.hasBar && (
           <span
             className={`${
-              fontSizeFamilyLabel ? fontSizeFamilyLabel : 'paragraph-2'
+              configs.fontSizeFamilyLabel
+                ? configs.fontSizeFamilyLabel
+                : 'paragraph-2'
             } bar`}
           >
             |
@@ -99,11 +96,11 @@ export function InputMask({
           ref={ref}
           defaultValue={value}
           type="text"
-          name={name}
+          name={configs.name}
         />
 
         <ReactInputMask
-          mask={mask}
+          mask={configs.mask}
           onChange={(e) => {
             setValue(e.target.value);
 
@@ -112,10 +109,14 @@ export function InputMask({
             }
           }}
           value={value}
-          className={fontSizeFamilyInput ? fontSizeFamilyInput : 'paragraph-2'}
-          id={id}
+          className={
+            configs.fontSizeFamilyInput
+              ? configs.fontSizeFamilyInput
+              : 'paragraph-2'
+          }
+          id={configs.id}
           type="text"
-          placeholder={placeholder}
+          placeholder={configs.placeholder}
           readOnly={readOnly}
         />
       </div>

@@ -8,113 +8,142 @@ import {
   InputMask,
   InputComponent,
   TextAreaComponent,
-} from 'components/data/inputs';
+  SelectComponent,
+} from 'components/inputs';
 
 import * as S from './styles';
+import { ButtonProps } from 'codieweb/dist/cjs/components/data/button';
+import { IDefaultSchemas } from 'codieweb/dist/cjs/components/data/form-handler/generate-schemas';
+import { PhoneIcon } from 'components/icons';
+import { Error } from '../error-body';
 
-interface IBoxContact {
+interface BoxContactProps {
+  configs: IBoxContact;
+  buttonProps: ButtonProps;
+  defaultSchemas?: IDefaultSchemas;
+  recaptcha?: {
+    key?: string;
+    active?: boolean;
+  };
+  onSucess: (data: any) => void;
+  type?: 1 | 2 | 3 | 4 | 5;
+}
+
+export interface IBoxContact {
   hasBar?: boolean;
   hasBorder?: boolean;
+  hasSelect?: boolean;
   borderWithBar?: boolean;
   fontSizeFamilyLabel?: string;
   fontSizeFamilyInput?: string;
 }
 
-interface SubmitProps {
-  name: string;
-  email: string;
-  message: string;
-  phone: string;
-}
-
 export function BoxContact({
-  hasBar,
-  hasBorder,
-  borderWithBar,
-  fontSizeFamilyLabel,
-  fontSizeFamilyInput,
-}: IBoxContact) {
-  async function handleSucess(data: SubmitProps) {
-    const response = await api.post('form', data);
-
-    if (response.status === 200) {
-      router.push({ pathname: '/contato/sucesso', query: data.name });
-    }
-  }
+  type,
+  configs,
+  onSucess,
+  recaptcha,
+  buttonProps,
+  defaultSchemas,
+}: BoxContactProps) {
+  const options = [
+    {
+      label: 'teste',
+      value: 'teste',
+    },
+    {
+      label: 'teste2',
+      value: 'teste2',
+    },
+    {
+      label: 'teste3',
+      value: 'teste3',
+    },
+  ];
   return (
-    <S.BoxContact id="box-contact">
-      <FormHandler
-        button={{
-          text: 'Enviar',
-          className: 'link-1 uppercase',
-          color: '#fff',
-          backgroundColor: 'var(--primary-color)',
-        }}
-        onSucess={handleSucess}
-        defaultSchemas={{
-          name: true,
-          email: true,
-          phone: true,
-          message: true,
-        }}
-        recaptcha={{
-          active: true,
-          key: '6Leo8_4lAAAAALz89Tb6i1937jkUbqllMqCkdKRA',
-        }}
-      >
-        <InputComponent
-          id="name"
-          name="name"
-          type="text"
-          label="Nome"
-          placeholder="Digite seu nome completo aqui"
-          fontSizeFamilyLabel={fontSizeFamilyLabel}
-          fontSizeFamilyInput={fontSizeFamilyInput}
-          hasBar={hasBar}
-          hasBorder={hasBorder}
-          borderWithBar={borderWithBar}
-        />
+    <Error name="box-contact">
+      <S.BoxContact id="box-contact" $type={type}>
+        {(type === 2 || type === 4 || type === 5) && (
+          <h2 className="title-2 title uppercase">Entre em contato</h2>
+        )}
 
-        <InputComponent
-          id="email"
-          name="email"
-          type="email"
-          label="E-mail"
-          placeholder="Digite seu e-mail aqui"
-          fontSizeFamilyLabel={fontSizeFamilyLabel}
-          fontSizeFamilyInput={fontSizeFamilyInput}
-          hasBar={hasBar}
-          hasBorder={hasBorder}
-          borderWithBar={borderWithBar}
-        />
+        <FormHandler
+          button={buttonProps}
+          onSucess={onSucess}
+          defaultSchemas={defaultSchemas}
+          recaptcha={recaptcha}
+        >
+          <InputComponent
+            configs={{
+              name: 'name',
+              type: 'text',
+              label: <PhoneIcon />,
+              placeholder: 'Digite seu nome completo aqui',
+              fontSizeFamilyInput: configs.fontSizeFamilyInput,
+              fontSizeFamilyLabel: configs.fontSizeFamilyLabel,
+              hasBar: configs.hasBar,
+              hasBorder: configs.hasBorder,
+              borderWithBar: configs.borderWithBar,
+            }}
+          />
 
-        <InputMask
-          id="phone"
-          type="text"
-          name="phone"
-          label="Telefone"
-          mask="(99) 9 9999-9999"
-          placeholder="(DDD) 9 9999-9999"
-          fontSizeFamilyLabel={fontSizeFamilyLabel}
-          fontSizeFamilyInput={fontSizeFamilyInput}
-          hasBar={hasBar}
-          hasBorder={hasBorder}
-          borderWithBar={borderWithBar}
-        />
+          <InputComponent
+            configs={{
+              name: 'email',
+              type: 'email',
+              label: 'E-mail',
+              placeholder: 'Digite seu e-mail aqui',
+              fontSizeFamilyInput: configs.fontSizeFamilyInput,
+              fontSizeFamilyLabel: configs.fontSizeFamilyLabel,
+              hasBar: configs.hasBar,
+              hasBorder: configs.hasBorder,
+              borderWithBar: configs.borderWithBar,
+            }}
+          />
 
-        <TextAreaComponent
-          id="message"
-          name="message"
-          label="Mensagem"
-          placeholder="O que deseja dizer?"
-          noMargin
-          fontSizeFamilyLabel={fontSizeFamilyLabel}
-          fontSizeFamilyInput={fontSizeFamilyInput}
-          hasBar={hasBar}
-          hasBorder={hasBorder}
-          borderWithBar={borderWithBar}
-        />
-      </FormHandler>
-    </S.BoxContact>
+          <InputMask
+            configs={{
+              id: 'phone',
+              mask: '(99) 9 9999-9999',
+              name: 'phone',
+              label: 'Telefone',
+              placeholder: '(DDD) 9 9999-9999',
+              fontSizeFamilyInput: configs.fontSizeFamilyInput,
+              fontSizeFamilyLabel: configs.fontSizeFamilyLabel,
+              hasBar: configs.hasBar,
+              hasBorder: configs.hasBorder,
+              borderWithBar: configs.borderWithBar,
+            }}
+          />
+
+          {configs.hasSelect && (
+            <SelectComponent
+              configs={{
+                name: 'teste',
+                label: 'teste',
+                optionsSelect: options,
+                hasBar: configs.hasBar,
+                fontSizeFamilyInput: configs.fontSizeFamilyInput,
+                fontSizeFamilyLabel: configs.fontSizeFamilyLabel,
+              }}
+            />
+          )}
+
+          <TextAreaComponent
+            configs={{
+              id: 'message',
+              name: 'message',
+              label: 'Mensagem',
+              placeholder: 'O que deseja dizer?',
+              fontSizeFamilyInput: configs.fontSizeFamilyInput,
+              fontSizeFamilyLabel: configs.fontSizeFamilyLabel,
+              hasBar: configs.hasBar,
+              hasBorder: configs.hasBorder,
+              borderWithBar: configs.borderWithBar,
+            }}
+          />
+        </FormHandler>
+      </S.BoxContact>
+    </Error>
   );
 }

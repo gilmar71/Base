@@ -59,7 +59,6 @@ export const Input = styled.div<InputProps>`
     width: 100%;
     padding: ${({ hasBar }) => (hasBar ? '' : '0 15px')};
     resize: none;
-    border: 0;
     border-radius: 5px;
     background-color: rgba(0, 0, 0, 0.1);
     /* Esse box-shadow manipula o que acontece no preenchimento automático do input */

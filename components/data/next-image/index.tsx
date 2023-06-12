@@ -1,11 +1,9 @@
 import { useState } from 'react';
-
 import Image from 'next/image';
-import { ErrorBoundary } from 'react-error-boundary';
 
 import { pathsApi } from 'src/services/api';
 
-import { ErrorBoundaryComponent } from '../error-boundary';
+import { Error } from '../error-body';
 
 import * as S from './styles';
 
@@ -40,15 +38,7 @@ export function NextImage({
   const [loading, setLoading] = useState(true);
 
   return (
-    <ErrorBoundary
-      FallbackComponent={() =>
-        ErrorBoundaryComponent({ nameComponent: 'Next-Image' })
-      }
-      onError={(arg1, arg2) => {
-        console.log('erro:');
-        console.log(arg1, arg2);
-      }}
-    >
+    <Error name="next-image">
       <S.Image
         onClick={onClick}
         $hasHover={hasHover}
@@ -82,6 +72,6 @@ export function NextImage({
           sizes={sizes}
         />
       </S.Image>
-    </ErrorBoundary>
+    </Error>
   );
 }

@@ -1,3 +1,5 @@
+import { Error } from '../error-body';
+
 import * as S from './styles';
 
 interface PaginationProps {
@@ -20,45 +22,44 @@ export function PaginationComponent({
   }
 
   return (
-    <S.PaginationStyle>
-      {hasPreviousPage && (
-        <span
-          style={{ display: currentPage == 1 ? 'none' : 'block' }}
-          className="title-4-8-bold"
-          onClick={() => onSelect(currentPage - 1)}
-        >
-          {'<'}
-        </span>
-      )}
-
-      {pages.map((pageItem) => {
-        return (
-          <button
-            key={`${pageItem}-pagination}`}
-            type="button"
-            className={`${
-              currentPage === pageItem
-                ? 'title-4-8-bold active'
-                : 'title-4-8-bold'
-            }`}
-            onClick={() => onSelect(pageItem)}
+    <Error name="pagination">
+      <S.PaginationStyle>
+        {hasPreviousPage && (
+          <span
+            style={{ display: currentPage == 1 ? 'none' : 'block' }}
+            className=""
+            onClick={() => onSelect(currentPage - 1)}
           >
-            {pageItem}
-          </button>
-        );
-      })}
+            {'<'}
+          </span>
+        )}
 
-      {hasNextPage && (
-        <span
-          style={{
-            display: pages[pages.length - 1] == currentPage ? 'none' : 'block',
-          }}
-          className="link-3-bold filson"
-          onClick={() => onSelect(currentPage + 1)}
-        >
-          {'>'}
-        </span>
-      )}
-    </S.PaginationStyle>
+        {pages.map((pageItem) => {
+          return (
+            <button
+              key={`${pageItem}-pagination}`}
+              type="button"
+              className={`${currentPage === pageItem ? 'active' : ''}`}
+              onClick={() => onSelect(pageItem)}
+            >
+              {pageItem}
+            </button>
+          );
+        })}
+
+        {hasNextPage && (
+          <span
+            style={{
+              display:
+                pages[pages.length - 1] == currentPage ? 'none' : 'block',
+            }}
+            className="link-3-bold filson"
+            onClick={() => onSelect(currentPage + 1)}
+          >
+            {'>'}
+          </span>
+        )}
+      </S.PaginationStyle>
+    </Error>
   );
 }

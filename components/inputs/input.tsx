@@ -6,9 +6,8 @@ import * as S from './styles';
 
 export interface Props {
   name: string;
-  label?: string;
+  label?: JSX.Element | string;
   type: string;
-  mask?: string;
   placeholder?: string;
   noMargin?: boolean;
   hasBorder?: boolean;
@@ -18,26 +17,18 @@ export interface Props {
   fontSizeFamilyInput?: string;
 }
 
-type InputProps = JSX.IntrinsicElements['input'] & Props;
+export interface IInputProps {
+  configs: Props;
+}
 
-export function InputComponent({
-  id,
-  name,
-  type,
-  mask,
-  label,
-  hasBar,
-  noMargin,
-  hasBorder,
-  placeholder,
-  borderWithBar,
-  fontSizeFamilyInput,
-  fontSizeFamilyLabel,
-  ...rest
-}: InputProps) {
+type InputProps = JSX.IntrinsicElements['input'] & IInputProps;
+
+export function InputComponent({ configs, ...rest }: InputProps) {
   const [value, setValue] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
-  const { fieldName, registerField, defaultValue, error } = useField(name);
+  const { fieldName, registerField, defaultValue, error } = useField(
+    configs.name,
+  );
 
   useEffect(() => {
     registerField({
@@ -49,28 +40,32 @@ export function InputComponent({
 
   return (
     <S.Input
-      hasBar={hasBar}
-      noMargin={noMargin}
-      hasBorder={hasBorder}
-      borderWithBar={borderWithBar}
-      className={name}
+      hasBar={configs.hasBar}
+      noMargin={configs.noMargin}
+      hasBorder={configs.hasBorder}
+      borderWithBar={configs.borderWithBar}
+      className={configs.name}
     >
       <div className="input-content">
-        {label && (
+        {configs.label && (
           <label
             className={`label-text ${
-              fontSizeFamilyLabel ? fontSizeFamilyLabel : 'paragraph-2'
+              configs.fontSizeFamilyLabel
+                ? configs.fontSizeFamilyLabel
+                : 'paragraph-2'
             }`}
-            htmlFor={name}
+            htmlFor={configs.name}
           >
-            {label}
+            {configs.label}
           </label>
         )}
 
-        {hasBar && (
+        {configs.hasBar && (
           <span
             className={`${
-              fontSizeFamilyLabel ? fontSizeFamilyLabel : 'paragraph-2'
+              configs.fontSizeFamilyLabel
+                ? configs.fontSizeFamilyLabel
+                : 'paragraph-2'
             } bar`}
           >
             |
@@ -78,13 +73,17 @@ export function InputComponent({
         )}
 
         <input
-          id={name}
-          name={name}
-          type={type}
+          id={configs.name}
+          name={configs.name}
+          type={configs.type}
           ref={inputRef}
-          placeholder={placeholder}
+          placeholder={configs.placeholder}
           defaultValue={defaultValue}
-          className={fontSizeFamilyInput ? fontSizeFamilyInput : 'paragraph-2'}
+          className={
+            configs.fontSizeFamilyInput
+              ? configs.fontSizeFamilyInput
+              : 'paragraph-2'
+          }
           {...rest}
         />
       </div>
@@ -92,7 +91,9 @@ export function InputComponent({
       {error && (
         <span
           className={`error ${
-            fontSizeFamilyLabel ? fontSizeFamilyLabel : 'paragraph-2'
+            configs.fontSizeFamilyLabel
+              ? configs.fontSizeFamilyLabel
+              : 'paragraph-2'
           } error-message`}
         >
           {error}

@@ -17,8 +17,6 @@ export function Contact({ isPage }: IContact) {
             <h2 className="title-5-zonaproBold title">Entre em contato</h2>
           </div>
         )}
-
-        <BoxContact fontSizeFamilyLabel="title-11-zonaproBold uppercase" />
       </Container>
     </S.Contact>
   );
