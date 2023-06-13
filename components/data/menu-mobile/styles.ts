@@ -74,38 +74,6 @@ export const Menu = styled.div`
         color: var(--red);
       }
     }
-
-    .actions-redes {
-      display: flex;
-      gap: 12px;
-      margin-left: 25px;
-    }
-
-    .link-redes {
-      background-color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 5px;
-      width: 25px;
-      height: 25px;
-      padding: 0;
-      transition: 0.5s;
-
-      svg {
-        height: 14px;
-        width: 14px;
-        fill: var(--primary-color);
-      }
-    }
-
-    .link-redes:hover {
-      background-color: var(--blue);
-
-      svg {
-        fill: #fff;
-      }
-    }
   }
 
   .menu-mobile::-webkit-scrollbar {

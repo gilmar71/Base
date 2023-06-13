@@ -11,11 +11,13 @@ export const CardContactLink = styled(Link)<ICardContactLinkStyles>`
   width: 100%;
   max-width: fit-content;
   gap: 10px;
+  position: relative;
 
   * {
     color: ${({ $color }) => ($color ? $color : '#171717')};
     transition: 0.3s;
     fill: var(--primary-color);
+    line-height: 1;
   }
 
   &:hover {
@@ -23,6 +25,28 @@ export const CardContactLink = styled(Link)<ICardContactLinkStyles>`
       color: ${({ $hoverColor }) =>
         $hoverColor ? $hoverColor : 'var(--primary-color)'};
       fill: var(--secondary-color);
+    }
+  }
+
+  span {
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      background-color: currentColor;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      transition: 0.3s;
+    }
+
+    &:hover {
+      &::after {
+        width: 100%;
+      }
     }
   }
 

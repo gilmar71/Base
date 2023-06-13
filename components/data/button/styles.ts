@@ -22,18 +22,13 @@ export const Button = styled(Link)<IButtonStyles>`
     $hasBg ? 'none' : '2px solid var(--button-color)'};
   background-image: ${({ $hasBg }) =>
     $hasBg &&
-    `linear-gradient(
-      to right,
-      var(--button-color),
-      var(--button-hover-color),
-        var(--button-color),
-        var(--button-hover-color)
-    )`};
+    `linear-gradient(99deg, #c78c21 0%, #dcb351 33%, #c0851d 67%, #dcb251 100%)`};
 
   &:hover {
     background-position: right;
     background-color: ${({ $hasBg }) => !$hasBg && 'var(--button-color)'};
-    color: ${({ $hasBg }) => !$hasBg && '#fff'};
+    color: #000;
+    fill: #000;
   }
 
   @media only screen and (max-width: 1600px) {

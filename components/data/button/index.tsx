@@ -6,6 +6,7 @@ interface IButton {
   text?: string;
   hasBg?: boolean;
   icon?: JSX.Element;
+  className?: string;
   borderRadius?: string;
   externalLink?: boolean;
 }
@@ -15,6 +16,7 @@ export function Button({
   text,
   icon,
   hasBg,
+  className,
   externalLink,
   borderRadius,
 }: IButton) {
@@ -22,7 +24,7 @@ export function Button({
     <Error name="button-component">
       <S.Button
         href={url}
-        className="link-1 uppercase button"
+        className={`link-1-medium button ${className ? className : ''}`}
         $hasBg={hasBg}
         rel={`${externalLink ? 'external' : ''}`}
         target={`${externalLink ? '_blank' : ''}`}

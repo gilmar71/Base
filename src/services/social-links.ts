@@ -7,3 +7,5 @@ export const facebookLink = '';
 export const googleMapsLink = '';
 
 export const emailLink = '';
+
+export const youtubeLink = '';

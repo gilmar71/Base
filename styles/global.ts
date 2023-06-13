@@ -2,12 +2,12 @@ import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
   :root {
-    --primary-color: #e30613;
+    --primary-color: #14b2ac;
     --secondary-color: #2508a1;
     --tertiary-color: #e21776;
     --button-color: #fff;
     --button-hover-color: #000;
-    --text-color: #101010;
+    --text-color: #333;
   }
 
   html {
@@ -16,7 +16,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    background-color: #f3f3f3;
+    background-color: #f7f8fa;
     overflow-x: hidden !important;
 
     &::-webkit-scrollbar {
@@ -36,8 +36,33 @@ export const GlobalStyle = createGlobalStyle`
     }
   }
 
-  p {
+  p,
+  .description {
     color: var(--text-color);
+  }
+
+  .description {
+    padding-right: 5px;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+      width: 3px;
+      border-radius: 10px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: #ccc;
+      border-radius: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: var(--primary-color);
+      border-radius: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background: var(--primary-color);
+    }
   }
 
   .error-message {
@@ -48,7 +73,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   .container {
-    max-width: 1380px;
+    max-width: 1545px;
     width: 100%;
     padding-left: 15px;
     padding-right: 15px;
@@ -56,9 +81,17 @@ export const GlobalStyle = createGlobalStyle`
     margin-right: auto;
   }
 
+  section {
+    padding: 80px 0;
+  }
+
   @media only screen and (max-width: 1600px) {
     .container {
       max-width: 1330px;
+    }
+
+    section {
+      padding: 70px 0;
     }
   }
 
@@ -66,17 +99,29 @@ export const GlobalStyle = createGlobalStyle`
     .container {
       max-width: 1150px;
     }
+
+    section {
+      padding: 50px 0;
+    }
   }
 
   @media only screen and (max-width: 1200px) {
     .container {
       max-width: 990px;
     }
+
+    section {
+      padding: 40px 0;
+    }
   }
 
   @media only screen and (max-width: 1024px) {
     .container {
       max-width: 870px;
+    }
+
+    section {
+      padding: 35px 0;
     }
   }
 
@@ -96,6 +141,10 @@ export const GlobalStyle = createGlobalStyle`
     .container {
       max-width: 625px;
     }
+
+    section {
+      padding: 30px 0;
+    }
   }
 
   @media only screen and (max-width: 650px) {
@@ -105,5 +154,8 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   @media only screen and (max-width: 500px) {
+    section {
+      padding: 25px 0;
+    }
   }
 `;

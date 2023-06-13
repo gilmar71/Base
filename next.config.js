@@ -1,5 +1,8 @@
 module.exports = {
   trailingSlash: true,
+  compiler: {
+    styledComponents: true,
+  },
   images: {
     domains: [
       'localhost',

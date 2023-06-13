@@ -1,5 +1,6 @@
 import { PinIcon } from './Pin';
 import { CarIcon } from './Car';
+import { BagIcon } from './Bag';
 import { LogoIcon } from './Logo';
 import { EmailIcon } from './Mail';
 import { CloseIcon } from './Close';
@@ -31,10 +32,12 @@ import { About1Icon } from './About-1';
 import { About2Icon } from './About-2';
 import { About3Icon } from './About-3';
 import { About4Icon } from './About-4';
+import { YouTubeIcon } from './YouTube';
 
 export {
   PinIcon,
   CarIcon,
+  BagIcon,
   LogoIcon,
   EmailIcon,
   CloseIcon,
@@ -48,6 +51,7 @@ export {
   About2Icon,
   About3Icon,
   About4Icon,
+  YouTubeIcon,
   MonitorIcon,
   NavLeftIcon,
   NavDownIcon,

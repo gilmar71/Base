@@ -8,19 +8,21 @@ import { ICategoriesHeader } from 'src/interfaces/header';
 import {
   PinIcon,
   EmailIcon,
+  CloseIcon,
   FacebookIcon,
   InstagramIcon,
   WhattsAppIcon,
   EmailEmptyIcon,
+  ArrowRightIcon,
   FacebookNoBgIcon,
   InstagramEmptyIcon,
-  CloseIcon,
-  ArrowRightIcon,
+  BagIcon,
 } from 'components/icons';
 
 import * as S from './styles';
 import { Button } from '../button';
 import { Error } from '../error-body';
+import { BoxSocials } from '../box-socials';
 
 interface MenuMobileProps {
   menu: boolean;
@@ -97,32 +99,18 @@ export function MenuMobile({ menu, data, setStateMenu }: MenuMobileProps) {
               ),
             )}
 
-            <Button hasBg text={'ver meus números'} url="/" />
+            <Button
+              className="bag-button"
+              icon={<BagIcon />}
+              text={'Loja'}
+              url="/"
+              hasBg
+            />
             <div className="border"></div>
 
             <h3 className="title-3 uppercase">Contato</h3>
 
-            <div className="actions-redes">
-              <Link href="" target={'_blank'} className="link-redes">
-                <InstagramEmptyIcon />
-              </Link>
-
-              <Link href="" target={'_blank'} className="link-redes">
-                <FacebookNoBgIcon />
-              </Link>
-
-              <Link href="" target={'_blank'} className="link-redes">
-                <WhattsAppIcon />
-              </Link>
-
-              <Link href="" target={'_blank'} className="link-redes">
-                <EmailEmptyIcon />
-              </Link>
-
-              <Link href="" target={'_blank'} className="link-redes">
-                <PinIcon />
-              </Link>
-            </div>
+            <BoxSocials hasBg="#fff" noYoutube isEmptyIcon />
           </nav>
         </div>
       </S.Menu>
