@@ -9,8 +9,16 @@ export const Menu = styled.div`
   z-index: 999;
   visibility: hidden;
   transition: 0.3s ease-in-out;
-  display: flex;
+  display: none;
   justify-content: flex-end;
+
+  &.active {
+    visibility: visible;
+
+    .menu-mobile {
+      transform: translateX(0%);
+    }
+  }
 
   .filter {
     width: 100%;
@@ -176,17 +184,12 @@ export const Menu = styled.div`
     color: var(--secondary-color);
   }
 
-  &.active {
-    z-index: 99;
-    visibility: visible;
-
-    .menu-mobile {
-      transform: translateX(0%);
-    }
-  }
-
   .button {
     margin-left: 20px;
+  }
+
+  @media only screen and (max-width: 1024px) {
+    display: flex;
   }
 
   @media only screen and (max-width: 390px) {

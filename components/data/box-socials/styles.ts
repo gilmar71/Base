@@ -35,7 +35,7 @@ export const BoxSocials = styled.div<IBoxSocialsStyles>`
       background-color: ${({ $hasBg }) => $hasBg && 'var(--secondary-color)'};
 
       svg {
-        fill: #fff;
+        fill: ${({ $hasBg }) => ($hasBg ? '#fff' : '#000')};
       }
     }
   }
