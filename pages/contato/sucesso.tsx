@@ -2,9 +2,11 @@ import Head from 'next/head';
 
 import { useRouter } from 'next/router';
 
+import { Button } from 'codieweb/dist/cjs/components/data/simple-button';
+
 import { Layout } from 'components/layout';
 
-import { Button, Container } from 'components/data/';
+import { Container } from 'components/data/';
 
 import * as S from 'styles/pages/success';
 
@@ -32,7 +34,13 @@ export default function SuccessPage() {
             Obrigado {query.name} pelo contato!
           </p>
 
-          <Button hasBg text="Voltar" url="/" />
+          <Button
+            buttonData={{
+              hasBg: true,
+              text: 'Voltar',
+              url: '/',
+            }}
+          />
         </Container>
       </S.SuccessPage>
     </Layout>

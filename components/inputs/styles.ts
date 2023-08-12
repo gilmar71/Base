@@ -1,21 +1,23 @@
 import styled from 'styled-components';
 
 interface InputProps {
-  noMargin?: boolean;
-  hasBar?: boolean;
-  hasBorder?: boolean;
-  borderWithBar?: boolean;
+  $hasBar?: boolean;
+  $inputBg?: string;
+  $noMargin?: boolean;
+  $hasBorder?: boolean;
+  $borderWithBar?: boolean;
+  $inputBoxShadow?: string;
 }
 
 export const Input = styled.div<InputProps>`
   width: 100%;
-  margin-bottom: ${({ noMargin }) => (noMargin ? '0' : '30px')};
-  background-color: ${({ hasBar }) => hasBar && '#fff'};
-  padding-left: ${({ hasBar }) => hasBar && '15px'};
+  margin-bottom: ${({ $noMargin }) => ($noMargin ? '0' : '30px')};
+  background-color: ${({ $hasBar }) => $hasBar && '#fff'};
+  padding-left: ${({ $hasBar }) => $hasBar && '15px'};
   border-radius: 10px;
-  overflow: ${({ hasBar }) => hasBar && 'hidden'};
-  border: ${({ borderWithBar }) =>
-    borderWithBar && '1px solid rgba(23,23,23,0.4)'};
+  overflow: ${({ $hasBar }) => $hasBar && 'hidden'};
+  border: ${({ $borderWithBar }) =>
+    $borderWithBar && '1px solid rgba(23,23,23,0.4)'};
 
   .bar {
     color: #000;
@@ -24,10 +26,10 @@ export const Input = styled.div<InputProps>`
   .input-content {
     width: 100%;
     position: relative;
-    display: ${({ hasBar }) => hasBar && 'flex'};
-    gap: ${({ hasBar }) => hasBar && '7px'};
-    align-items: ${({ hasBar }) => hasBar && 'center'};
-    justify-content: ${({ hasBar }) => hasBar && 'center'};
+    display: ${({ $hasBar }) => $hasBar && 'flex'};
+    gap: ${({ $hasBar }) => $hasBar && '7px'};
+    align-items: ${({ $hasBar }) => $hasBar && 'center'};
+    justify-content: ${({ $hasBar }) => $hasBar && 'center'};
 
     input:focus + .label-animation,
     .label-animation:focus {
@@ -49,7 +51,7 @@ export const Input = styled.div<InputProps>`
     max-width: fit-content;
 
     & + * {
-      margin-top: ${({ hasBar }) => (hasBar ? '' : '5px')};
+      margin-top: ${({ $hasBar }) => ($hasBar ? '' : '5px')};
     }
   }
 
@@ -57,14 +59,18 @@ export const Input = styled.div<InputProps>`
   textarea,
   select {
     width: 100%;
-    padding: ${({ hasBar }) => (hasBar ? '' : '0 15px')};
+    padding: ${({ $hasBar }) => ($hasBar ? '' : '0 15px')};
     resize: none;
     border-radius: 5px;
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: ${({ $inputBg }) =>
+      $inputBg ? $inputBg : 'rgba(0, 0, 0, 0.1)'};
     /* Esse box-shadow manipula o que acontece no preenchimento automático do input */
-    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0),
-      inset 0 0 0 100px rgba(255, 255, 255, 1);
-    border: ${({ hasBorder }) => hasBorder && '1px solid rgba(23,23,23,0.4)'};
+    box-shadow: ${({ $inputBoxShadow }) =>
+      $inputBoxShadow
+        ? $inputBoxShadow
+        : 'inset 0 0 0 1px rgba(255, 255, 255, 0), inset 0 0 0 100px rgba(255, 255, 255, 1)'};
+    border: ${({ $hasBorder }) =>
+      $hasBorder ? '1px solid rgba(23,23,23,0.4)' : '0'};
   }
 
   input,
@@ -78,15 +84,15 @@ export const Input = styled.div<InputProps>`
   }
 
   .input-textarea {
-    height: ${({ hasBar }) => hasBar && '150px'};
-    padding-top: ${({ hasBar }) => hasBar && '15px'};
-    gap: ${({ hasBar }) => hasBar && '7px'};
-    display: ${({ hasBar }) => hasBar && 'flex'};
+    height: ${({ $hasBar }) => $hasBar && '150px'};
+    padding-top: ${({ $hasBar }) => $hasBar && '15px'};
+    gap: ${({ $hasBar }) => $hasBar && '7px'};
+    display: ${({ $hasBar }) => $hasBar && 'flex'};
   }
 
   textarea {
-    height: ${({ hasBar }) => (hasBar ? '' : '150px')};
-    padding-top: ${({ hasBar }) => (hasBar ? '' : '15px')};
+    height: ${({ $hasBar }) => ($hasBar ? '' : '150px')};
+    padding-top: ${({ $hasBar }) => ($hasBar ? '' : '15px')};
   }
 
   input::-webkit-input-placeholder,
@@ -135,7 +141,7 @@ export const Input = styled.div<InputProps>`
   }
 
   @media only screen and (max-width: 1600px) {
-    margin-bottom: ${({ noMargin }) => (noMargin ? '0' : '25px')};
+    margin-bottom: ${({ $noMargin }) => ($noMargin ? '0' : '25px')};
 
     input,
     select {
@@ -144,7 +150,7 @@ export const Input = styled.div<InputProps>`
   }
 
   @media only screen and (max-width: 1400px) {
-    margin-bottom: ${({ noMargin }) => (noMargin ? '0' : '20px')};
+    margin-bottom: ${({ $noMargin }) => ($noMargin ? '0' : '20px')};
 
     input,
     select {
@@ -152,16 +158,16 @@ export const Input = styled.div<InputProps>`
     }
 
     .input-textarea {
-      height: ${({ hasBar }) => hasBar && '130px'};
+      height: ${({ $hasBar }) => $hasBar && '130px'};
     }
 
     textarea {
-      height: ${({ hasBar }) => (hasBar ? '' : '130px')};
+      height: ${({ $hasBar }) => ($hasBar ? '' : '130px')};
     }
   }
 
   @media only screen and (max-width: 1200px) {
-    margin-bottom: ${({ noMargin }) => (noMargin ? '0' : '15px')};
+    margin-bottom: ${({ $noMargin }) => ($noMargin ? '0' : '15px')};
 
     input,
     select {
@@ -170,7 +176,7 @@ export const Input = styled.div<InputProps>`
   }
 
   @media only screen and (max-width: 1024px) {
-    margin-bottom: ${({ noMargin }) => (noMargin ? '0' : '10px')};
+    margin-bottom: ${({ $noMargin }) => ($noMargin ? '0' : '10px')};
 
     input,
     select {
@@ -185,11 +191,11 @@ export const Input = styled.div<InputProps>`
     }
 
     .input-textarea {
-      height: ${({ hasBar }) => hasBar && '120px'};
+      height: ${({ $hasBar }) => $hasBar && '120px'};
     }
 
     textarea {
-      height: ${({ hasBar }) => (hasBar ? '' : '120px')};
+      height: ${({ $hasBar }) => ($hasBar ? '' : '120px')};
     }
   }
 
@@ -198,5 +204,45 @@ export const Input = styled.div<InputProps>`
     select {
       height: 38px;
     }
+  }
+`;
+
+export const InputCepBox = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 15px;
+
+  @media only screen and (max-width: 1200px) {
+    grid-template-columns: 1fr 1fr;
+    gap: 0 10px;
+  }
+
+  @media only screen and (max-width: 1024px) {
+  }
+
+  @media only screen and (max-width: 900px) {
+  }
+
+  @media only screen and (max-width: 768px) {
+  }
+
+  @media only screen and (max-width: 650px) {
+  }
+
+  @media only screen and (max-width: 500px) {
+    grid-template-columns: 1fr;
+  }
+
+  @media only screen and (max-width: 400px) {
+  }
+`;
+
+export const InputRadioComponent = styled.div`
+  display: flex;
+  gap: 15px;
+
+  .radio {
+    display: flex;
+    gap: 8px;
   }
 `;

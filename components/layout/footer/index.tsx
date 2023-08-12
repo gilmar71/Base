@@ -1,92 +1,140 @@
 import Link from 'next/link';
 
-import { Container, NextImage } from 'components/data';
+import { NextImage } from 'codieweb/dist/cjs/components/data/next-image';
+import { BoxSocials } from 'codieweb/dist/cjs/components/data/box-socials';
+
+import { pathsApi } from 'src/services/api';
+
+import { Card } from 'components/cards';
+import { CodieIcon } from 'components/icons';
+import { Error, Container } from 'components/data';
 
 import {
-  CodieIcon,
-  EmailIcon,
-  FacebookIcon,
-  InstagramIcon,
-} from 'components/icons';
-import { linksContact, linksSuporte } from '../header/data';
-
-import { linksMenuFooter } from './data';
+  emailLink,
+  youtubeLink,
+  facebookLink,
+  linkedinLink,
+  instagramLink,
+  tikTokLink,
+} from 'src/services/social-links';
 
 import * as S from './styles';
 
 export function FooterComponent() {
   return (
-    <S.Footer>
-      <Container>
-        <Link href="/" className="logo">
-          <NextImage src={'/images/logo.webp'} alt={'logomarca'} />
-        </Link>
+    <Error name="footer">
+      <S.Footer>
+        <Container>
+          <Link className="logo" href="/" aria-label="logomarca da empresa">
+            <NextImage
+              pathsApi={pathsApi}
+              src={'/images/logo-new-2.webp'}
+              alt={'logomarca'}
+            />
+          </Link>
 
-        <div className="nav-box">
-          <h3 className="link-5 uppercase title">Menu</h3>
-          <ul className="navigation">
-            {linksMenuFooter.map((link, index) => (
-              <li key={link.link + index}>
-                <Link className="link-5 link " href={link.href}>
-                  {link.link}
-                </Link>
-              </li>
-            ))}
+          <ul className="box-links">
+            <li>
+              <Card type="contact" data={{ url: '/', adress: 'Home' }} />
+            </li>
+
+            <li>
+              <Card
+                type="contact"
+                data={{ url: '/sobre', adress: 'Sobre nós' }}
+              />
+            </li>
+
+            <li>
+              <Card
+                type="contact"
+                data={{ url: '/industria', adress: 'A indústria' }}
+              />
+            </li>
+
+            <li>
+              <Card
+                type="contact"
+                data={{ url: '/blog', adress: 'Comunidade' }}
+              />
+            </li>
+
+            <li>
+              <Card
+                type="contact"
+                data={{ url: '/portifolio', adress: 'Portifólio' }}
+              />
+            </li>
+
+            <li>
+              <Card
+                type="contact"
+                data={{
+                  url: '/nossos-distribuidores',
+                  adress: 'Nossos distribuidores',
+                }}
+              />
+            </li>
+
+            <li>
+              <Card
+                type="contact"
+                data={{
+                  url: '/seja-um-distribuidor',
+                  adress: 'Seja um distribuidor',
+                }}
+              />
+            </li>
+
+            <li>
+              <Card
+                type="contact"
+                data={{ url: '/contato', adress: 'Contato' }}
+              />
+            </li>
+
+            <li>
+              <Card
+                type="contact"
+                data={{
+                  url: 'https://www.papelparamechas.com.br/',
+                  adress: 'Loja',
+                }}
+              />
+            </li>
+
+            <li>
+              <Card
+                type="contact"
+                data={{
+                  url: '/politicas-de-privacidade',
+                  adress: 'Políticas de privacidade',
+                }}
+              />
+            </li>
           </ul>
-        </div>
 
-        <div className="nav-box">
-          <h3 className="link-5 uppercase title">Contato</h3>
-          <ul className="navigation">
-            {linksContact.map((link, index) => (
-              <li key={link.link + index}>
-                <Link className="link-5 link " href={link.href}>
-                  {link.link}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
+          <BoxSocials
+            srcLinks={{
+              email: emailLink,
+              youtube: youtubeLink,
+              facebook: facebookLink,
+              instagram: instagramLink,
+              linkedin: linkedinLink,
+              tiktok: tikTokLink,
+            }}
+            boxStyles={{
+              svgWidth: '20px',
+              svgColor: '#fff',
+              svgHoverColor: 'var(--bt-linear-gradient-1)',
+            }}
+          />
+        </Container>
 
-        <div className="nav-box">
-          <h3 className="link-5 uppercase title">Suporte</h3>
-          <ul className="navigation">
-            {linksSuporte.map((link, index) => (
-              <li key={link.link + index}>
-                <Link className="link-5 link " href={link.href}>
-                  {link.link}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <ul className="socials">
-          <li>
-            <Link href={''}>
-              <FacebookIcon />
-            </Link>
-          </li>
-
-          <li>
-            <Link href={''}>
-              <EmailIcon />
-            </Link>
-          </li>
-
-          <li>
-            <Link href={''}>
-              <InstagramIcon />
-            </Link>
-          </li>
-        </ul>
-      </Container>
-
-      <div className="codie-area">
         <Link href="https://codie.digital/" className="codie-logo">
           <CodieIcon />
         </Link>
-      </div>
-    </S.Footer>
+      </S.Footer>
+    </Error>
   );
 }

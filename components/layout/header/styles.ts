@@ -1,53 +1,61 @@
 import styled from 'styled-components';
 
 interface HeaderProps {
-  noBg?: boolean;
-  fixed: boolean;
+  $noBg?: boolean;
+  $fixed: boolean;
 }
 
 export const Header = styled.header<HeaderProps>`
   position: fixed;
   width: 100%;
-  padding: ${({ fixed }) => (fixed ? '20px 0' : '35px 0')};
+  padding: 7.5px 0;
   left: 0;
+  top: 0;
   z-index: 4;
   transition: 0.5s;
-  background-image: ${({ fixed, noBg }) =>
-    (fixed || noBg) && `linear-gradient(-87deg, #670d92 0%, #e21776 100%)`};
+  background-color: ${({ $fixed, $noBg }) =>
+    $fixed || $noBg ? '#f7f8fa' : 'rgba(0,0,0,0)'};
   z-index: 99;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+
+  &:hover {
+    background-color: ${({ $fixed }) => !$fixed && '#f7f8fa'};
+
+    .itens {
+      color: var(--text-color);
+    }
+
+    .block-bar {
+      > div {
+        background-color: var(--text-color);
+      }
+    }
+  }
 
   .logo {
-    max-width: ${({ fixed, noBg }) =>
-      fixed ? '190px' : noBg ? '284px' : '224px'};
-    aspect-ratio: ${({ fixed, noBg }) =>
-      fixed || noBg ? '284/210' : '224/160'};
     width: 100%;
-    display: inline-flex;
-    position: ${({ fixed, noBg }) => (fixed || noBg) && 'absolute'};
-    background-color: ${({ fixed, noBg }) =>
-      (fixed || noBg) && 'var(--tertiary-color)'};
-    padding: ${({ fixed, noBg }) => (fixed || noBg) && '25px'};
-    top: ${({ fixed, noBg }) => (fixed ? '-20px' : noBg && '-35px')};
-    left: ${({ fixed, noBg }) => (fixed || noBg) && '0'};
-    align-items: ${({ fixed, noBg }) => (fixed || noBg) && 'center'};
-    border-radius: ${({ fixed, noBg }) => (fixed || noBg) && '0 0 35px 35px'};
-
-    .next-image {
-      aspect-ratio: 224/160;
-    }
+    max-width: 150px;
+    aspect-ratio: 151/60;
+    background-image: url('/images/logo-new.webp');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
   }
 
   .container {
     display: flex;
     align-items: center;
-    gap: 300px;
-    justify-content: ${({ fixed, noBg }) =>
-      fixed || noBg ? 'flex-end' : 'space-between'};
-    position: ${({ fixed, noBg }) => (fixed || noBg) && 'relative'};
+    width: 85%;
+    max-width: unset;
+    gap: 5%;
+    justify-content: space-between;
+    /* justify-content: ${({ $fixed, $noBg }) =>
+      $fixed || $noBg ? 'flex-end' : 'space-between'}; */
+    position: ${({ $fixed, $noBg }) => ($fixed || $noBg) && 'relative'};
   }
 
   .menuContainer {
-    width: calc(100% - 224px - 300px);
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -61,7 +69,8 @@ export const Header = styled.header<HeaderProps>`
   }
 
   .itens {
-    color: #fff;
+    color: ${({ $fixed, $noBg }) =>
+      $fixed || $noBg ? 'var(--text-color)' : '#fff'};
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -90,13 +99,13 @@ export const Header = styled.header<HeaderProps>`
       padding-top: 30px;
       position: absolute;
       left: 0;
-      width: 380px;
+      width: 220px;
       top: 25px;
     }
 
     .sub-menu {
-      background-color: ${({ fixed, noBg }) =>
-        fixed || noBg ? '#000' : 'rgba(0,0,0,0.5)'};
+      background-color: ${({ $fixed, $noBg }) =>
+        $fixed || $noBg ? '#000' : 'rgba(0,0,0,0.5)'};
       transform: rotateX(-90deg);
       display: flex;
       flex-direction: column;
@@ -117,19 +126,19 @@ export const Header = styled.header<HeaderProps>`
     }
 
     .svg-icon {
-      stroke: #fff;
+      stroke: ${({ $fixed, $noBg }) => ($fixed || $noBg ? '#000' : '#fff')};
       max-width: 15px;
       width: 100%;
       transition: 0.3s ease-in-out;
     }
 
     &:hover {
-      color: ${({ fixed, noBg }) =>
-        fixed || noBg ? '#000' : 'var(--tertiary-color)'};
+      color: ${({ $fixed, $noBg }) =>
+        $fixed || $noBg ? '#000' : 'var(--primary-color)'};
 
       .svg-icon {
-        stroke: ${({ fixed, noBg }) =>
-          fixed || noBg ? '#000' : 'var(--tertiary-color)'};
+        stroke: ${({ $fixed, $noBg }) =>
+          $fixed || $noBg ? '#000' : 'var(--primary-color)'};
         transform: rotate(180deg);
       }
 
@@ -141,7 +150,7 @@ export const Header = styled.header<HeaderProps>`
         transform: rotateX(0);
 
         a:hover {
-          background-color: var(--tertiary-color);
+          background-color: var(--primary-color);
           color: #fff;
           text-decoration: none;
         }
@@ -154,26 +163,10 @@ export const Header = styled.header<HeaderProps>`
     }
   }
 
-  .button {
-    max-width: 275px;
-  }
-
-  .menuButton {
-    display: none;
-    position: absolute;
-    right: 20px;
-    z-index: 1000;
-
-    div {
-      width: 37px;
-      height: 3px;
-      background-color: #fff;
-      transition: 0.3s;
-    }
-
-    div + div {
-      margin-top: 10px;
-    }
+  .button-bag {
+    max-width: 90px;
+    gap: 7px;
+    fill: #fff;
   }
 
   .bgMobile {
@@ -189,84 +182,49 @@ export const Header = styled.header<HeaderProps>`
   }
 
   .block-bar {
-    width: 40px;
+    width: 35px;
     display: none;
     flex-direction: column;
     gap: 7px;
     background-color: unset;
     border: unset;
+    padding: 0;
 
     > div {
       width: 100%;
       height: 3px;
-      background-color: #fff;
+      background-color: ${({ $fixed, $noBg }) =>
+        $fixed || $noBg ? 'var(--text-color)' : '#fff'};
     }
   }
 
   /*Responsives*/
 
   @media only screen and (max-width: 1600px) {
-    .logo {
-      max-width: ${({ fixed, noBg }) =>
-        fixed ? '180px' : noBg ? '240px' : '190px'};
-    }
-
     .container {
-      gap: 280px;
-    }
-
-    .menuContainer {
-      width: calc(100% - 190px - 280px);
+      width: 90%;
     }
 
     .itens .subMenu-bg {
       width: 355px;
     }
-
-    .button {
-      max-width: 250px;
-    }
   }
 
   @media only screen and (max-width: 1400px) {
-    padding: ${({ fixed }) => (fixed ? '20px 0' : '25px 0')};
-
-    .logo {
-      max-width: ${({ fixed, noBg }) =>
-        fixed ? '170px' : noBg ? '210px' : '170px'};
-      top: ${({ fixed, noBg }) => (fixed ? '-20px' : noBg && '-25px')};
-    }
-
-    .container {
-      gap: 260px;
-    }
-
-    .menuContainer {
-      width: calc(100% - 170px - 260px);
-    }
-
     .itens .subMenu-bg {
       top: 20px;
       width: 335px;
     }
-
-    .button {
-      max-width: 220px;
-    }
   }
 
   @media only screen and (max-width: 1200px) {
-    .logo {
-      max-width: ${({ fixed, noBg }) =>
-        fixed ? '170px' : noBg ? '190px' : '170px'};
-    }
-
     .container {
-      gap: 220px;
+      width: 95%;
+      gap: 3%;
     }
 
-    .menuContainer {
-      width: calc(100% - 150px - 220px);
+    .logo {
+      max-width: 130px;
     }
 
     .itens {
@@ -276,41 +234,17 @@ export const Header = styled.header<HeaderProps>`
         width: 320px;
       }
     }
-
-    .button {
-      max-width: 200px;
-    }
   }
 
   @media only screen and (max-width: 1024px) {
-    .logo {
-      max-width: ${({ fixed, noBg }) =>
-        fixed ? '160px' : noBg ? '180px' : '140px'};
-    }
-
-    .container {
-      gap: 170px;
-    }
-
-    .menuContainer {
-      width: calc(100% - 140px - 170px);
-    }
-  }
-
-  @media only screen and (max-width: 900px) {
-    padding: ${({ fixed }) => (fixed ? '15px 0' : '25px 0')};
+    padding: 15px 0;
 
     .logo {
-      max-width: ${({ fixed }) => (fixed ? '150px' : '160px')};
+      max-width: 130px;
       position: absolute;
-      top: ${({ fixed, noBg }) => (fixed ? '-15px' : noBg ? '-25px' : '12px')};
-      padding: ${({ fixed, noBg }) => (fixed || noBg) && '20px'};
       left: 50%;
-      transform: translateX(-50%);
-    }
-
-    .container {
-      justify-content: flex-end;
+      top: 50%;
+      transform: translate(-50%, -50%);
     }
 
     .menu {
@@ -318,43 +252,42 @@ export const Header = styled.header<HeaderProps>`
     }
 
     .menuContainer {
-      background-color: unset;
-      justify-content: flex-end;
-      width: 100%;
-      max-width: fit-content;
+      justify-content: space-between;
+      flex-flow: row-reverse;
     }
 
     .block-bar {
       display: flex;
     }
+
+    .hide-mobile {
+      display: none;
+    }
+
+    .mobile {
+      margin-left: 20px;
+    }
   }
 
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 900px) {
+  }
+
+  @media only screen and (max-width: 650px) {
+    .logo {
+      max-width: 115px;
+    }
   }
 
   @media only screen and (max-width: 500px) {
-    padding: ${({ fixed }) => (fixed ? '15px 0' : '20px 0')};
-
-    .logo {
-      max-width: ${({ fixed }) => (fixed ? '120px' : '140px')};
-      top: ${({ fixed, noBg }) => (fixed ? '-20px' : noBg ? '-20px' : '12px')};
-    }
   }
 
   @media only screen and (max-width: 390px) {
-    padding: ${({ fixed }) => (fixed ? '15px 0' : '15px 0')};
-
     .logo {
-      max-width: ${({ fixed }) => (fixed ? '110px' : '130px')};
-      padding: ${({ fixed, noBg }) => (fixed || noBg) && '15px'};
+      max-width: 105px;
     }
 
-    .menuContainer {
-      width: 100%;
-    }
-
-    .container {
-      gap: unset;
+    .block-bar {
+      width: 30px;
     }
   }
 `;

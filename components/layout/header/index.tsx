@@ -1,12 +1,23 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-import { ICategoriesHeader } from 'src/interfaces/header';
+import { MenuMobile } from 'codieweb/dist/cjs/components/data/menu-mobile';
+
+import { ICategoriesHeader } from 'src/interfaces/IHeader';
 
 import { NavDownIcon } from 'components/icons';
-import { Container, MenuMobile, NextImage } from 'components/data';
+import { Container } from 'components/data';
+
+import {
+  whattsAppLink,
+  emailLink,
+  facebookLink,
+  googleMapsLink,
+  instagramLink,
+  tikTokLink,
+} from 'src/services/social-links';
 
 import * as S from './styles';
 
@@ -23,22 +34,42 @@ interface HeaderProps {
 }
 
 export function HeaderComponent({ data, noBg, fixed }: HeaderProps) {
-  const dropDownRef = useRef(null);
   const [isActive, setIsActive] = useState(false);
   const onClick = () => setIsActive(!isActive);
 
   const router = useRouter();
 
-  const urlPage = router.query.url;
-
   return (
-    <S.Header fixed={fixed} noBg={noBg}>
+    <S.Header $fixed={fixed} $noBg={noBg}>
       <Container>
-        <Link href="/" className="logo" aria-label="logomarca da empresa">
-          <NextImage src={'/images/logo.webp'} alt={'logomarca'} />
-        </Link>
+        <Link
+          href="/"
+          className="logo"
+          aria-label="logomarca da empresa"
+        ></Link>
 
-        <MenuMobile data={data} setStateMenu={setIsActive} menu={isActive} />
+        <MenuMobile
+          defaultFonts={{
+            link: 'link-1',
+            isUppercase: true,
+          }}
+          defaultBoxSocials={{
+            srcLinks: {
+              email: emailLink,
+              whattsapp: whattsAppLink,
+              facebook: facebookLink,
+              instagram: instagramLink,
+              maps: googleMapsLink,
+              tiktok: tikTokLink,
+            },
+            boxStyles: {
+              svgColor: 'var(--primary-color)',
+            },
+          }}
+          data={data}
+          setStateMenu={setIsActive}
+          menu={isActive}
+        />
 
         <div className="menuContainer">
           <button
@@ -52,12 +83,12 @@ export function HeaderComponent({ data, noBg, fixed }: HeaderProps) {
             <div></div>
           </button>
 
-          <nav ref={dropDownRef} className="menu">
+          <nav className="menu">
             {data.map((categoria) => {
               return categoria.categorias ? (
                 <span
                   key={'link-menu-' + categoria.id}
-                  className="itens link-3 uppercase"
+                  className="itens link-1"
                 >
                   {categoria.link}
 
@@ -71,12 +102,12 @@ export function HeaderComponent({ data, noBg, fixed }: HeaderProps) {
                             <li key={subCategoria.id + subCategoria.titulo}>
                               <Link
                                 href={{
-                                  pathname: '/servico/[url]',
+                                  pathname: '/[url]',
                                   query: {
                                     url: subCategoria.url,
                                   },
                                 }}
-                                className="link-3 uppercase"
+                                className="link-1"
                               >
                                 {subCategoria.titulo}
                               </Link>
@@ -90,8 +121,8 @@ export function HeaderComponent({ data, noBg, fixed }: HeaderProps) {
               ) : (
                 <Link
                   key={'link-menu-' + categoria.id}
-                  href={categoria.href}
-                  className={`itens link-3 uppercase ${
+                  href={categoria.href!}
+                  className={`itens link-1 ${
                     router.pathname === categoria.href ? 'active' : ''
                   }`}
                 >
@@ -99,12 +130,6 @@ export function HeaderComponent({ data, noBg, fixed }: HeaderProps) {
                 </Link>
               );
             })}
-
-            {/* <ButtonComponent
-              text={'Entre em contato'}
-              backgroundColor
-              href="/"
-            /> */}
           </nav>
         </div>
       </Container>

@@ -1,24 +1,25 @@
 import { GetServerSideProps } from 'next';
-import { useRouter } from 'next/router';
 
-import { api } from 'src/services/api';
+import { HeadComponent } from 'codieweb/dist/cjs/components/data/head';
+
+import { painelURL, pathsApi } from 'src/services/api';
+import { getHomeData } from 'src/api-requests/home';
+import { IPageInformations } from 'src/interfaces/IPageInformations';
 
 import { Layout } from 'components/layout';
 
 interface IHomePage {}
 
 export default function HomePage() {
-  const router = useRouter();
-
   return <Layout></Layout>;
 }
 
 // export const getServerSideProps: GetServerSideProps = async () => {
-//   const responseHomeData = await api.get<IPageInformations>(`pages/home`);
+//   const { homeData } = await getHomeData();
 
 //   return {
 //     props: {
-//       homeData: responseHomeData.data,
+//       pageContent: homeData,
 //     },
 //   };
 // };

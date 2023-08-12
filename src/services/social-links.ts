@@ -1,11 +1,15 @@
-export const apiWhattsApp = 'https://api.whatsapp.com/send/?phone=';
+export const whattsAppLink = 'https://api.whatsapp.com/send/?phone=';
 
-export const instagramLink = '';
+export const instagramLink = 'https://www.instagram.com/';
 
-export const facebookLink = '';
+export const facebookLink = 'https://www.facebook.com/';
 
 export const googleMapsLink = '';
 
-export const emailLink = '';
+export const emailLink = 'mailto:';
 
-export const youtubeLink = '';
+export const youtubeLink = 'https://www.youtube.com/';
+
+export const linkedinLink = 'https://www.linkedin.com/';
+
+export const tikTokLink = 'https://www.tiktok.com/';

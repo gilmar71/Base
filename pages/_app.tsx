@@ -1,37 +1,48 @@
-import { useRouter } from 'next/router';
-
 import Head from 'next/head';
 import { AppProps } from 'next/app';
+import { useRouter } from 'next/router';
 
 // import AOS from 'aos';
 
-import SwiperCore, {
-  Thumbs,
-  Virtual,
-  Autoplay,
-  EffectFade,
-  Navigation,
-  Pagination,
-} from 'swiper';
+import { ThemeProvider } from 'src/contexts/theme';
+import { LoaderOnRouteChange } from 'src/contexts/route';
 
-import { api, apiURL, pathsApi, siteUrl } from 'src/services/api';
+import '../styles/reset.css';
+import '../styles/fonts.css';
 
 import { GlobalStyle } from '../styles/global';
 
-import 'aos/dist/aos.css';
-
+// import 'aos/dist/aos.css';
 import 'swiper/css';
 import 'swiper/css/thumbs';
 import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/effect-fade';
+import 'swiper/css/effect-coverflow';
 
-import '../styles/reset.css';
-import '../styles/fonts.css';
-import { MainContextProvider } from 'src/contexts/context';
+import SwiperCore, {
+  Thumbs,
+  Virtual,
+  Autoplay,
+  Mousewheel,
+  EffectFade,
+  Navigation,
+  Pagination,
+  EffectCoverflow,
+} from 'swiper';
+import { pathsApi, siteUrl } from 'src/services/api';
 
-SwiperCore.use([Thumbs, Virtual, Autoplay, Pagination, Navigation, EffectFade]);
+SwiperCore.use([
+  Thumbs,
+  Virtual,
+  Autoplay,
+  Pagination,
+  Navigation,
+  Mousewheel,
+  EffectFade,
+  EffectCoverflow,
+]);
 
 const App = ({ Component, pageProps }: AppProps) => {
   const router = useRouter();
@@ -40,7 +51,7 @@ const App = ({ Component, pageProps }: AppProps) => {
   //   AOS.init({});
   // }, []);
   return (
-    <>
+    <ThemeProvider>
       <Head>
         <title>{pathsApi.projectName}</title>
         <link rel="icon" href="/favicon.ico" />
@@ -64,16 +75,21 @@ const App = ({ Component, pageProps }: AppProps) => {
         <meta property="og:type" content="website" />
         <meta property="og:locale" content="pt_BR" />
 
-        <meta property="og:image:width" content="400" />
-        <meta property="og:image:height" content="400" />
-        <meta property="og:image:type" content="image/jpeg" />
+        <meta property="og:image:width" content="600" />
+        <meta property="og:image:height" content="300" />
+        <meta property="og:image:type" content="image/jpg" />
 
+        <meta property="twitter:domain" content={siteUrl} />
+        <meta property="twitter:url" content={siteUrl + router.asPath} />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
 
       <GlobalStyle />
+
+      <LoaderOnRouteChange />
+
       <Component {...pageProps} />
-    </>
+    </ThemeProvider>
   );
 };
 

@@ -2,12 +2,18 @@ import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
   :root {
-    --primary-color: #14b2ac;
+    --primary-color: #12b2ad;
     --secondary-color: #2508a1;
-    --tertiary-color: #e21776;
-    --button-color: #fff;
-    --button-hover-color: #000;
+    --tertiary-color: #c9e9ee;
     --text-color: #333;
+
+    --button-color-bg: #fff;
+    --button-color-no-bg: #fff;
+    --button-color-bg-hover: #000;
+    --button-color-no-bg-hover: #000;
+
+    --bt-linear-gradient-1: #d99749;
+    --bt-linear-gradient-2: #f1c36b;
   }
 
   html {
@@ -37,11 +43,12 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   p,
-  .description {
+  .description, .text {
     color: var(--text-color);
+    text-align: justify;
   }
 
-  .description {
+  /* .description {
     padding-right: 5px;
     overflow-y: auto;
 
@@ -63,6 +70,10 @@ export const GlobalStyle = createGlobalStyle`
     &::-webkit-scrollbar-thumb:hover {
       background: var(--primary-color);
     }
+  } */
+
+  .line {
+    height: 8px;
   }
 
   .error-message {

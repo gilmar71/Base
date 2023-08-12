@@ -13,29 +13,35 @@ import * as S from './styles';
 
 interface Props {
   id?: string;
-  placeholder?: string;
   formRef: RefObject<FormHandles>;
-  children: React.ReactNode;
+  name: string;
+  label?: string | JSX.Element;
+  hasBar?: boolean;
+  isFlex?: boolean;
+  inputBg?: string;
   noMargin?: boolean;
-  label?: string;
+  hasBorder?: boolean;
+  placeholder?: string;
+  borderWithBar?: boolean;
+  inputBoxShadow?: string;
+  fontSizeFamilyLabel?: string;
+  fontSizeFamilyInput?: string;
 }
 
-type InputProps = JSX.IntrinsicElements['input'] & Props;
+interface IInputProps {
+  configs: Props;
+  children: React.ReactNode;
+}
 
-export function InputCep({
-  placeholder,
-  formRef,
-  children,
-  noMargin,
-  label,
-  id,
-}: InputProps) {
+type InputProps = JSX.IntrinsicElements['input'] & IInputProps;
+
+export function InputCep({ configs, children, ...rest }: InputProps) {
   const [cep, setCep] = useState('');
   const [validCep, setValidCep] = useState(false);
 
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const { fieldName, registerField, defaultValue, error } = useField('zipCode');
+  const { fieldName, registerField, defaultValue, error } = useField('cep');
 
   async function CallCep() {
     try {
@@ -45,20 +51,20 @@ export function InputCep({
 
       if (data.erro) {
         setValidCep(false);
-        formRef.current?.setFieldError('zipCode', 'Cep inválido.');
+        configs.formRef.current?.setFieldError('zipCode', 'Cep inválido.');
         return;
       }
 
       setValidCep(true);
 
-      formRef.current?.setFieldError('zipCode', '');
-      formRef.current?.setFieldValue('street', data.logradouro);
-      formRef.current?.setFieldValue('district', data.bairro);
-      formRef.current?.setFieldValue('city', data.localidade);
-      formRef.current?.setFieldValue('state', data.uf);
+      configs.formRef.current?.setFieldError('cep', '');
+      configs.formRef.current?.setFieldValue('endereco', data.logradouro);
+      configs.formRef.current?.setFieldValue('bairro', data.bairro);
+      configs.formRef.current?.setFieldValue('localidade', data.localidade);
+      configs.formRef.current?.setFieldValue('estado', data.uf);
     } catch (e) {
       setValidCep(false);
-      formRef.current?.setFieldError('zipCode', '');
+      configs.formRef.current?.setFieldError('zipCode', '');
     }
   }
 
@@ -85,18 +91,46 @@ export function InputCep({
     }
 
     setValidCep(false);
-    formRef.current?.setFieldError('zipCode', '');
+    configs.formRef.current?.setFieldError('zipCode', '');
   }, [inputRef.current?.value, cep, defaultValue]);
 
   return (
-    <>
-      <S.Input noMargin={noMargin}>
+    <S.InputCepBox>
+      <S.Input
+        className={configs.name}
+        $hasBar={configs.isFlex}
+        $inputBg={configs.inputBg}
+        $noMargin={configs.noMargin}
+        $hasBorder={configs.hasBorder}
+        $borderWithBar={configs.borderWithBar}
+        $inputBoxShadow={configs.inputBoxShadow}
+      >
         <div className="input-content">
-          {label && (
-            <label className="label-text title-4-9-bold" htmlFor={id}>
-              {label}
+          {configs.label && (
+            <label
+              className={`label-text ${
+                configs.fontSizeFamilyLabel
+                  ? configs.fontSizeFamilyLabel
+                  : 'paragraph-2'
+              }`}
+              htmlFor={configs.name}
+            >
+              {configs.label}
             </label>
           )}
+
+          {configs.hasBar && (
+            <span
+              className={`${
+                configs.fontSizeFamilyLabel
+                  ? configs.fontSizeFamilyLabel
+                  : 'paragraph-2'
+              } bar`}
+            >
+              |
+            </span>
+          )}
+
           <ReactInputMask
             mask="99999-999"
             onChange={(e) => {
@@ -106,11 +140,15 @@ export function InputCep({
           >
             {() => (
               <input
-                className="paragraph-1-bold"
+                className={
+                  configs.fontSizeFamilyInput
+                    ? configs.fontSizeFamilyInput
+                    : 'paragraph-2'
+                }
                 ref={inputRef}
                 type="text"
                 name="zipCode"
-                placeholder={placeholder}
+                placeholder={configs.placeholder}
                 value={cep}
               />
             )}
@@ -118,16 +156,19 @@ export function InputCep({
         </div>
 
         {error && (
-          <span className="error paragraph-3-bold error-message">{error}</span>
+          <span
+            className={`error ${
+              configs.fontSizeFamilyLabel
+                ? configs.fontSizeFamilyLabel
+                : 'paragraph-2'
+            } error-message`}
+          >
+            {error}
+          </span>
         )}
       </S.Input>
 
-      <div
-        style={{ display: !validCep ? 'none' : 'block' }}
-        className="show-if-cep-is-valid"
-      >
-        {children}
-      </div>
-    </>
+      {children}
+    </S.InputCepBox>
   );
 }

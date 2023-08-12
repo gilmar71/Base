@@ -2,13 +2,10 @@ export function EmailIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="20"
-      height="16"
       viewBox="0 0 20 16"
       className="svg-icon"
     >
       <path
-        id="email"
         d="M21,6H5A2,2,0,0,0,3.01,8L3,20a2.006,2.006,0,0,0,2,2H21a2.006,2.006,0,0,0,2-2V8A2.006,2.006,0,0,0,21,6Zm0,4-8,5L5,10V8l8,5,8-5Z"
         transform="translate(-3 -6)"
       />
@@ -20,8 +17,6 @@ export function EmailEmptyIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="18"
-      height="16"
       viewBox="0 0 18 16"
       className="svg-icon"
     >

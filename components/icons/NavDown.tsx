@@ -24,8 +24,6 @@ export function NavDownDoubleIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="33"
-      height="28"
       viewBox="0 0 33 28"
       className="svg-icon"
     >
@@ -33,7 +31,6 @@ export function NavDownDoubleIcon() {
         <g>
           <path
             fill="none"
-            stroke="#e21776"
             strokeLinecap="round"
             strokeLinejoin="round"
             strokeMiterlimit="20"
@@ -44,7 +41,6 @@ export function NavDownDoubleIcon() {
         <g>
           <path
             fill="none"
-            stroke="#e21776"
             strokeLinecap="round"
             strokeLinejoin="round"
             strokeMiterlimit="20"

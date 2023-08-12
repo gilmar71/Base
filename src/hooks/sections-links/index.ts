@@ -1,7 +1,7 @@
 import useSWR from 'swr';
 
 import { api } from 'src/services/api';
-import { IPageInformations } from 'src/interfaces/pageInformations';
+import { IPageInformations } from 'src/interfaces/IPageInformations';
 
 export function linksSections() {
   const fetcherLinks = () => api.get<IPageInformations>(`pages/home`);

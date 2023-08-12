@@ -1,23 +1,42 @@
-import { BoxContact, Container } from 'components/data';
+import { Contact } from 'codieweb/dist/cjs/components/sections/contact';
 
-import * as S from './styles';
+import { api } from 'src/services/api';
+import { contactList } from 'src/localData/data';
 
 interface IContact {
   isPage?: boolean;
 }
 
-export function Contact({ isPage }: IContact) {
+export function ContactSection({ isPage }: IContact) {
   return (
-    <S.Contact id="contato" isPage={isPage}>
-      <Container>
-        {isPage && (
-          <div className="box-title">
-            <h3 className="title-9-zonaproBold">Vamos crescer juntos</h3>
-
-            <h2 className="title-5-zonaproBold title">Entre em contato</h2>
-          </div>
-        )}
-      </Container>
-    </S.Contact>
+    <Contact
+      api={api}
+      type={1}
+      contactList={contactList}
+      defaultSchemas={{
+        name: true,
+        email: true,
+        phone: true,
+        message: true,
+      }}
+      configs={{
+        fontSizeFamilyLabel: 'paragraph-2-bold',
+        hasBorder: true,
+        isPage: isPage,
+        inputBoxShadow:
+          'inset 0 0 0 1px rgba(255, 255, 255, 0), inset 0 0 0 100px #e3f3f2',
+      }}
+      fontProps={{ title: 'title-2 uppercase' }}
+      buttonProps={{
+        text: 'Enviar',
+        bgColor: '#c78c21',
+        color: '#fff',
+        className: 'link-1 uppercase',
+      }}
+      recaptcha={{
+        active: true,
+        key: '6Lc1v50mAAAAAJD0gheUQRt4YDHBfIclnF7M0GJA',
+      }}
+    />
   );
 }

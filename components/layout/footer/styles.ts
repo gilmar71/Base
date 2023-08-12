@@ -2,252 +2,127 @@ import styled from 'styled-components';
 
 export const Footer = styled.footer`
   position: relative;
-  padding-top: 100px;
-  background-image: linear-gradient(-74deg, #2508a1 0%, #e21776 100%);
+  padding: 60px 0 110px;
   width: 100%;
-  background-repeat: no-repeat;
-  background-position: center center;
+  background-color: var(--primary-color);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  transform-origin: top center;
-  clippath: polygon(0% 10%, 100% 0%, 100% 100%, 0 100%);
-  overflow: hidden;
-
-  .detail-footer {
-    position: absolute;
-    right: -1.5vw;
-    bottom: -6vw;
-    width: 100%;
-    max-width: 25vw;
-    z-index: -1;
-  }
 
   .container {
     width: 100%;
     display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
   }
 
   .logo {
-    max-width: 210px;
-    aspect-ratio: 210/150;
+    max-width: 150px;
+    aspect-ratio: 151/60;
     width: 100%;
     display: inline-flex;
+
+    a {
+      width: 100%;
+      aspect-ratio: inherit;
+    }
+
+    img {
+      object-fit: contain;
+    }
   }
 
-  .nav-box {
-    width: 100%;
-    max-width: fit-content;
-  }
-
-  .navigation {
+  .box-links {
     width: 100%;
     display: flex;
-    flex-direction: column;
     justify-content: space-between;
-    gap: 20px;
-
-    li {
-      display: flex;
-    }
-  }
-
-  .title {
-    color: #fff;
-
-    & + * {
-      margin-top: 30px;
-    }
-  }
-
-  .socials {
-    width: 100%;
-    max-width: fit-content;
-    display: flex;
-    gap: 20px;
-    flex-direction: column;
-    justify-content: space-between;
-
-    .svg-icon {
-      transition: 0.3s;
-      fill: #fff;
-    }
-
-    a:hover .svg-icon {
-      fill: var(--tertiary-color);
-    }
-  }
-
-  .link {
-    position: relative;
-    color: #fff;
-
-    &::after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 2px;
-      background-color: currentColor;
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      transition: 0.3s;
-    }
-
-    &:hover {
-      color: var(--tertiary-color);
-
-      &::after {
-        width: 100%;
-      }
-    }
-  }
-
-  .codie-area {
-    display: flex;
-    justify-content: center;
     align-items: center;
   }
 
-  .codie-logo .svg-icon {
-    max-width: 80px;
+  .box-socials {
+    max-width: fit-content;
+    gap: 1.5vw;
+  }
+
+  .codie-logo {
+    max-width: 60px;
     width: 100%;
-    transition: 0.3s;
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 160/49;
     fill: #fff;
+    transition: 0.3s;
 
     &:hover {
-      fill: var(--primary-color);
+      fill: var(--bt-linear-gradient-1);
     }
   }
 
   @media only screen and (max-width: 1600px) {
-    .title + * {
-      margin-top: 25px;
-    }
-
-    .navigation {
-      gap: 15px;
-    }
   }
 
   @media only screen and (max-width: 1400px) {
-    .detail-footer {
-      right: -2.8vw;
-      bottom: -7vw;
-      max-width: 30vw;
-    }
-
-    .logo {
-      max-width: 180px;
-    }
-
-    .title + * {
-      margin-top: 20px;
-    }
-
-    .navigation {
-      gap: 12px;
-    }
+    padding: 60px 0 90px;
   }
 
   @media only screen and (max-width: 1200px) {
-    padding-top: 80px;
+    padding: 60px 0;
 
-    .navigation {
-      gap: 10px;
+    .container {
+      gap: 30px;
+    }
+
+    .box-links {
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .box-socials {
+      gap: 25px;
     }
   }
 
   @media only screen and (max-width: 1024px) {
-    .socials .svg-icon {
-      max-width: 18px;
+    padding: 50px 0 60px;
+
+    .codie-logo {
+      max-width: 50px;
     }
   }
 
   @media only screen and (max-width: 900px) {
-    padding-top: 50px;
-    clippath: polygon(0 2%, 100% 0%, 100% 100%, 0 100%);
+    padding: 40px 0 60px;
 
-    .detail-footer {
-      bottom: 0;
-      right: 0;
-      max-width: 40vw;
+    .container,
+    .box-links {
+      gap: 25px;
     }
 
-    .title {
-      text-align: center;
-
-      & + * {
-        margin-top: 15px;
+    .box-socials {
+      .link-redes,
+      svg {
+        width: 18px;
+        height: 18px;
       }
-    }
-
-    .navigation {
-      align-items: center;
-      gap: 12px;
-    }
-
-    .nav-box {
-      position: relative;
-
-      &::after {
-        content: '';
-        position: absolute;
-        width: 200px;
-        height: 2px;
-        background-color: #eee;
-        bottom: -15px;
-        left: 50%;
-        transform: translateX(-50%);
-      }
-    }
-
-    .socials {
-      flex-direction: unset;
-    }
-
-    .container {
-      flex-direction: column;
-      align-items: center;
-      gap: 30px;
-      padding-bottom: 30px;
-    }
-
-    .codie-logo .svg-icon {
-      max-width: 60px;
     }
   }
 
   @media only screen and (max-width: 768px) {
+    padding: 30px 0 65px;
   }
 
   @media only screen and (max-width: 650px) {
   }
 
   @media only screen and (max-width: 500px) {
-    padding-top: 35px;
-
-    .detail-footer {
-      display: none;
-    }
-
-    .container {
-      gap: 20px;
-      padding-bottom: 15px;
-    }
-
-    .navigation {
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .nav-box::after {
-      bottom: -10px;
-    }
+    padding: 30px 0 60px;
   }
 
   @media only screen and (max-width: 390px) {
